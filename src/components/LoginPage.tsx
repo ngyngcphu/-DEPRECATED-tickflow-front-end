@@ -1,7 +1,7 @@
-import React, { ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
+import { ExclamationCircleIcon /*EyeIcon, EyeSlashIcon*/ } from "@heroicons/react/24/solid";
 import img from "../assets/login.png";
 
 interface InitialFormValues {
@@ -16,14 +16,15 @@ interface FormError {
 
 export function LoginPage() {
   const [show, setShow] = useState(false);
-  const [formValues, setformValues] = useState<InitialFormValues>({
+  const [formValues, setFormValues] = useState<InitialFormValues>({
     username: "",
     password: ""
   });
-  const [formError, setformError] = useState<FormError>({
+  const [formError, setFormError] = useState<FormError>({
     username: "",
     password: ""
   });
+  // const [showPassword, setShowPassword] = useState(false);
 
   const onClick = () => {
     setShow(true);
@@ -35,12 +36,16 @@ export function LoginPage() {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
-    setformValues({ ...formValues, [id]: value });
+    setFormValues({ ...formValues, [id]: value });
   };
+
+  // const handleShowPassword = () => {
+  //   setShowPassword(!showPassword);
+  // }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setformError(validate(formValues));
+    setFormError(validate(formValues));
   };
 
   const validate = (values: InitialFormValues) => {
@@ -60,77 +65,71 @@ export function LoginPage() {
   };
 
   return (
-    <div className='bg-[#F8F8F8] h-screen p-8'>
-      <div className='container mx-auto h-[80vh] bg-[#DDF3F2] shadow-2xl'>
-        <div className='lg:grid grid-cols-3'>
-          <div className='h-[80vh] flex items-center grid justify-items-center'>
-            <img src={img} />
+    <div className='bg-[#F8F8F8] h-screen'>
+      <div className='container mx-auto h-screen bg-[#DDF3F2]'>
+        <div className='lg:grid grid-cols-2'>
+          <div className='h-screen hidden lg:flex items-center lg:grid justify-items-center'>
+            <img className='w-2/3' src={img} />
           </div>
-          <div className='bg-[#FFFFFF] rounded-l-3xl col-span-2'>
-            <h1 className='text-center text-[#19A69C] text-[70px] font-bold'>Log in</h1>
-            <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-              <div className='px-[200px] block'>
-                <Label color='black' htmlFor='email1' value='Enter your username' />
-              </div>
-              <div className='px-[200px] mb-5'>
-                <TextInput
-                  color='grey'
-                  id='username'
-                  value={formValues.username}
-                  type='text'
-                  placeholder='username'
-                  onChange={handleChange}
-                  required={true}
-                />
-              </div>
-              <p>{formError.username}</p>
-              <div className='px-[200px] block'>
-                <Label color='black' htmlFor='password1' value='Enter your password' />
-              </div>
-              <div className='px-[200px]'>
-                <TextInput
-                  color='grey'
-                  id='password'
-                  value={formValues.password}
-                  type='password'
-                  placeholder='password'
-                  onChange={handleChange}
-                  required={true}
-                />
-              </div>
-              <p>{formError.username}</p>
-              <div className='grid justify-items-center mt-5'>
-                <Button type='submit' color='green' size='md'>
-                  Log in
-                </Button>
-              </div>
+          <div className='h-screen bg-[#FFFFFF] rounded-l-3xl py-4'>
+            <h1 className='text-center text-[#19A69C] text-[70px] font-archivo mb-5'>Log in</h1>
+            <form className='flex flex-col gap-2' onSubmit={handleSubmit}>
+              <Label className='ml-32 text-[20px] font-archivo' htmlFor='username' style={{ color: "#444444" }}>
+                Username <span className='text-[#F12323]'>*</span>
+              </Label>
+              <TextInput
+                className='mx-28'
+                sizing='lg'
+                color='grey'
+                id='username'
+                value={formValues.username}
+                type='text'
+                placeholder='Username'
+                onChange={handleChange}
+              />
+              <p className='ml-32 mb-5 font-archivo text-[#F12323] text-[16px]'>{formError.username}</p>
+              <Label className='ml-32 block text-[20px] font-archivo' htmlFor='password' style={{ color: "#444444" }}>
+                Password <span className='text-[#F12323]'>*</span>
+              </Label>
+              <TextInput
+                className='mx-28'
+                sizing='lg'
+                color='grey'
+                id='password'
+                value={formValues.password}
+                type='password'
+                placeholder='Password'
+                onChange={handleChange}
+              />
+              <p className='ml-32 font-archivo text-[#F12323] text-[16px]'>{formError.password}</p>
+              <Button className='mx-32 mt-5 font-archivo' type='submit' size='md' style={{ backgroundColor: "#05A59D" }}>
+                Log in
+              </Button>
             </form>
-            <hr className='w-48 mx-auto h-px my-8 bg-gray-200 border-0 dark:bg-gray-700 mb-0' />
-            <a href='#' className='grid justify-items-center text-[#05A59D] hover:underline'>
+            <hr className='mx-28 h-px mt-8 bg-gray-200 border-0 dark:bg-gray-700' />
+            <a href='#' className='grid justify-items-center text-[#05A59D] hover:underline mb-5'>
               Forgot password?
             </a>
-            <React.Fragment>
-              <div className='grid justify-items-center mt-5'>
-                <Button type='submit' color='warning' size='md' onClick={onClick}>
-                  Create new account
-                </Button>
-              </div>
-              <Modal show={show} size='md' popup={true} onClose={onClose}>
-                <Modal.Body>
-                  <div className='text-center'>
-                    <ExclamationCircleIcon className='mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200' />
-                    <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>
-                      Hiện tại chưa có chức năng này. Bạn vui lòng liên hệ Admin để nhận thông tin truy cập.
-                    </h3>
-                    <div className='flex justify-center gap-4'>
-                      <Button color='failure' onClick={onClose}>
-                        Cancel
-                      </Button>
-                    </div>
+            <div className='grid'>
+              <Button className='mx-32' type='submit' size='md' style={{ backgroundColor: "#F69C35", fontWeight: "800" }} onClick={onClick}>
+                Create new account
+              </Button>
+            </div>
+            <Modal show={show} size='md' popup={true} onClose={onClose}>
+              <Modal.Body>
+                <div className='text-center'>
+                  <ExclamationCircleIcon className='mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200' />
+                  <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>
+                    Hiện tại chưa có chức năng này. Bạn vui lòng liên hệ Admin để nhận thông tin truy cập.
+                  </h3>
+                  <div className='flex justify-center gap-4'>
+                    <Button color='failure' onClick={onClose}>
+                      Cancel
+                    </Button>
                   </div>
-                </Modal.Body>
-              </Modal>
-            </React.Fragment>
+                </div>
+              </Modal.Body>
+            </Modal>
           </div>
         </div>
       </div>

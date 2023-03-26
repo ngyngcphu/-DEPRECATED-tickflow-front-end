@@ -13,6 +13,12 @@ module.exports = {
       'xl': '1280px',
       '2xl': '1536px',
     },
+    fontFamily: {
+      'archivo': ['Archivo', 'sans-serif']
+    },
+    fontSize: {
+      sm: '1rem'
+    },
     extend: {},
   },
   plugins: [
