@@ -1,6 +1,9 @@
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
+import { useNavigate, NavigateFunction } from "react-router-dom";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
-import { ExclamationCircleIcon, EyeIcon, EyeSlashIcon, UserIcon, LockClosedIcon } from "@heroicons/react/24/solid";
+import { ExclamationCircleIcon, UserIcon, LockClosedIcon } from "@heroicons/react/24/solid";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import { login } from "../services/login";
 import img from "../assets/login.png";
 
 interface InitialFormValues {
@@ -19,8 +22,9 @@ interface ValidColor {
 }
 
 export function LoginPage() {
-  const [showModal, setShowModal] = useState(false);
-  const [showPassword, setShowPassword] = useState("password");
+  const navigate: NavigateFunction = useNavigate();
+  const [showModalCreateAccount, setShowModalCreateAccount] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<string>("password");
   const [validColor, setValidColor] = useState<ValidColor>({
     username: "grey",
     password: "grey"
@@ -33,13 +37,19 @@ export function LoginPage() {
     username: "",
     password: ""
   });
+  const [submit, setSubmit] = useState<boolean>(false);
+  const [showModalLoginSuccess, setShowModalLoginSuccess] = useState<boolean>(false);
 
-  const onClick = () => {
-    setShowModal(true);
+  const onClickCreateAccount = () => {
+    setShowModalCreateAccount(true);
   };
 
-  const onClose = () => {
-    setShowModal(false);
+  const onCloseCreateAccount = () => {
+    setShowModalCreateAccount(false);
+  };
+
+  const onCloseLoginSuccess = () => {
+    setShowModalLoginSuccess(false);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +68,21 @@ export function LoginPage() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormError(validate(formValues));
+    setSubmit(true);
   };
+
+  useEffect(() => {
+    const { username, password } = formError;
+    if (username.length === 0 && password.length === 0 && submit) {
+      login(formValues.username, formValues.password).then((response) => {
+        if (response.data.login === true) {
+          navigate("/overview");
+        } else {
+          setShowModalLoginSuccess(true);
+        }
+      });
+    }
+  }, [formError]);
 
   const validate = (values: InitialFormValues) => {
     const errors: FormError = {
@@ -120,8 +144,6 @@ export function LoginPage() {
     }
   };
 
-  console.log("Hello");
-
   return (
     <div className='bg-[#F8F8F8] h-screen'>
       <div className='container mx-auto h-screen bg-[#DDF3F2]'>
@@ -165,7 +187,7 @@ export function LoginPage() {
                   onFocus={handleFocusPassword}
                 />
                 <span className='absolute inset-y-0 flex items-center right-32' onClick={handleShowPassword}>
-                  {showPassword === "text" ? <EyeIcon className='h-6 ml' /> : <EyeSlashIcon className='h-6' />}
+                  {showPassword === "text" ? <EyeIcon className='h-6' /> : <EyeSlashIcon className='h-6' />}
                 </span>
               </div>
               <p className='ml-32 font-archivo text-[#F12323] text-[16px]'>{formError.password}</p>
@@ -178,11 +200,17 @@ export function LoginPage() {
               Forgot password?
             </a>
             <div className='grid'>
-              <Button className='mx-32' type='submit' size='md' style={{ backgroundColor: "#F69C35", fontWeight: "800" }} onClick={onClick}>
+              <Button
+                className='mx-32'
+                type='submit'
+                size='md'
+                style={{ backgroundColor: "#F69C35", fontWeight: "800" }}
+                onClick={onClickCreateAccount}
+              >
                 Create new account
               </Button>
             </div>
-            <Modal show={showModal} size='md' popup={true} onClose={onClose}>
+            <Modal show={showModalCreateAccount} size='md' popup={true} onClose={onCloseCreateAccount}>
               <Modal.Body>
                 <div className='text-center'>
                   <ExclamationCircleIcon className='mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200' />
@@ -190,7 +218,20 @@ export function LoginPage() {
                     Hiện tại chưa có chức năng này. Bạn vui lòng liên hệ Admin để nhận thông tin truy cập.
                   </h3>
                   <div className='flex justify-center gap-4'>
-                    <Button color='failure' onClick={onClose}>
+                    <Button color='failure' onClick={onCloseCreateAccount}>
+                      Cancel
+                    </Button>
+                  </div>
+                </div>
+              </Modal.Body>
+            </Modal>
+            <Modal show={showModalLoginSuccess} size='md' popup={true} onClose={onCloseLoginSuccess}>
+              <Modal.Body>
+                <div className='text-center'>
+                  <ExclamationCircleIcon className='mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200' />
+                  <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>Zinu.</h3>
+                  <div className='flex justify-center gap-4'>
+                    <Button color='failure' onClick={onCloseLoginSuccess}>
                       Cancel
                     </Button>
                   </div>

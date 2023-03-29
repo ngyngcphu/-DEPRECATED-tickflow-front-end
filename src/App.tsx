@@ -1,10 +1,10 @@
 import { LoginPage } from "./components/LoginPage";
-import { Flowbite } from "flowbite-react";
+//import { Route, Routes } from "react-router-dom";
 
 export default function App() {
   return (
-    <Flowbite theme={{ dark: true }}>
+    <div>
       <LoginPage />
-    </Flowbite>
+    </div>
   );
 }
