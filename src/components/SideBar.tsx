@@ -1,48 +1,40 @@
+import { useState, useEffect } from "react";
 import { Sidebar } from "flowbite-react";
-import {
-  ShoppingBagIcon,
-  InboxIcon,
-  UserIcon,
-  ArrowSmallRightIcon,
-  TableCellsIcon,
-  ChartPieIcon,
-  ViewColumnsIcon
-} from "@heroicons/react/24/solid";
-import img from "../assets/react.svg";
+import { BriefcaseIcon, CogIcon, DocumentTextIcon, HomeIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 
 export function SideBar() {
+  const [currentPage, setCurrentPage] = useState<string>("/overview");
+
+  useEffect(() => {
+    const newPage = window.location.pathname;
+    setCurrentPage(newPage);
+  }, [currentPage]);
+
   return (
-    <div className='w-fit'>
-      <Sidebar collapsed={true} aria-label='Sidebar with logo branding example'>
-        <Sidebar.Logo href='#' img={img} imgAlt='Flowbite logo'>
-          Flowbite
-        </Sidebar.Logo>
+    <Sidebar aria-label='Sidebar with multi-level dropdown example'>
+      <div className='flex h-full flex-col justify-between py-2'>
         <Sidebar.Items>
           <Sidebar.ItemGroup>
-            <Sidebar.Item href='#' icon={ChartPieIcon}>
-              Dashboard
+            <Sidebar.Item href='#' icon={HomeIcon} className={"/overview" === currentPage ? "bg-green-100 dark:bg-green-700" : ""}>
+              Overview
             </Sidebar.Item>
-            <Sidebar.Item href='#' icon={ViewColumnsIcon}>
-              Kanban
+            <Sidebar.Item href='#' icon={BriefcaseIcon} className={"/" === currentPage ? "bg-green-100 dark:bg-green-700" : ""}>
+              Projects
             </Sidebar.Item>
-            <Sidebar.Item href='#' icon={InboxIcon}>
-              Inbox
+            <Sidebar.Item href='#' icon={UserCircleIcon} className={"/" === currentPage ? "bg-green-100 dark:bg-green-700" : ""}>
+              Members
             </Sidebar.Item>
-            <Sidebar.Item href='#' icon={UserIcon}>
-              Users
+          </Sidebar.ItemGroup>
+          <Sidebar.ItemGroup>
+            <Sidebar.Item href='#' icon={CogIcon} className={"/" === currentPage ? "bg-green-100 dark:bg-green-700" : ""}>
+              Settings
             </Sidebar.Item>
-            <Sidebar.Item href='#' icon={ShoppingBagIcon}>
-              Products
-            </Sidebar.Item>
-            <Sidebar.Item href='#' icon={ArrowSmallRightIcon}>
-              Sign In
-            </Sidebar.Item>
-            <Sidebar.Item href='#' icon={TableCellsIcon}>
-              Sign Up
+            <Sidebar.Item href='#' icon={DocumentTextIcon} className={"/" === currentPage ? "bg-green-100 dark:bg-green-700" : ""}>
+              Templates
             </Sidebar.Item>
           </Sidebar.ItemGroup>
         </Sidebar.Items>
-      </Sidebar>
-    </div>
+      </div>
+    </Sidebar>
   );
 }
