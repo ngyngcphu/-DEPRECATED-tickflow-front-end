@@ -1,10 +1,12 @@
+import { Route, Routes } from "react-router-dom";
 import { LoginPage } from "./components/LoginPage";
-//import { Route, Routes } from "react-router-dom";
+import { Layout } from "./components/layout/Layout";
 
 export default function App() {
   return (
-    <div>
-      <LoginPage />
-    </div>
+    <Routes>
+      <Route path='/' element={<LoginPage />} />
+      <Route path='/overview' element={<Layout />} />
+    </Routes>
   );
 }
