@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { LoginPage } from "./components/LoginPage";
-import { Layout } from "./components/layout-v1/Layout";
+import { Layout } from "./components/layout/Layout";
 
 export default function App() {
   return (

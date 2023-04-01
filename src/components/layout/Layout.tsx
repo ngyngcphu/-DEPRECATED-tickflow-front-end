@@ -15,7 +15,7 @@ export function Layout() {
       <Navbar fluid>
         <div className='flex items-center'>
           <Bars3CenterLeftIcon
-            className='mr-6 h-6 w-6 cursor-pointer text-gray-600 dark:text-gray-400'
+            className='mr-3 h-6 sm:h-8 w-8 cursor-pointer text-gray-600 dark:text-gray-400'
             onClick={() => setCollapsed(!collapsed)}
           />
           <img className='h-9 sm:h-12' src={img} />
@@ -31,11 +31,11 @@ export function Layout() {
             <Sidebar.ItemGroup>
               {RoutesGroup1.map(({ href, icon, title }, key) => (
                 <Sidebar.Item
+                  className={href === pathname ? "bg-green-100 dark:bg-green-700" : "hover:bg-green-100"}
                   key={key}
                   icon={icon}
                   as={Link}
                   to={href}
-                  active={href === pathname}
                   onClick={() => mainRef.current?.scrollTo({ top: 0 })}
                 >
                   {title}
@@ -45,11 +45,11 @@ export function Layout() {
             <Sidebar.ItemGroup>
               {RoutesGroup2.map(({ href, icon, title }, key) => (
                 <Sidebar.Item
+                  className={href === pathname ? "bg-green-100 dark:bg-green-700" : "hover:bg-green-100"}
                   key={key}
                   icon={icon}
                   as={Link}
                   to={href}
-                  active={href === pathname}
                   onClick={() => mainRef.current?.scrollTo({ top: 0 })}
                 >
                   {title}
