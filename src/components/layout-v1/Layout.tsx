@@ -1,0 +1,82 @@
+import { Suspense, useState, useRef } from "react";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { DarkThemeToggle, Navbar, Sidebar, Spinner } from "flowbite-react";
+import { Bars3CenterLeftIcon, UserIcon } from "@heroicons/react/24/outline";
+import { RoutesGroup1, RoutesGroup2 } from "./DeclareRoutes";
+import img from "../../assets/navbar.png";
+
+export function Layout() {
+  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const mainRef = useRef<HTMLDivElement>(null);
+  const { pathname } = useLocation();
+
+  return (
+    <div className='flex h-screen w-full flex-col overflow-hidden'>
+      <Navbar fluid>
+        <div className='flex items-center'>
+          <Bars3CenterLeftIcon
+            className='mr-6 h-6 w-6 cursor-pointer text-gray-600 dark:text-gray-400'
+            onClick={() => setCollapsed(!collapsed)}
+          />
+          <img className='h-9 sm:h-12' src={img} />
+        </div>
+        <div className='flex items-center gap-2'>
+          <UserIcon className='h-6 sm:h-8' />
+          <DarkThemeToggle />
+        </div>
+      </Navbar>
+      <div className='flex h-full overflow-hidden bg-white dark:bg-gray-900'>
+        <Sidebar collapsed={collapsed}>
+          <Sidebar.Items>
+            <Sidebar.ItemGroup>
+              {RoutesGroup1.map(({ href, icon, title }, key) => (
+                <Sidebar.Item
+                  key={key}
+                  icon={icon}
+                  as={Link}
+                  to={href}
+                  active={href === pathname}
+                  onClick={() => mainRef.current?.scrollTo({ top: 0 })}
+                >
+                  {title}
+                </Sidebar.Item>
+              ))}
+            </Sidebar.ItemGroup>
+            <Sidebar.ItemGroup>
+              {RoutesGroup2.map(({ href, icon, title }, key) => (
+                <Sidebar.Item
+                  key={key}
+                  icon={icon}
+                  as={Link}
+                  to={href}
+                  active={href === pathname}
+                  onClick={() => mainRef.current?.scrollTo({ top: 0 })}
+                >
+                  {title}
+                </Sidebar.Item>
+              ))}
+            </Sidebar.ItemGroup>
+          </Sidebar.Items>
+        </Sidebar>
+        <main className='flex-1 overflow-auto p-4' ref={mainRef}>
+          <Suspense
+            fallback={
+              <div className='flex h-full items-center justify-center'>
+                <Spinner />
+              </div>
+            }
+          >
+            <Routes>
+              {RoutesGroup1.map(({ href, component: Component }) => (
+                <Route key={href} path={href} element={Component} />
+              ))}
+              {RoutesGroup2.map(({ href, component: Component }) => (
+                <Route key={href} path={href} element={Component} />
+              ))}
+            </Routes>
+          </Suspense>
+        </main>
+      </div>
+    </div>
+  );
+}

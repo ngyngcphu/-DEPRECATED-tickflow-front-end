@@ -1,6 +1,6 @@
 import { DarkThemeToggle, Navbar } from "flowbite-react";
 import { Bars3Icon, UserIcon } from "@heroicons/react/24/outline";
-import img from "../assets/navbar.png";
+import img from "../../assets/navbar.png";
 
 export function NavBar() {
   return (
