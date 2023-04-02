@@ -17,7 +17,18 @@ module.exports = {
       'archivo': ['Archivo', 'sans-serif']
     },
     fontSize: {
-      sm: '1rem'
+      sm: ['1rem', {
+          lineHeight: '1.25rem',
+      }],
+      lg: ['1.125rem', {
+          lineHeight: '1.75rem'
+      }],
+      xl: ['1.25rem', {
+          lineHeight: '1.75rem'
+      }],
+      '2xl': ['1.5rem', {
+          lineHeight: '2rem'
+      }]
     },
     extend: {},
   },

@@ -4,6 +4,7 @@ import { DarkThemeToggle, Navbar, Sidebar, Spinner } from "flowbite-react";
 import { Bars3CenterLeftIcon, UserIcon } from "@heroicons/react/24/outline";
 import { BsGithub } from "react-icons/bs";
 import { RoutesGroup1, RoutesGroup2 } from "./DeclareRoutes";
+import { Search } from "./Search";
 import img from "../../assets/navbar.png";
 
 export function Layout() {
@@ -13,13 +14,16 @@ export function Layout() {
 
   return (
     <div className='flex h-screen w-full flex-col overflow-hidden'>
-      <Navbar fluid>
+      <Navbar fluid className='border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700'>
         <div className='flex items-center'>
           <Bars3CenterLeftIcon
             className='mr-3 h-6 sm:h-8 w-8 cursor-pointer text-gray-600 dark:text-gray-400'
             onClick={() => setCollapsed(!collapsed)}
           />
           <img className='h-9 sm:h-12' src={img} />
+        </div>
+        <div className='flex items-center'>
+          <Search />
         </div>
         <div className='flex items-center gap-2'>
           <a
@@ -36,7 +40,7 @@ export function Layout() {
         </div>
       </Navbar>
       <div className='flex h-full overflow-hidden bg-white dark:bg-gray-900'>
-        <Sidebar collapsed={collapsed}>
+        <Sidebar collapsed={collapsed} className='duration-75 border-r border-gray-200 transition-width dark:border-gray-700'>
           <Sidebar.Items>
             <Sidebar.ItemGroup>
               {RoutesGroup1.map(({ href, icon, title }, key) => (
@@ -68,7 +72,7 @@ export function Layout() {
             </Sidebar.ItemGroup>
           </Sidebar.Items>
         </Sidebar>
-        <main className='flex-1 overflow-auto p-4' ref={mainRef}>
+        <main className='flex-1 overflow-auto' ref={mainRef}>
           <Suspense
             fallback={
               <div className='flex h-full items-center justify-center'>
