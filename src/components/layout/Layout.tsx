@@ -2,6 +2,7 @@ import { Suspense, useState, useRef } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { DarkThemeToggle, Navbar, Sidebar, Spinner } from "flowbite-react";
 import { Bars3CenterLeftIcon, UserIcon } from "@heroicons/react/24/outline";
+import { BsGithub } from "react-icons/bs";
 import { RoutesGroup1, RoutesGroup2 } from "./DeclareRoutes";
 import img from "../../assets/navbar.png";
 
@@ -21,6 +22,15 @@ export function Layout() {
           <img className='h-9 sm:h-12' src={img} />
         </div>
         <div className='flex items-center gap-2'>
+          <a
+            className='cursor-pointer rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700'
+            href='https://github.com/TickLabVN'
+            title='Github Repository'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <BsGithub className='h-5 w-5' />
+          </a>
           <UserIcon className='h-6 sm:h-8' />
           <DarkThemeToggle />
         </div>
