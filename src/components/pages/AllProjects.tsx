@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { BriefcaseIcon, HomeIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { SendNotification } from "./SendNotification";
 import { TableView } from "./TableView";
+import { ProjectsTable } from "./ProjectsTable";
 
 export function AllProjects() {
   return (
@@ -19,12 +20,15 @@ export function AllProjects() {
       <div className='flex w-full items-center sm:justify-end mb-2'>
         <SendNotification />
       </div>
-      <div className='flex items-center'>
+      <div className='flex items-center mb-2'>
         <TableView />
         <div className='flex items-center ml-auto space-x-2'>
           <TrashIcon className='ml-auto w-6' />
           <NewProject />
         </div>
+      </div>
+      <div>
+        <ProjectsTable />
       </div>
     </div>
   );
