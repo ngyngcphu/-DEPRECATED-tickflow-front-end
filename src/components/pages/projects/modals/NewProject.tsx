@@ -1,9 +1,8 @@
-import type { FC } from "react";
 import { useState } from "react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { BriefcaseIcon } from "@heroicons/react/24/solid";
 
-export const NewProject: FC = () => {
+export function NewProject() {
   const [show, setShow] = useState<boolean>(false);
   const department: Array<string> = ["Dự án", "Nghiên cứu", "Đội nhóm"];
   const status: Array<string> = ["Proposal", "In-progress", "Closing", "Halt", "Canceled", "Completed"];
@@ -106,4 +105,4 @@ export const NewProject: FC = () => {
       </Modal>
     </div>
   );
-};
+}

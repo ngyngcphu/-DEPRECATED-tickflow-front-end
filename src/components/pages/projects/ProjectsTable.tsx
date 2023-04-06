@@ -6,7 +6,6 @@ import { NewProject } from "./modals/NewProject";
 import { Projects, ProjectsData } from "./mockdata/ProjectsData";
 
 export function ProjectsTable() {
-  console.log("Hello");
   const tabs: Array<string> = ["All Projects", "Proposal", "In progress", "Closing", "Completed", "Canceled"];
   const [type, setType] = useState<string>(tabs[0]);
 
