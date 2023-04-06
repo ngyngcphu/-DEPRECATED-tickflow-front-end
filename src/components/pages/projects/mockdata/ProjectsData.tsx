@@ -83,60 +83,12 @@ export const ProjectsData: Projects[] = [
     status: "Completed",
     totalMemberCollab: "3/-",
     leaderName: "Ngô Minh Hồng Thái"
-  }
-];
-
-export const Proposal: Projects[] = [
-  {
-    projectName: "STM32",
-    department: "Dự án",
-    status: "Proposal",
-    totalMemberCollab: "1/1",
-    leaderName: "Phạm Thị Hiền"
   },
   {
-    projectName: "Music Box",
+    projectName: "Khóa thẻ từ TickLab",
     department: "Dự án",
-    status: "Proposal",
-    totalMemberCollab: "1/0",
-    leaderName: "Hồng Thiện Nhân"
-  },
-  {
-    projectName: "Application Protocol",
-    department: "Dự án",
-    status: "Proposal",
-    totalMemberCollab: "1/0",
-    leaderName: "Nguyễn Hồng Quân"
-  }
-];
-
-export const InProgress: Projects[] = [
-  {
-    projectName: "Monodepth",
-    department: "Nghiên cứu",
-    status: "In progress",
-    totalMemberCollab: "2/-",
-    leaderName: "Vũ Nguyễn Minh Huy"
-  },
-  {
-    projectName: "TickFlow",
-    department: "Dự án",
-    status: "In progress",
-    totalMemberCollab: "4/0",
-    leaderName: "Nguyễn Thanh Hiền"
-  },
-  {
-    projectName: "Kahoot",
-    department: "Dự án",
-    status: "In progress",
+    status: "Canceled",
     totalMemberCollab: "2/0",
-    leaderName: "Hoàng Lương"
-  },
-  {
-    projectName: "Signal Modulation",
-    department: "Dự án",
-    status: "In progress",
-    totalMemberCollab: "1/0",
-    leaderName: "Nguyễn Văn Lợi"
+    leaderName: "Hồng Thiện Nhân"
   }
 ];

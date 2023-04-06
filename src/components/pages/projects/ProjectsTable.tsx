@@ -1,27 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Checkbox, Table } from "flowbite-react";
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { NewProject } from "./modals/NewProject";
-import { Projects, ProjectsData, Proposal, InProgress } from "./mockdata/ProjectsData";
+import { Projects, ProjectsData } from "./mockdata/ProjectsData";
 
 export function ProjectsTable() {
   console.log("Hello");
-  const tabs: Array<string> = ["All Projects", "Proposal", "In progress"];
+  const tabs: Array<string> = ["All Projects", "Proposal", "In progress", "Closing", "Completed", "Canceled"];
   const [type, setType] = useState<string>(tabs[0]);
 
   const titles: Array<string> = ["Project's name", "Department", "Status", "Total Member/Collab", "Leader's name"];
-  const [datas, setDatas] = useState<Projects[]>(ProjectsData);
 
-  useEffect(() => {
-    if (type === "All Projects") {
-      setDatas(ProjectsData);
-    } else if (type === "Proposal") {
-      setDatas(Proposal);
-    } else if (type === "In progress") {
-      setDatas(InProgress);
+  const filterProjects = (ProjectsData: Projects) => {
+    if (type === tabs[0]) {
+      return true;
+    } else {
+      return ProjectsData.status === type;
     }
-  }, [type]);
+  };
 
   return (
     <div>
@@ -62,7 +59,7 @@ export function ProjectsTable() {
           <Table.HeadCell>Edit</Table.HeadCell>
         </Table.Head>
         <Table.Body className='divide-y'>
-          {datas.map((data, key) => (
+          {ProjectsData.filter(filterProjects).map((data, key) => (
             <Table.Row key={key} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
               <Table.Cell className='!p-4'>
                 <Checkbox />
