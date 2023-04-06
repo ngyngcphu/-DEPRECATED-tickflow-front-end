@@ -1,4 +1,4 @@
-interface Projects {
+export interface Projects {
   projectName: string;
   department: string;
   status: string;
