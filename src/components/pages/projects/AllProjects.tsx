@@ -63,10 +63,8 @@ const NewProject: FC = () => {
               <Label htmlFor='department'>
                 Department<span className='text-[#F12323]'>*</span>
               </Label>
-              <Select id='department' required={true}>
-                <option selected disabled>
-                  ---Chọn---(bắt buộc)
-                </option>
+              <Select id='department' required={true} defaultValue='---Chọn---(bắt buộc)'>
+                <option disabled>---Chọn---(bắt buộc)</option>
                 {department.map((department) => (
                   <option key={department}>{department}</option>
                 ))}
@@ -76,10 +74,8 @@ const NewProject: FC = () => {
               <Label htmlFor='status'>
                 Status<span className='text-[#F12323]'>*</span>
               </Label>
-              <Select id='status' required={true}>
-                <option selected disabled>
-                  ---Chọn---(bắt buộc)
-                </option>
+              <Select id='status' required={true} defaultValue='---Chọn---(bắt buộc)'>
+                <option disabled>---Chọn---(bắt buộc)</option>
                 {status.map((status) => (
                   <option key={status}>{status}</option>
                 ))}
@@ -101,10 +97,8 @@ const NewProject: FC = () => {
               <Label htmlFor='projectLeader'>
                 Project's Leader<span className='text-[#F12323]'>*</span>
               </Label>
-              <Select id='projectLeader' required={true}>
-                <option selected disabled>
-                  ---Chọn---(bắt buộc)
-                </option>
+              <Select id='projectLeader' required={true} defaultValue='---Chọn---(bắt buộc)'>
+                <option disabled>---Chọn---(bắt buộc)</option>
                 {member.map((member) => (
                   <option key={member}>{member}</option>
                 ))}
@@ -114,10 +108,8 @@ const NewProject: FC = () => {
               <Label htmlFor='projectMember'>
                 Project's Member<span className='text-[#F12323]'>*</span>
               </Label>
-              <Select id='projectMember' required={true}>
-                <option selected disabled>
-                  ---Chọn---(bắt buộc)
-                </option>
+              <Select id='projectMember' required={true} defaultValue='---Chọn---(bắt buộc)'>
+                <option disabled>---Chọn---(bắt buộc)</option>
                 {member.map((member) => (
                   <option key={member}>{member}</option>
                 ))}
@@ -125,10 +117,8 @@ const NewProject: FC = () => {
             </div>
             <div className='sm:col-span-2'>
               <Label htmlFor='mentors'>Mentors</Label>
-              <Select id='mentors'>
-                <option selected disabled>
-                  (Optional)
-                </option>
+              <Select id='mentors' defaultValue='(Optional)'>
+                <option disabled>(Optional)</option>
                 {mentor.map((mentor) => (
                   <option key={mentor}>{mentor}</option>
                 ))}
