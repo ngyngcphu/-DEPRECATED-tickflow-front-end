@@ -1,14 +1,17 @@
-export function EmailProposal() {
+export interface EmailProposalProps {
+  subject: string;
+  receiver: string;
+}
+
+export function EmailProposal(props: EmailProposalProps) {
   return (
-    <div className='text-left text-[15px]'>
+    <div className='text-left text-[15px] leading-6 overflow-y-scroll h-96'>
       <div className='font-archivo mb-2'>
         <div className='space-x-2'>
-          <p className='inline '>Subject:</p>
-          <p className='italic underline inline text-[rgba(68,68,68,0.4)]'>Tiêu đề nội dung</p>
+          <p className='inline '>Subject: {props.subject}</p>
         </div>
         <div className='space-x-2'>
-          <p className='inline'>Receiver:</p>
-          <p className='italic underline inline text-[rgba(68,68,68,0.4)]'>Người nhận</p>
+          <p className='inline'>Receiver: {props.receiver}</p>
         </div>
         <div className='space-x-2'>
           <p className='inline'>CC:</p>
