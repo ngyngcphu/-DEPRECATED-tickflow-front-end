@@ -1,10 +1,11 @@
 import { ReactNode, useState } from "react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { DocumentArrowUpIcon, ExclamationCircleIcon } from "@heroicons/react/24/solid";
+import { EmailProposal } from "../templates/EmailNoti";
 
 const templates: Array<string> = [
-  "Thư mời hội đồng",
   "Chốt lịch duyệt proposal",
+  "Thư mời hội đồng",
   "Thư mời buổi báo cáo",
   "Thư mời chia sẻ kiến thức",
   "Thông báo đổi lịch",
@@ -90,7 +91,9 @@ function Proposal() {
                 Cancel
               </Button>
             </div>
-            <div className='col-span-3 grid items-center justify-items-center'>Meow Meow</div>
+            <div className='col-span-3'>
+              <EmailProposal />
+            </div>
           </div>
         </Modal.Body>
       </Modal>
