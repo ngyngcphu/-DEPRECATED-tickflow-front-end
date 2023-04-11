@@ -1,5 +1,6 @@
 export interface EmailProposalProps {
   subject: string;
+  sender: string;
   receiver: string;
   timeSchedule: string;
   dateSchedule: string;
@@ -73,7 +74,7 @@ export function EmailProposal(props: EmailProposalProps) {
           Kính mến,
           <br />
         </p>
-        <p className='italic underline inline text-[rgba(0,0,0,0.4)]'>Người gửi.</p>
+        <span className='underline inline text-[rgba(0,0,0,0.4)]'>{props.sender}</span>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate, NavigateFunction } from "react-router-dom";
 import { Button, Checkbox, Table } from "flowbite-react";
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/solid";
@@ -6,6 +7,8 @@ import { NewProject } from "./modals/NewProject";
 import { Projects, ProjectsData } from "./mockdata/ProjectsData";
 
 export function ProjectsTable() {
+  const navigate: NavigateFunction = useNavigate();
+
   const tabs: Array<string> = ["All Projects", "Proposal", "In progress", "Closing", "Completed", "Canceled"];
   const [type, setType] = useState<string>(tabs[0]);
 
@@ -63,7 +66,7 @@ export function ProjectsTable() {
               <Table.Cell className='!p-4'>
                 <Checkbox />
               </Table.Cell>
-              <Table.Cell className='font-medium text-gray-900 dark:text-white border-r dark:border-gray-700'>
+              <Table.Cell className='font-medium text-blue-600 hover:underline dark:text-blue-700' onClick={() => navigate(`${key}`)}>
                 {data.projectName}
               </Table.Cell>
               <Table.Cell className='border-r dark:border-gray-700'>{data.department}</Table.Cell>

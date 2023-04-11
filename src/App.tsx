@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { LoginPage } from "./components/LoginPage";
+import { LoginPage } from "./components/pages/LoginPage";
 import { Layout } from "./components/layout/Layout";
-import { AllProjects } from "./components/pages/projects/AllProjects";
+import { AllProjects } from "./components/pages/allprojects/AllProjects";
+import { Project } from "./components/pages/project/Project";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Route path='/*' element={<Layout />}>
         <Route path='overview' element={<Layout />} />
         <Route path='projects' element={<AllProjects />} />
+        <Route path='projects/:projectId' element={<Project />} />
       </Route>
     </Routes>
   );

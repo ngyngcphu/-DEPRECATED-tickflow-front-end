@@ -14,6 +14,11 @@ function Proposal() {
         <Modal.Body className='!p-0'>
           <ProposalParams />
         </Modal.Body>
+        <Modal.Footer>
+          <Button className='bg-gray-400 hover:bg-[#444444] dark:bg-gray-600 dark:hover:bg-[#444444]' onClick={() => setShow(false)}>
+            Cancel
+          </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   );

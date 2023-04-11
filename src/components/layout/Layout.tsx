@@ -3,7 +3,7 @@ import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { DarkThemeToggle, Navbar, Sidebar, Spinner } from "flowbite-react";
 import { Bars3CenterLeftIcon, UserIcon } from "@heroicons/react/24/outline";
 import { BsGithub } from "react-icons/bs";
-import { RoutesGroup1, RoutesGroup2 } from "./DeclareRoutes";
+import { RoutesChild, RoutesGroup1, RoutesGroup2 } from "./DeclareRoutes";
 import { Search } from "./Search";
 import img from "../../assets/navbar.png";
 
@@ -85,6 +85,9 @@ export function Layout() {
                 <Route key={href} path={href} element={Component} />
               ))}
               {RoutesGroup2.map(({ href, component: Component }) => (
+                <Route key={href} path={href} element={Component} />
+              ))}
+              {RoutesChild.map(({ href, component: Component }) => (
                 <Route key={href} path={href} element={Component} />
               ))}
             </Routes>

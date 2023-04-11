@@ -9,6 +9,7 @@ export function ProposalParams() {
 
   const [params, setParams] = useState<EmailProposalProps>({
     subject: "",
+    sender: "",
     receiver: "",
     timeSchedule: "",
     dateSchedule: "",
@@ -46,8 +47,8 @@ export function ProposalParams() {
             <Label htmlFor='sender'>
               Người gửi<span className='text-[#F12323]'>*</span>
             </Label>
-            <Select id='sender' required={true} defaultValue='---Chọn---(bắt buộc)'>
-              <option disabled>---Chọn---(bắt buộc)</option>
+            <Select id='sender' name='sender' value={params.sender} onChange={handleChange} required={true}>
+              <option>---Chọn---(bắt buộc)</option>
               {member.map((member, index) => (
                 <option key={index}>{member}</option>
               ))}
@@ -128,16 +129,19 @@ export function ProposalParams() {
               <option>Online</option>
             </Select>
           </div>
-          <div id='checkbox'>
+          <div id='checkbox' className='col-span-2'>
             <div className='flex items-center gap-2'>
               <Label htmlFor='accept'>Send to all member</Label>
-              <Checkbox id='accept' />
+              <Checkbox id='accept' className='bg-gray-200 border-gray-500 dark:bg-gray-100' />
             </div>
+          </div>
+          <div className='col-span-2'>
+            <hr className='h-px bg-gray-700 border-0 dark:bg-gray-200'></hr>
           </div>
         </div>
       </div>
-      <div className=' col-span-3'>
-        <div className=''>
+      <div className='col-span-3'>
+        <div>
           <div className='flex justify-between p-4'>
             <Button className='w-60 bg-[#E6E6E6] text-black hover:bg-[#999999]'>Gmail</Button>
             <Button className='w-60 bg-[#E6E6E6] text-black hover:bg-[#999999]'>Slack</Button>
@@ -146,6 +150,7 @@ export function ProposalParams() {
         <div className='px-5'>
           <EmailProposal
             subject={params.subject}
+            sender={params.sender}
             receiver={params.receiver}
             timeSchedule={params.timeSchedule}
             dateSchedule={params.dateSchedule}
