@@ -66,7 +66,10 @@ export function ProjectsTable() {
               <Table.Cell className='!p-4'>
                 <Checkbox />
               </Table.Cell>
-              <Table.Cell className='font-medium text-blue-600 hover:underline dark:text-blue-700' onClick={() => navigate(`${key}`)}>
+              <Table.Cell
+                className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700'
+                onClick={() => navigate(`${key}`, { state: { name: `${data.projectName}` } })}
+              >
                 {data.projectName}
               </Table.Cell>
               <Table.Cell className='border-r dark:border-gray-700'>{data.department}</Table.Cell>
