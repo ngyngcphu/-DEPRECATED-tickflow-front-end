@@ -68,7 +68,7 @@ export function ProjectsTable() {
               </Table.Cell>
               <Table.Cell
                 className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700'
-                onClick={() => navigate(`${key}`, { state: { name: `${data.projectName}` } })}
+                onClick={() => navigate(`${key}`)}
               >
                 {data.projectName}
               </Table.Cell>

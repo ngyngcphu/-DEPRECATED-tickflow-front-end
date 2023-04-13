@@ -1,14 +1,18 @@
-import { Link, useLocation } from "react-router-dom";
-import { Breadcrumb, Button, Checkbox, Label, Table, TextInput } from "flowbite-react";
-import { BriefcaseIcon, TvIcon, TrashIcon } from "@heroicons/react/24/solid";
+import /*useEffect*/ "react";
+import { Link /*useParams*/ } from "react-router-dom";
+import { Breadcrumb, Button, Checkbox, Dropdown, Label, Table, TextInput } from "flowbite-react";
+import { BriefcaseIcon, TvIcon, TrashIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { SendNotification } from "../allprojects/SendNotification";
 import { NewProject } from "../allprojects/modals/NewProject";
 import { ProjectLogData } from "./mockdata/ProjectLogData";
 
 export function Project() {
-  const { state } = useLocation();
-  const { name } = state;
+  // const { projectId } = useParams();
   const titles: Array<string> = ["Project Log", "Date", "Note"];
+
+  // useEffect(() => {
+
+  // }, [])
 
   return (
     <div>
@@ -18,7 +22,7 @@ export function Project() {
             Projects
           </Link>
         </Breadcrumb.Item>
-        <Breadcrumb.Item className='dark:text-white'>{name}</Breadcrumb.Item>
+        <Breadcrumb.Item className='dark:text-white'>TickFlow</Breadcrumb.Item>
       </Breadcrumb>
       <div className='grid grid-cols-4'>
         <div className='overflow-y-scroll h-[500px]'>
@@ -65,8 +69,25 @@ export function Project() {
             <p>Project Role</p>
             <p>Current member</p>
           </div>
-          <div className='grid grid-cols-3 gap-5 mb-5'>
-            <Button>A</Button>
+          <div className='grid grid-cols-3 gap-5 mb-5 items-center justify-center'>
+            <div className='grid grid-cols-4 gap-10'>
+              <UserCircleIcon className='h-full' />
+              <div className='col-span-3'>
+                <div>Nguyễn Ngọc Phú</div>
+                <div className='flex justify-between'>
+                  <Dropdown label='Member' inline={true}>
+                    <Dropdown.Item>Member</Dropdown.Item>
+                    <Dropdown.Item>Leader</Dropdown.Item>
+                    <Dropdown.Item>Council</Dropdown.Item>
+                  </Dropdown>
+                  <div className='mr-2'>
+                    <TrashIcon className='h-full' />
+                  </div>
+                  <div>Delete</div>
+                </div>
+                <div>Dự án</div>
+              </div>
+            </div>
             <Button>A</Button>
             <Button>A</Button>
             <Button>A</Button>
