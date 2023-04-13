@@ -1,18 +1,43 @@
-import /*useEffect*/ "react";
-import { Link /*useParams*/ } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Breadcrumb, Button, Checkbox, Dropdown, Label, Table, TextInput } from "flowbite-react";
 import { BriefcaseIcon, TvIcon, TrashIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { SendNotification } from "../allprojects/SendNotification";
 import { NewProject } from "../allprojects/modals/NewProject";
-import { ProjectLogData } from "./mockdata/ProjectLogData";
+import { ProjectProps } from "./mockdata/ProjectInterface";
+import { getProject } from "../../../services/getProject";
 
 export function Project() {
-  // const { projectId } = useParams();
+  const { projectId } = useParams<string>();
   const titles: Array<string> = ["Project Log", "Date", "Note"];
+  const [projectData, setProjectData] = useState<ProjectProps>({
+    name: "",
+    startDate: "",
+    endDate: "",
+    department: "",
+    status: "",
+    totalMember: 0,
+    projectRole: [],
+    projectLog: []
+  });
 
-  // useEffect(() => {
-
-  // }, [])
+  useEffect(() => {
+    if (projectId && projectId.length > 0) {
+      getProject(projectId).then(({ data }) => {
+        const { name, startDate, endDate, department, status, totalMember, projectRole, projectLog } = data;
+        setProjectData({
+          name: name,
+          startDate: startDate,
+          endDate: endDate,
+          department: department,
+          status: status,
+          totalMember: totalMember,
+          projectRole: projectRole,
+          projectLog: projectLog
+        });
+      });
+    }
+  }, []);
 
   return (
     <div>
@@ -22,13 +47,13 @@ export function Project() {
             Projects
           </Link>
         </Breadcrumb.Item>
-        <Breadcrumb.Item className='dark:text-white'>TickFlow</Breadcrumb.Item>
+        <Breadcrumb.Item className='dark:text-white'>{projectData.name}</Breadcrumb.Item>
       </Breadcrumb>
       <div className='grid grid-cols-4'>
         <div className='overflow-y-scroll h-[500px]'>
           <TvIcon />
           <div>
-            <div className='text-center'>TickFlow</div>
+            <div className='text-center'>{projectData.name}</div>
             <div>
               <Label htmlFor='startDate'>
                 Start date:<span className='text-[#F12323]'>*</span>
@@ -117,13 +142,13 @@ export function Project() {
               <Table.HeadCell>Edit</Table.HeadCell>
             </Table.Head>
             <Table.Body className='divide-y'>
-              {ProjectLogData.map((data, key) => (
+              {projectData.projectLog.map((data, key) => (
                 <Table.Row key={key} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
                   <Table.Cell className='!p-4'>
                     <Checkbox />
                   </Table.Cell>
                   <Table.Cell className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700'>
-                    {data.projectLog}
+                    {data.log}
                   </Table.Cell>
                   <Table.Cell className='border-r dark:border-gray-700'>{data.date}</Table.Cell>
                   <Table.Cell className='border-r dark:border-gray-700'>{data.note}</Table.Cell>
