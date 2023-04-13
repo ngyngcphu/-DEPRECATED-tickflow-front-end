@@ -3,8 +3,8 @@
     {
       "id": 0,
       "name": "TickFlow",
-      "startDate": "11/01/2023",
-      "endDate": "--/--/--",
+      "startDate": "2023-11-01",
+      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "In progress",
       "totalMember": 4,

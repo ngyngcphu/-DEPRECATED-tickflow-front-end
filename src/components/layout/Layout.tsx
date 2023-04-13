@@ -45,7 +45,7 @@ export function Layout() {
             <Sidebar.ItemGroup>
               {RoutesGroup1.map(({ href, icon, title }, key) => (
                 <Sidebar.Item
-                  className={href === pathname ? "bg-green-100 dark:bg-green-700" : "hover:bg-green-100"}
+                  className={pathname.includes(href) ? "bg-green-100 dark:bg-green-700" : "hover:bg-green-100"}
                   key={key}
                   icon={icon}
                   as={Link}
