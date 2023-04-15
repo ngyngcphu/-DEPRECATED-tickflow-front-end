@@ -7,7 +7,7 @@ export function AllProjects() {
   return (
     <div>
       <Breadcrumb aria-label='Solid background breadcrumb example' className='bg-gray-50 py-3 px-5 dark:bg-gray-700'>
-        <Breadcrumb.Item icon={BriefcaseIcon} className='dark:text-white'>
+        <Breadcrumb.Item icon={BriefcaseIcon} className='dark:text-white font-archivo'>
           Projects
         </Breadcrumb.Item>
       </Breadcrumb>

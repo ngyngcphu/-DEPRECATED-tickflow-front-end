@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { Breadcrumb, Button, Checkbox, Dropdown, Label, Table, TextInput } from "flowbite-react";
 import { BriefcaseIcon, PencilIcon, TrashIcon, UserIcon } from "@heroicons/react/24/solid";
 import projectImage from "../../../assets/projectImage.svg";
@@ -10,6 +10,8 @@ import { AddMember } from "./AddMember";
 
 export function Project() {
   const { projectId } = useParams<string>();
+  const { state } = useLocation();
+  const { type } = state;
   const titles: Array<string> = ["Project Log", "Date", "Note"];
 
   const [projectData, setProjectData] = useState<ProjectProps>({
@@ -53,7 +55,7 @@ export function Project() {
     <div>
       <Breadcrumb aria-label='Solid background breadcrumb example' className='bg-gray-50 py-3 px-5 dark:bg-gray-700'>
         <Breadcrumb.Item icon={BriefcaseIcon}>
-          <Link to='/projects' className='dark:text-white font-archivo'>
+          <Link to={type ? `/projects?view=${type}` : "/projects"} className='dark:text-white font-archivo'>
             Projects
           </Link>
         </Breadcrumb.Item>
