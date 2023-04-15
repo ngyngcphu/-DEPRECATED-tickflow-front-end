@@ -4,7 +4,6 @@ import { Breadcrumb, Button, Checkbox, Dropdown, Label, Table, TextInput } from 
 import { BriefcaseIcon, PencilIcon, TrashIcon, UserIcon } from "@heroicons/react/24/solid";
 import projectImage from "../../../assets/projectImage.svg";
 import { SendNotification } from "../allprojects/SendNotification";
-import { NewProject } from "../allprojects/modals/NewProject";
 import { ProjectProps } from "./mockdata/ProjectInterface";
 import { getProject } from "../../../services/project";
 import { AddMember } from "./AddMember";
@@ -152,11 +151,7 @@ export function Project() {
             ))}
           </div>
           <div className='flex'>
-            <p>Project Log</p>
-            <div className='flex items-center ml-auto space-x-2'>
-              <TrashIcon className='ml-auto w-6' />
-              <NewProject />
-            </div>
+            <p className='font-archivo text-[30px] text-[#444444] mb-2'>Project Log</p>
           </div>
           <Table hoverable={true}>
             <Table.Head className='font-archivo !text-[rgba(5,165,157,1)] bg-gradient-to-b from-[rgba(5,165,157,0.2)] to-[rgba(255,255,255,0.02)]'>
