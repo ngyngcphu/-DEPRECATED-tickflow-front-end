@@ -1,12 +1,13 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
-import { Breadcrumb, Button, Checkbox, Dropdown, Label, Table, TextInput } from "flowbite-react";
+import { Breadcrumb, Checkbox, Dropdown, Label, Table, TextInput } from "flowbite-react";
 import { BriefcaseIcon, PencilIcon, TrashIcon, UserIcon } from "@heroicons/react/24/solid";
 import projectImage from "../../../assets/projectImage.svg";
 import { SendNotification } from "../allprojects/SendNotification";
 import { ProjectProps } from "./mockdata/ProjectInterface";
 import { getProject } from "../../../services/project";
 import { AddMember } from "./AddMember";
+import { DeleteProject } from "./DeleteProject";
 
 export function Project() {
   const { projectId } = useParams<string>();
@@ -104,9 +105,7 @@ export function Project() {
               </div>
             </div>
           </div>
-          <Button className='mt-5 mx-auto' color='failure'>
-            Delete Project
-          </Button>
+          <DeleteProject name={projectData.name} />
         </div>
         <div className='col-span-3 overflow-y-scroll h-[500px] mx-5'>
           <div className='flex w-full items-center sm:justify-end mb-2'>
