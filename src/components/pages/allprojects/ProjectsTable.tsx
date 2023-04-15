@@ -61,14 +61,14 @@ export function ProjectsTable() {
           <Table.HeadCell>Edit</Table.HeadCell>
         </Table.Head>
         <Table.Body className='divide-y'>
-          {ProjectsData.filter(filterProjects).map((data, key) => (
-            <Table.Row key={key} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
+          {ProjectsData.filter(filterProjects).map((data, index) => (
+            <Table.Row key={index} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
               <Table.Cell className='!p-4'>
                 <Checkbox />
               </Table.Cell>
               <Table.Cell
                 className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700'
-                onClick={() => navigate(`${key}`)}
+                onClick={() => navigate(`${data.id}`)}
               >
                 {data.projectName}
               </Table.Cell>

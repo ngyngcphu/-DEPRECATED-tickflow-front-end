@@ -1,14 +1,13 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Breadcrumb, Button, Checkbox, Dropdown, Label, Table, TextInput } from "flowbite-react";
-import { BriefcaseIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
-import avatar from "../../../assets/avatar.svg";
+import { BriefcaseIcon, PencilIcon, TrashIcon, UserIcon } from "@heroicons/react/24/solid";
 import projectImage from "../../../assets/projectImage.svg";
-import addIcon from "../../../assets/addIcon.svg";
 import { SendNotification } from "../allprojects/SendNotification";
 import { NewProject } from "../allprojects/modals/NewProject";
 import { ProjectProps } from "./mockdata/ProjectInterface";
 import { getProject } from "../../../services/project";
+import { AddMember } from "./AddMember";
 
 export function Project() {
   const { projectId } = useParams<string>();
@@ -118,18 +117,15 @@ export function Project() {
               Current member: {projectData.totalMember}
             </p>
           </div>
-          <div className='grid grid-cols-3 gap-5 mb-5 items-center justify-center'>
-            <div className='grid grid-cols-4 gap-16'>
-              <div className='w-20 ml-1 mb-2'>
-                <img src={addIcon} alt='addIcon' />
-              </div>
-              <div className='grid col-span-3 items-center'>Add new member</div>
+          <div className='grid grid-cols-3 gap-5 mb-5 items-center justify-center self-center justify-items-center'>
+            <div>
+              <AddMember />
             </div>
 
             {projectData.projectRole.map((data, index) => (
-              <div key={index} className='grid grid-cols-4 gap-16'>
-                <div className='w-20'>
-                  <img src={avatar} alt='avatar' />
+              <div key={index} className='grid grid-cols-4 gap-12'>
+                <div className='w-12'>
+                  <UserIcon className='border-4 border-green-400 rounded-full cursor-pointer fill-[#999999] hover:fill-gray-700' />
                 </div>
                 <div className='grid col-span-3 items-center'>
                   <div className='font-archivo text-[#666666]'>{data.name}</div>

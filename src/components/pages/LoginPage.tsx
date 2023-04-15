@@ -75,7 +75,8 @@ export function LoginPage() {
     const { username, password } = formError;
     if (username.length === 0 && password.length === 0 && submit) {
       login(formValues.username, formValues.password).then((response) => {
-        if (response.data.login === true) {
+        console.log(response);
+        if (response.data.isAuthenticated === true) {
           navigate("/overview");
         } else {
           setShowModalLoginSuccess(true);

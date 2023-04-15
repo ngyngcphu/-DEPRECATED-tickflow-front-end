@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "create-api": "json-server -p 3001 --watch src/components/pages/project/mockdata/db.json",
+    "create-api": "json-server --host 0.0.0.0 -p 3001 --watch src/components/pages/project/mockdata/db.json",
     "lint": "eslint '**/*.{tsx,ts,js}'",
     "format": "prettier '**/*.{tsx,ts,js,json,md,yml,yaml}' --write",
     "prepare": "is-ci || husky install",

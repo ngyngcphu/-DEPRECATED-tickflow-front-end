@@ -1,4 +1,5 @@
 export interface Projects {
+  id: number;
   projectName: string;
   department: string;
   status: string;
@@ -8,6 +9,7 @@ export interface Projects {
 
 export const ProjectsData: Projects[] = [
   {
+    id: 0,
     projectName: "STM32",
     department: "Dự án",
     status: "Proposal",
@@ -15,6 +17,7 @@ export const ProjectsData: Projects[] = [
     leaderName: "Phạm Thị Hiền"
   },
   {
+    id: 1,
     projectName: "Music Box",
     department: "Dự án",
     status: "Proposal",
@@ -22,6 +25,7 @@ export const ProjectsData: Projects[] = [
     leaderName: "Hồng Thiện Nhân"
   },
   {
+    id: 2,
     projectName: "Application Protocol",
     department: "Dự án",
     status: "Proposal",
@@ -29,6 +33,7 @@ export const ProjectsData: Projects[] = [
     leaderName: "Nguyễn Hồng Quân"
   },
   {
+    id: 3,
     projectName: "Monodepth",
     department: "Nghiên cứu",
     status: "In progress",
@@ -36,6 +41,7 @@ export const ProjectsData: Projects[] = [
     leaderName: "Vũ Nguyễn Minh Huy"
   },
   {
+    id: 4,
     projectName: "TickFlow",
     department: "Dự án",
     status: "In progress",
@@ -43,6 +49,7 @@ export const ProjectsData: Projects[] = [
     leaderName: "Nguyễn Thanh Hiền"
   },
   {
+    id: 5,
     projectName: "Kahoot",
     department: "Dự án",
     status: "In progress",
@@ -50,6 +57,7 @@ export const ProjectsData: Projects[] = [
     leaderName: "Hoàng Lương"
   },
   {
+    id: 6,
     projectName: "Signal Modulation",
     department: "Dự án",
     status: "In progress",
@@ -57,6 +65,7 @@ export const ProjectsData: Projects[] = [
     leaderName: "Nguyễn Văn Lợi"
   },
   {
+    id: 7,
     projectName: "Extension Board",
     department: "Dự án",
     status: "Closing",
@@ -64,6 +73,7 @@ export const ProjectsData: Projects[] = [
     leaderName: "Phạm Thị Hiền"
   },
   {
+    id: 8,
     projectName: "Mạch điều khiển động cơ",
     department: "Dự án",
     status: "Closing",
@@ -71,6 +81,7 @@ export const ProjectsData: Projects[] = [
     leaderName: "Nguyễn Thanh Hiền"
   },
   {
+    id: 9,
     projectName: "TickFund",
     department: "Dự án",
     status: "Completed",
@@ -78,6 +89,7 @@ export const ProjectsData: Projects[] = [
     leaderName: "Nguyễn Phúc Vinh"
   },
   {
+    id: 10,
     projectName: "TickKit",
     department: "Dự án",
     status: "Completed",
@@ -85,6 +97,7 @@ export const ProjectsData: Projects[] = [
     leaderName: "Ngô Minh Hồng Thái"
   },
   {
+    id: 11,
     projectName: "Khóa thẻ từ TickLab",
     department: "Dự án",
     status: "Canceled",

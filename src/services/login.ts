@@ -1,7 +1,7 @@
 import { request } from "../utils/request";
 
 export const login = (username: string, password: string) => {
-  return request.post("/api/login", {
+  return request.post("/auth/login", {
     username,
     password
   });
