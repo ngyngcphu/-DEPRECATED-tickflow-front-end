@@ -3,8 +3,8 @@ import { useNavigate, NavigateFunction } from "react-router-dom";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { ExclamationCircleIcon, UserIcon, LockClosedIcon } from "@heroicons/react/24/solid";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { login } from "../services/login";
-import img from "../assets/login.png";
+import { login } from "../../services/login";
+import img from "../../assets/login.png";
 
 interface InitialFormValues {
   username: string;
@@ -75,7 +75,8 @@ export function LoginPage() {
     const { username, password } = formError;
     if (username.length === 0 && password.length === 0 && submit) {
       login(formValues.username, formValues.password).then((response) => {
-        if (response.data.login === true) {
+        console.log(response);
+        if (response.data.isAuthenticated === true) {
           navigate("/overview");
         } else {
           setShowModalLoginSuccess(true);
