@@ -2,6 +2,8 @@ import { ChangeEvent, useState } from "react";
 import { Button, Checkbox, Label, Select, TextInput } from "flowbite-react";
 import { EmailProposalProps, EmailProposal } from "../templates/EmailNoti";
 import { TemplatesName } from "../templates/TemplatesName";
+import gmailIcon from "../../../../assets/gmailIcon.svg";
+import slackIcon from "../../../../assets/slackIcon.svg";
 
 export function ProposalParams() {
   const member: Array<string> = ["Nguyễn Thanh Hiền", "Nguyễn Hồng Quân", "Hoàng Lương", "Nguyễn Ngọc Phú"];
@@ -142,9 +144,19 @@ export function ProposalParams() {
       </div>
       <div className='col-span-3'>
         <div>
-          <div className='flex justify-between p-4'>
-            <Button className='w-60 bg-[#E6E6E6] text-black hover:bg-[#999999]'>Gmail</Button>
-            <Button className='w-60 bg-[#E6E6E6] text-black hover:bg-[#999999]'>Slack</Button>
+          <div className='flex justify-between items-center justify-items-center p-4'>
+            <Button className='w-60 text-black !bg-[#E6E6E6] hover:!bg-[#999999]'>
+              <div className='flex gap-2 items-center justify-items-center'>
+                <img src={gmailIcon} alt='gmailIcon'></img>
+                <span className='text-black'>Gmail</span>
+              </div>
+            </Button>
+            <Button className='w-60 text-black !bg-[#E6E6E6] hover:!bg-[#999999]'>
+              <div className='flex gap-2 items-center justify-items-center'>
+                <img src={slackIcon} alt='slackIcon'></img>
+                <span className='text-black'>Slack</span>
+              </div>
+            </Button>
           </div>
         </div>
         <div className='px-5'>
