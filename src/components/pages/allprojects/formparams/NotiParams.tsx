@@ -1,15 +1,24 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, ReactNode, useState } from "react";
 import { Button, Checkbox, Label, Select, TextInput } from "flowbite-react";
-import { EmailProposalProps, EmailProposal } from "../templates/EmailNoti";
+import { ProposalProps } from "../templates/TemplateProps";
+import { EmailProposal } from "../templates/EmailNoti";
+import { SlackProposal } from "../templates/SlackNoti";
 import { TemplatesName } from "../templates/TemplatesName";
 import gmailIcon from "../../../../assets/gmailIcon.svg";
 import slackIcon from "../../../../assets/slackIcon.svg";
+
+interface MediaTab {
+  tabName: string;
+  icon: string;
+  component: ReactNode;
+  disable: boolean;
+}
 
 export function ProposalParams() {
   const member: Array<string> = ["Nguyễn Thanh Hiền", "Nguyễn Hồng Quân", "Hoàng Lương", "Nguyễn Ngọc Phú"];
   const mentor: Array<string> = ["Nguyễn Phúc Vinh", "Cù Đỗ Thanh Nhân", "Vũ Nguyễn Minh Huy", "Ngô Minh Hồng Thái"];
 
-  const [params, setParams] = useState<EmailProposalProps>({
+  const [params, setParams] = useState<ProposalProps>({
     subject: "",
     sender: "",
     receiver: "",
@@ -17,6 +26,40 @@ export function ProposalParams() {
     dateSchedule: "",
     link: ""
   });
+
+  const tabs: MediaTab[] = [
+    {
+      tabName: "Gmail",
+      icon: gmailIcon,
+      component: (
+        <EmailProposal
+          subject={params.subject}
+          sender={params.sender}
+          receiver={params.receiver}
+          timeSchedule={params.timeSchedule}
+          dateSchedule={params.dateSchedule}
+          link={params.link}
+        />
+      ),
+      disable: false
+    },
+    {
+      tabName: "Slack",
+      icon: slackIcon,
+      component: (
+        <SlackProposal
+          subject={params.subject}
+          sender={params.sender}
+          receiver={params.receiver}
+          timeSchedule={params.timeSchedule}
+          dateSchedule={params.dateSchedule}
+          link={params.link}
+        />
+      ),
+      disable: false
+    }
+  ];
+  const [type, setType] = useState<number>(0);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = event.target;
@@ -90,9 +133,11 @@ export function ProposalParams() {
             <Label htmlFor='via'>
               Send via<span className='text-[#F12323]'>*</span>
             </Label>
-            <Select id='via' required={true}>
-              <option>Email</option>
-              <option>Slack</option>
+            <Select id='via' name='via' required={true}>
+              {tabs.map((tab, index) => (
+                <option key={index}>{tab.tabName}</option>
+              ))}
+              <option>Tất cả</option>
             </Select>
           </div>
           <div>
@@ -145,30 +190,23 @@ export function ProposalParams() {
       <div className='col-span-3'>
         <div>
           <div className='flex justify-between items-center justify-items-center p-4'>
-            <Button className='w-60 text-black !bg-[#E6E6E6] hover:!bg-[#999999]'>
-              <div className='flex gap-2 items-center justify-items-center'>
-                <img src={gmailIcon} alt='gmailIcon'></img>
-                <span className='text-black'>Gmail</span>
-              </div>
-            </Button>
-            <Button className='w-60 text-black !bg-[#E6E6E6] hover:!bg-[#999999]'>
-              <div className='flex gap-2 items-center justify-items-center'>
-                <img src={slackIcon} alt='slackIcon'></img>
-                <span className='text-black'>Slack</span>
-              </div>
-            </Button>
+            {tabs.map((tab, index) => (
+              <Button
+                key={index}
+                disabled={tabs[index].disable}
+                className='w-60 text-black hover:!bg-[#999999]'
+                style={type === index ? { backgroundColor: "#999999" } : { backgroundColor: "#E6E6E6" }}
+                onClick={() => setType(index)}
+              >
+                <div className='flex gap-2 items-center justify-items-center'>
+                  <img src={tab.icon} alt='gmailIcon'></img>
+                  <span className='text-black'>{tab.tabName}</span>
+                </div>
+              </Button>
+            ))}
           </div>
         </div>
-        <div className='px-5'>
-          <EmailProposal
-            subject={params.subject}
-            sender={params.sender}
-            receiver={params.receiver}
-            timeSchedule={params.timeSchedule}
-            dateSchedule={params.dateSchedule}
-            link={params.link}
-          />
-        </div>
+        <div className='px-5 overflow-y-scroll h-96'>{tabs[type].component}</div>
       </div>
     </div>
   );
