@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, NavigateFunction } from "react-router-dom";
+import { useNavigate, NavigateFunction, useSearchParams } from "react-router-dom";
 import { Button, Checkbox, Table } from "flowbite-react";
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/solid";
@@ -7,15 +7,17 @@ import { NewProject } from "./modals/NewProject";
 import { Projects, ProjectsData } from "./mockdata/ProjectsData";
 
 export function ProjectsTable() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const navigate: NavigateFunction = useNavigate();
 
   const tabs: Array<string> = ["All Projects", "Proposal", "In progress", "Closing", "Completed", "Canceled"];
-  const [type, setType] = useState<string>(tabs[0]);
+  const [type, setType] = useState<string | null>(searchParams.get("view"));
 
   const titles: Array<string> = ["Project's name", "Department", "Status", "Total Member/Collab", "Leader's name"];
 
   const filterProjects = (ProjectsData: Projects) => {
-    if (type === tabs[0]) {
+    if (type === null || type === tabs[0]) {
       return true;
     } else {
       return ProjectsData.status === type;
@@ -26,13 +28,16 @@ export function ProjectsTable() {
     <div>
       <div className='flex items-center mb-2'>
         <div className='flex flex-wrap gap-2'>
-          {tabs.map((tab) => (
+          {tabs.map((tab, index) => (
             <Button
-              key={tab}
+              key={index}
               className='dark:text-white'
               color='gray'
-              style={type === tab ? { backgroundColor: "#19A69C" } : {}}
-              onClick={() => setType(tab)}
+              style={type === tab || (type === null && index === 0) ? { backgroundColor: "#19A69C" } : {}}
+              onClick={() => {
+                setType(tab);
+                setSearchParams({ view: `${tab}` });
+              }}
             >
               <TableCellsIcon className='mr-3 w-4' />
               {tab}
@@ -68,7 +73,7 @@ export function ProjectsTable() {
               </Table.Cell>
               <Table.Cell
                 className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700'
-                onClick={() => navigate(`${data.id}`)}
+                onClick={() => navigate(`${data.id}`, { state: { type } })}
               >
                 {data.projectName}
               </Table.Cell>

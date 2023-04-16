@@ -1,16 +1,18 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Breadcrumb, Button, Checkbox, Dropdown, Label, Table, TextInput } from "flowbite-react";
+import { Link, useParams, useLocation } from "react-router-dom";
+import { Breadcrumb, Checkbox, Dropdown, Label, Table, TextInput } from "flowbite-react";
 import { BriefcaseIcon, PencilIcon, TrashIcon, UserIcon } from "@heroicons/react/24/solid";
 import projectImage from "../../../assets/projectImage.svg";
 import { SendNotification } from "../allprojects/SendNotification";
-import { NewProject } from "../allprojects/modals/NewProject";
 import { ProjectProps } from "./mockdata/ProjectInterface";
 import { getProject } from "../../../services/project";
 import { AddMember } from "./AddMember";
+import { DeleteProject } from "./DeleteProject";
 
 export function Project() {
   const { projectId } = useParams<string>();
+  const { state } = useLocation();
+  const { type } = state;
   const titles: Array<string> = ["Project Log", "Date", "Note"];
 
   const [projectData, setProjectData] = useState<ProjectProps>({
@@ -54,7 +56,7 @@ export function Project() {
     <div>
       <Breadcrumb aria-label='Solid background breadcrumb example' className='bg-gray-50 py-3 px-5 dark:bg-gray-700'>
         <Breadcrumb.Item icon={BriefcaseIcon}>
-          <Link to='/projects' className='dark:text-white font-archivo'>
+          <Link to={type ? `/projects?view=${type}` : "/projects"} className='dark:text-white font-archivo'>
             Projects
           </Link>
         </Breadcrumb.Item>
@@ -103,9 +105,7 @@ export function Project() {
               </div>
             </div>
           </div>
-          <Button className='mt-5 mx-auto' color='failure'>
-            Delete Project
-          </Button>
+          <DeleteProject name={projectData.name} />
         </div>
         <div className='col-span-3 overflow-y-scroll h-[500px] mx-5'>
           <div className='flex w-full items-center sm:justify-end mb-2'>
@@ -152,11 +152,7 @@ export function Project() {
             ))}
           </div>
           <div className='flex'>
-            <p>Project Log</p>
-            <div className='flex items-center ml-auto space-x-2'>
-              <TrashIcon className='ml-auto w-6' />
-              <NewProject />
-            </div>
+            <p className='font-archivo text-[30px] text-[#444444] mb-2'>Project Log</p>
           </div>
           <Table hoverable={true}>
             <Table.Head className='font-archivo !text-[rgba(5,165,157,1)] bg-gradient-to-b from-[rgba(5,165,157,0.2)] to-[rgba(255,255,255,0.02)]'>

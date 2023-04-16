@@ -1,13 +1,6 @@
-export interface EmailProposalProps {
-  subject: string;
-  sender: string;
-  receiver: string;
-  timeSchedule: string;
-  dateSchedule: string;
-  link: string;
-}
+import { ProposalProps } from "./TemplateProps";
 
-export function EmailProposal(props: EmailProposalProps) {
+export function EmailProposal(props: ProposalProps) {
   return (
     <div className='text-left text-[15px] leading-6 overflow-y-scroll h-96'>
       <div className='font-archivo mb-2'>
