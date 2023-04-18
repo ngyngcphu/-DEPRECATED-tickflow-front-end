@@ -4,8 +4,8 @@ import { DarkThemeToggle, Navbar, Sidebar, Spinner } from "flowbite-react";
 import { Bars3CenterLeftIcon, UserIcon } from "@heroicons/react/24/outline";
 import { BsGithub } from "react-icons/bs";
 import { RoutesChild, RoutesGroup1, RoutesGroup2 } from "./DeclareRoutes";
-import { Search } from "./Search";
-import img from "../../assets/navbar.png";
+import { Search } from "../components/Search";
+import img from "../assets/navbar.png";
 
 export function Layout() {
   const [collapsed, setCollapsed] = useState<boolean>(false);

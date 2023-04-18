@@ -5,5 +5,5 @@ export const request = axios.create({
 });
 
 export const callAPI = axios.create({
-  baseURL: "http://localhost:3001/api/"
+  baseURL: "http://localhost:3001"
 });
