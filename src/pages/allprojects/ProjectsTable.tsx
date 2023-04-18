@@ -3,9 +3,9 @@ import { useNavigate, NavigateFunction, useSearchParams } from "react-router-dom
 import { Button, Checkbox, Table } from "flowbite-react";
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/solid";
-import { NewProject } from "./modals/NewProject";
-import { AllProjectsProps } from "../mockdata/AllProjectInterface";
-import { getAllProjects } from "../../../services/project";
+import { NewProject } from "./NewProject";
+import { AllProjectsProps } from "../../interfaces/AllProjectInterface";
+import { getAllProjects } from "../../services/project";
 
 export function ProjectsTable() {
   const [searchParams, setSearchParams] = useSearchParams();

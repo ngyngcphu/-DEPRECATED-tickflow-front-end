@@ -1,5 +1,5 @@
 import { callAPI } from "../utils/request";
-import { ProjectProps } from "../components/pages/mockdata/ProjectInterface";
+import { ProjectProps } from "../interfaces/ProjectInterface";
 
 export const getAllProjects = () => {
   return callAPI.get("/allProjects");

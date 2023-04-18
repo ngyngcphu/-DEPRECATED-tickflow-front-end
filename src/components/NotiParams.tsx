@@ -1,11 +1,11 @@
 import { ChangeEvent, ReactNode, useState } from "react";
 import { Button, Checkbox, Label, Select, TextInput } from "flowbite-react";
-import { ProposalProps } from "../templates/TemplateProps";
-import { EmailProposal } from "../templates/EmailNoti";
-import { SlackProposal } from "../templates/SlackNoti";
-import { TemplatesName } from "../templates/TemplatesName";
-import gmailIcon from "../../../../assets/gmailIcon.svg";
-import slackIcon from "../../../../assets/slackIcon.svg";
+import { ProposalProps } from "../interfaces/TemplateInterface";
+import { EmailProposal } from "../pages/templates/EmailNoti";
+import { SlackProposal } from "../pages/templates/SlackNoti";
+import { TemplatesName } from "../pages/templates/TemplatesName";
+import gmailIcon from "../assets/gmailIcon.svg";
+import slackIcon from "../assets/slackIcon.svg";
 
 interface MediaTab {
   tabName: string;

@@ -1,12 +1,24 @@
-import { ProposalProps } from "./TemplateProps";
+import { ProposalProps } from "../../interfaces/TemplateInterface";
 
-export function SlackProposal(props: ProposalProps) {
+export function EmailProposal(props: ProposalProps) {
   return (
     <div className='text-left text-[15px] leading-6 overflow-y-scroll h-96'>
       <div className='font-archivo mb-2'>
         <div className='space-x-2'>
-          <p className='inline'>@channel</p>
+          <p className='inline'>Subject:</p>
           <span className='underline text-[rgba(68,68,68,0.4)]'>{props.subject}</span>
+        </div>
+        <div className='space-x-2'>
+          <p className='inline'>Receiver:</p>
+          <span className='underline text-[rgba(68,68,68,0.4)]'>{props.receiver}</span>
+        </div>
+        <div className='space-x-2'>
+          <p className='inline'>CC:</p>
+          <span className='underline text-[rgba(68,68,68,0.4)]'>CC</span>
+        </div>
+        <div className='space-x-2'>
+          <p className='inline'>BCC:</p>
+          <span className='underline text-[rgba(68,68,68,0.4)]'>BCC</span>
         </div>
       </div>
       <div>
