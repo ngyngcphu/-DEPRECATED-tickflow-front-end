@@ -4,7 +4,7 @@ import { Breadcrumb, Checkbox, Dropdown, Label, Table, TextInput } from "flowbit
 import { BriefcaseIcon, PencilIcon, TrashIcon, UserIcon } from "@heroicons/react/24/solid";
 import projectImage from "../../../assets/projectImage.svg";
 import { SendNotification } from "../allprojects/SendNotification";
-import { ProjectProps } from "./mockdata/ProjectInterface";
+import { ProjectProps } from "../mockdata/ProjectInterface";
 import { getProject } from "../../../services/project";
 import { AddMember } from "./AddMember";
 import { DeleteProject } from "./DeleteProject";
