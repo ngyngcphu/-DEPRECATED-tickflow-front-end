@@ -1,6 +1,6 @@
 import { ComponentProps, FC, ReactNode } from "react";
 import { BriefcaseIcon, CogIcon, DocumentTextIcon, HomeIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import { AllProjects } from "../pages/allprojects/AllProjects";
+import { AllProjects } from "../pages/AllProjects";
 import { Project } from "../pages/project/Project";
 
 interface RouteProps {

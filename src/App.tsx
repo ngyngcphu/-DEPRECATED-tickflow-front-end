@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage";
 import { Layout } from "./layout/Layout";
-import { AllProjects } from "./pages/allprojects/AllProjects";
+import { AllProjects } from "./pages/AllProjects";
 import { Project } from "./pages/project/Project";
 
 export default function App() {

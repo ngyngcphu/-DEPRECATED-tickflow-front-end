@@ -4,7 +4,7 @@ import { Breadcrumb, Checkbox, Dropdown, Label, Table, TextInput } from "flowbit
 import { BriefcaseIcon, PencilIcon, TrashIcon, UserIcon } from "@heroicons/react/24/solid";
 import projectImage from "../../assets/projectImage.svg";
 import { SendNotification } from "../../components/SendNotification";
-import { ProjectProps } from "../../interfaces/ProjectInterface";
+import { ProjectInterface } from "../../interfaces/ProjectInterface";
 import { getProject } from "../../services/project";
 import { AddMember } from "./AddMember";
 import { DeleteProject } from "./DeleteProject";
@@ -15,13 +15,15 @@ export function Project() {
   const { type } = state;
   const titles: Array<string> = ["Project Log", "Date", "Note"];
 
-  const [projectData, setProjectData] = useState<ProjectProps>({
+  const [projectData, setProjectData] = useState<ProjectInterface>({
+    id: 0,
     name: "",
     startDate: "",
     endDate: "",
     department: "",
     status: "",
-    totalMember: 0,
+    totalMemberCollab: "",
+    leaderName: "",
     projectRole: [],
     projectLog: []
   });
@@ -37,14 +39,16 @@ export function Project() {
   useEffect(() => {
     if (projectId && projectId.length > 0) {
       getProject(projectId).then(({ data }) => {
-        const { name, startDate, endDate, department, status, totalMember, projectRole, projectLog } = data;
+        const { id, name, startDate, endDate, department, status, totalMember, leaderName, projectRole, projectLog } = data;
         setProjectData({
+          id: id,
           name: name,
           startDate: startDate,
           endDate: endDate,
           department: department,
           status: status,
-          totalMember: totalMember,
+          totalMemberCollab: totalMember,
+          leaderName: leaderName,
           projectRole: projectRole,
           projectLog: projectLog
         });
@@ -101,7 +105,7 @@ export function Project() {
                 <Label htmlFor='member'>
                   Total Member/Collab:<span className='text-[#F12323]'>*</span>
                 </Label>
-                <TextInput id='member' name='member' value={projectData.totalMember} onChange={handleChange} />
+                <TextInput id='member' name='member' value={projectData.totalMemberCollab} onChange={handleChange} />
               </div>
             </div>
           </div>
@@ -114,21 +118,21 @@ export function Project() {
           <div className='flex justify-between items-center mb-2'>
             <p className='font-archivo text-[30px] text-[#444444]'>Project Role</p>
             <p className='underline decoration-sky-500 text-slate-400 dark:text-sky-400 font-semibold'>
-              Current member: {projectData.totalMember}
+              Current member: {projectData.totalMemberCollab}
             </p>
           </div>
-          <div className='grid grid-cols-3 gap-5 mb-5 items-center justify-center self-center justify-items-center'>
-            <div>
+          <div className='grid grid-cols-3 gap-5 mb-5 items-center justify-items-center'>
+            <div className='ml-1 mb-3'>
               <AddMember />
             </div>
 
             {projectData.projectRole.map((data, index) => (
-              <div key={index} className='grid grid-cols-4 gap-12'>
+              <div key={index} className='grid grid-cols-4 gap-8'>
                 <div className='w-12'>
                   <UserIcon className='border-4 border-green-400 rounded-full cursor-pointer fill-[#999999] hover:fill-gray-700' />
                 </div>
                 <div className='grid col-span-3 items-center'>
-                  <div className='font-archivo text-[#666666]'>{data.name}</div>
+                  <div className='font-archivo text-[#666666] truncate'>{data.name}</div>
                   <div className='flex justify-between items-center'>
                     <div className='text-[#53B1EE] font-medium'>
                       <Dropdown label={data.role} inline={true}>

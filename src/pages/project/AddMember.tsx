@@ -9,9 +9,9 @@ export function AddMember() {
   const [show, setShow] = useState<boolean>(false);
 
   return (
-    <div className='grid grid-cols-4 gap-12'>
+    <div className='grid grid-cols-4 gap-8'>
       <div className='w-12 cursor-pointer'>
-        <PlusIcon className='bg-[#999999] hover:bg-gray-700 border-4 rounded-full fill-white' onClick={() => setShow(true)} />
+        <PlusIcon className='bg-[#999999] hover:bg-gray-700 rounded-full fill-white' onClick={() => setShow(true)} />
       </div>
       <div className='grid col-span-3 items-center'>Add new member</div>
       <Modal show={show} size='sm' onClose={() => setShow(false)}>

@@ -4,8 +4,8 @@ import { Button, Checkbox, Table } from "flowbite-react";
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { NewProject } from "./NewProject";
-import { AllProjectsProps } from "../../interfaces/AllProjectInterface";
-import { getAllProjects } from "../../services/project";
+import { AllProjectsInterface } from "../interfaces/AllProjectInterface";
+import { getAllProjects } from "../services/project";
 
 export function ProjectsTable() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,7 +17,7 @@ export function ProjectsTable() {
 
   const titles: Array<string> = ["Project's name", "Department", "Status", "Total Member/Collab", "Leader's name"];
 
-  const [allProjectsData, setAllProjectsData] = useState<AllProjectsProps[]>([]);
+  const [allProjectsData, setAllProjectsData] = useState<AllProjectsInterface[]>([]);
 
   useEffect(() => {
     getAllProjects().then(({ data }) => {
@@ -25,7 +25,7 @@ export function ProjectsTable() {
     });
   }, []);
 
-  const filterProjects = (allProjectsData: AllProjectsProps) => {
+  const filterProjects = (allProjectsData: AllProjectsInterface) => {
     if (type === null || type === tabs[0]) {
       return true;
     } else {
@@ -83,14 +83,14 @@ export function ProjectsTable() {
                 <Checkbox />
               </Table.Cell>
               <Table.Cell
-                className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700'
+                className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700 border-r dark:border-gray-700'
                 onClick={() => navigate(`${data.id}`, { state: { type } })}
               >
-                {data.projectName}
+                {data.name}
               </Table.Cell>
-              <Table.Cell className='border-r dark:border-gray-700'>{data.department}</Table.Cell>
-              <Table.Cell className='border-r dark:border-gray-700'>{data.status}</Table.Cell>
-              <Table.Cell className='border-r dark:border-gray-700'>{data.totalMemberCollab}</Table.Cell>
+              <Table.Cell className='border-r dark:border-gray-700 text-center'>{data.department}</Table.Cell>
+              <Table.Cell className='border-r dark:border-gray-700 text-center'>{data.status}</Table.Cell>
+              <Table.Cell className='border-r dark:border-gray-700 text-center'>{data.totalMemberCollab}</Table.Cell>
               <Table.Cell className='whitespace-nowrap border-r dark:border-gray-700'>{data.leaderName}</Table.Cell>
               <Table.Cell className='border-r dark:border-gray-700'>
                 <a href='/tables' className='font-medium text-blue-600 hover:underline dark:text-blue-700'>
