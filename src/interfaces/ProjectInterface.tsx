@@ -10,13 +10,15 @@ interface ProjectLogProps {
   note: string;
 }
 
-export interface ProjectProps {
+export interface ProjectInterface {
+  id: number;
   name: string;
   startDate: string;
   endDate: string;
   department: string;
   status: string;
-  totalMember: number;
+  totalMemberCollab: string;
+  leaderName: string;
   projectRole: ProjectRoleProps[];
   projectLog: ProjectLogProps[];
 }

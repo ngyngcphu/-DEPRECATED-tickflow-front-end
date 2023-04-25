@@ -1,6 +1,6 @@
-export interface AllProjectsProps {
+export interface AllProjectsInterface {
   id: number;
-  projectName: string;
+  name: string;
   department: string;
   status: string;
   totalMemberCollab: string;

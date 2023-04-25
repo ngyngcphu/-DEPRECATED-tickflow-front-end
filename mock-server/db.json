@@ -1,103 +1,5 @@
 {
-  "allProjects": [
-    {
-      "id": 0,
-      "projectName": "STM32",
-      "department": "Dự án",
-      "status": "Proposal",
-      "totalMemberCollab": "1/1",
-      "leaderName": "Phạm Thị Hiền"
-    },
-    {
-      "id": 1,
-      "projectName": "Music Box",
-      "department": "Dự án",
-      "status": "Proposal",
-      "totalMemberCollab": "1/0",
-      "leaderName": "Hồng Thiện Nhân"
-    },
-    {
-      "id": 2,
-      "projectName": "Application Protocol",
-      "department": "Dự án",
-      "status": "Proposal",
-      "totalMemberCollab": "1/0",
-      "leaderName": "Nguyễn Hồng Quân"
-    },
-    {
-      "id": 3,
-      "projectName": "Monodepth",
-      "department": "Nghiên cứu",
-      "status": "In progress",
-      "totalMemberCollab": "2/-",
-      "leaderName": "Vũ Nguyễn Minh Huy"
-    },
-    {
-      "id": 4,
-      "projectName": "TickFlow",
-      "department": "Dự án",
-      "status": "In progress",
-      "totalMemberCollab": "4/0",
-      "leaderName": "Nguyễn Thanh Hiền"
-    },
-    {
-      "id": 5,
-      "projectName": "Kahoot",
-      "department": "Dự án",
-      "status": "In progress",
-      "totalMemberCollab": "2/0",
-      "leaderName": "Hoàng Lương"
-    },
-    {
-      "id": 6,
-      "projectName": "Signal Modulation",
-      "department": "Dự án",
-      "status": "In progress",
-      "totalMemberCollab": "1/0",
-      "leaderName": "Nguyễn Văn Lợi"
-    },
-    {
-      "id": 7,
-      "projectName": "Extension Board",
-      "department": "Dự án",
-      "status": "Closing",
-      "totalMemberCollab": "1/1",
-      "leaderName": "Phạm Thị Hiền"
-    },
-    {
-      "id": 8,
-      "projectName": "Mạch điều khiển động cơ",
-      "department": "Dự án",
-      "status": "Closing",
-      "totalMemberCollab": "1/2",
-      "leaderName": "Nguyễn Thanh Hiền"
-    },
-    {
-      "id": 9,
-      "projectName": "TickFund",
-      "department": "Dự án",
-      "status": "Completed",
-      "totalMemberCollab": "3/-",
-      "leaderName": "Nguyễn Phúc Vinh"
-    },
-    {
-      "id": 10,
-      "projectName": "TickKit",
-      "department": "Dự án",
-      "status": "Completed",
-      "totalMemberCollab": "3/-",
-      "leaderName": "Ngô Minh Hồng Thái"
-    },
-    {
-      "id": 11,
-      "projectName": "Khóa thẻ từ TickLab",
-      "department": "Dự án",
-      "status": "Canceled",
-      "totalMemberCollab": "2/0",
-      "leaderName": "Hồng Thiện Nhân"
-    }
-  ],
-  "project": [
+  "projects": [
     {
       "id": 0,
       "name": "STM32",
@@ -105,7 +7,8 @@
       "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Proposal",
-      "totalMember": 1,
+      "totalMemberCollab": "1/1",
+      "leaderName": "Phạm Thị Hiền",
       "projectRole": [
         {
           "name": "Phạm Thị Hiền",
@@ -122,7 +25,8 @@
       "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Proposal",
-      "totalMember": 1,
+      "totalMemberCollab": "1/0",
+      "leaderName": "Hồng Thiện Nhân",
       "projectRole": [
         {
           "name": "Hồng Thiện Nhân",
@@ -139,7 +43,8 @@
       "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Proposal",
-      "totalMember": 1,
+      "totalMemberCollab": "1/0",
+      "leaderName": "Nguyễn Hồng Quân",
       "projectRole": [
         {
           "name": "Nguyễn Hồng Quân",
@@ -156,7 +61,8 @@
       "endDate": "dd/mm/yyyy",
       "department": "Nghiên cứu",
       "status": "In progress",
-      "totalMember": 2,
+      "totalMemberCollab": "2/-",
+      "leaderName": "Vũ Nguyễn Minh Huy",
       "projectRole": [
         {
           "name": "Vũ Nguyễn Minh Huy",
@@ -178,7 +84,8 @@
       "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "In progress",
-      "totalMember": 4,
+      "totalMemberCollab": "4/0",
+      "leaderName": "Nguyễn Thanh Hiền",
       "projectRole": [
         {
           "name": "Nguyễn Thanh Hiền",
@@ -271,7 +178,8 @@
       "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Canceled",
-      "totalMember": 2,
+      "totalMemberCollab": "2/0",
+      "leaderName": "Hoàng Lương",
       "projectRole": [
         {
           "name": "Hoàng Lương",
@@ -292,8 +200,9 @@
       "startDate": "dd/mm/yyyy",
       "endDate": "dd/mm/yyyy",
       "department": "Dự án",
-      "status": "In-progress",
-      "totalMember": 1,
+      "status": "In progress",
+      "totalMemberCollab": "1/0",
+      "leaderName": "Nguyễn Văn Lợi",
       "projectRole": [
         {
           "name": "Nguyễn Văn Lợi",
@@ -309,8 +218,9 @@
       "startDate": "dd/mm/yyyy",
       "endDate": "dd/mm/yyyy",
       "department": "Dự án",
-      "status": "Done",
-      "totalMember": 2,
+      "status": "Closing",
+      "totalMemberCollab": "1/1",
+      "leaderName": "Phạm Thị Hiền",
       "projectRole": [
         {
           "name": "Phạm Thị Hiền",
@@ -331,8 +241,9 @@
       "startDate": "dd/mm/yyyy",
       "endDate": "dd/mm/yyyy",
       "department": "Dự án",
-      "status": "Half",
-      "totalMember": 1,
+      "status": "Closing",
+      "totalMemberCollab": "1/2",
+      "leaderName": "Nguyễn Thanh Hiền",
       "projectRole": [
         {
           "name": "Nguyễn Thanh Hiền",
@@ -348,8 +259,9 @@
       "startDate": "dd/mm/yyyy",
       "endDate": "dd/mm/yyyy",
       "department": "Dự án",
-      "status": "Completely",
-      "totalMember": 3,
+      "status": "Completed",
+      "totalMemberCollab": "3/-",
+      "leaderName": "Nguyễn Phúc Vinh",
       "projectRole": [
         {
           "name": "Nguyễn Phúc Vinh",
@@ -375,8 +287,9 @@
       "startDate": "dd/mm/yyyy",
       "endDate": "dd/mm/yyyy",
       "department": "Dự án",
-      "status": "Completely",
-      "totalMember": 3,
+      "status": "Completed",
+      "totalMemberCollab": "3/-",
+      "leaderName": "Ngô Minh Hồng Thái",
       "projectRole": [
         {
           "name": "Ngô Minh Hồng Thái",
@@ -392,8 +305,9 @@
       "startDate": "dd/mm/yyyy",
       "endDate": "dd/mm/yyyy",
       "department": "Dự án",
-      "status": "Completely",
-      "totalMember": 2,
+      "status": "Canceled",
+      "totalMemberCollab": "1/0",
+      "leaderName": "Hồng Thiện Nhân",
       "projectRole": [
         {
           "name": "Hồng Thiện Nhân",

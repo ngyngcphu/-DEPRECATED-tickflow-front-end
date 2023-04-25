@@ -1,13 +1,52 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { BriefcaseIcon } from "@heroicons/react/24/solid";
+import { ProjectInterface } from "../interfaces/ProjectInterface";
+//import { createProject } from "../services/project";
 
 export function NewProject() {
   const [show, setShow] = useState<boolean>(false);
+
   const department: Array<string> = ["Dự án", "Nghiên cứu", "Đội nhóm"];
   const status: Array<string> = ["Proposal", "In-progress", "Closing", "Halt", "Canceled", "Completed"];
   const member: Array<string> = ["Nguyễn Thanh Hiền", "Nguyễn Hồng Quân", "Hoàng Lương", "Nguyễn Ngọc Phú"];
   const mentor: Array<string> = ["Nguyễn Phúc Vinh", "Cù Đỗ Thanh Nhân", "Vũ Nguyễn Minh Huy", "Ngô Minh Hồng Thái"];
+
+  const [projectData, setProjectsData] = useState<ProjectInterface>({
+    id: 0,
+    name: "",
+    startDate: "",
+    endDate: "",
+    department: "",
+    status: "",
+    totalMemberCollab: "",
+    leaderName: "",
+    projectRole: [],
+    projectLog: []
+  });
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { id, value } = event.target;
+    setProjectsData({ ...projectData, [id]: value });
+  };
+
+  // const createNewProject = () => {
+  //   createProject(projectData).then(({ data }) => {
+  //     const { id, name, startDate, endDate, department, status, totalMemberCollab, leaderName, projectRole, projectLog } = data;
+  //     setProjectsData({
+  //       id: id,
+  //       name: name,
+  //       startDate: startDate,
+  //       endDate: endDate,
+  //       department: department,
+  //       status: status,
+  //       totalMemberCollab: totalMemberCollab,
+  //       leaderName: leaderName,
+  //       projectRole: projectRole,
+  //       projectLog: projectLog,
+  //     })
+  //   })
+  // }
 
   return (
     <div>
@@ -25,13 +64,19 @@ export function NewProject() {
               <Label htmlFor='projectName'>
                 Project's name<span className='text-[#F12323]'>*</span>
               </Label>
-              <TextInput id='projectName' name='projectName' />
+              <TextInput id='projectName' name='projectName' value={projectData.name} onChange={handleChange} />
             </div>
             <div>
               <Label htmlFor='department'>
                 Department<span className='text-[#F12323]'>*</span>
               </Label>
-              <Select id='department' required={true} defaultValue='---Chọn---(bắt buộc)'>
+              <Select
+                id='department'
+                required={true}
+                defaultValue='---Chọn---(bắt buộc)'
+                value={projectData.department}
+                onChange={handleChange}
+              >
                 <option disabled>---Chọn---(bắt buộc)</option>
                 {department.map((department) => (
                   <option key={department}>{department}</option>
@@ -42,7 +87,7 @@ export function NewProject() {
               <Label htmlFor='status'>
                 Status<span className='text-[#F12323]'>*</span>
               </Label>
-              <Select id='status' required={true} defaultValue='---Chọn---(bắt buộc)'>
+              <Select id='status' required={true} defaultValue='---Chọn---(bắt buộc)' value={projectData.status} onChange={handleChange}>
                 <option disabled>---Chọn---(bắt buộc)</option>
                 {status.map((status) => (
                   <option key={status}>{status}</option>
@@ -53,19 +98,25 @@ export function NewProject() {
               <Label htmlFor='startDate'>
                 Start date<span className='text-[#F12323]'>*</span>
               </Label>
-              <TextInput id='startDate' name='startDate' type='date' />
+              <TextInput id='startDate' name='startDate' type='date' value={projectData.startDate} onChange={handleChange} />
             </div>
             <div>
               <Label htmlFor='endDate'>
                 End date<span className='text-[#F12323]'>*</span>
               </Label>
-              <TextInput id='endDate' name='endDate' type='date' />
+              <TextInput id='endDate' name='endDate' type='date' value={projectData.endDate} onChange={handleChange} />
             </div>
             <div className='sm:col-span-2'>
               <Label htmlFor='projectLeader'>
                 Project's Leader<span className='text-[#F12323]'>*</span>
               </Label>
-              <Select id='projectLeader' required={true} defaultValue='---Chọn---(bắt buộc)'>
+              <Select
+                id='projectLeader'
+                required={true}
+                defaultValue='---Chọn---(bắt buộc)'
+                value={projectData.leaderName}
+                onChange={handleChange}
+              >
                 <option disabled>---Chọn---(bắt buộc)</option>
                 {member.map((member) => (
                   <option key={member}>{member}</option>

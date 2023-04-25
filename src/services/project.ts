@@ -1,14 +1,18 @@
-import { callAPI } from "../utils/request";
-import { ProjectProps } from "../interfaces/ProjectInterface";
+import { callProject } from "../utils/request";
+import { ProjectInterface } from "../interfaces/ProjectInterface";
 
 export const getAllProjects = () => {
-  return callAPI.get("/allProjects");
+  return callProject.get("/projects");
+};
+
+export const createProject = (data: ProjectInterface) => {
+  return callProject.post("/projects", data);
 };
 
 export const getProject = (id: string) => {
-  return callAPI.get("/project/" + `${id}`);
+  return callProject.get("/projects/" + `${id}`);
 };
 
-export const updateProject = (id: string, projectData: ProjectProps) => {
-  return callAPI.patch(`${id}`, projectData);
+export const updateProject = (id: string, projectData: ProjectInterface) => {
+  return callProject.patch(`${id}`, projectData);
 };

@@ -1,7 +1,7 @@
 import { Breadcrumb } from "flowbite-react";
 import { BriefcaseIcon } from "@heroicons/react/24/solid";
-import { SendNotification } from "../../components/SendNotification";
-import { ProjectsTable } from "./ProjectsTable";
+import { SendNotification } from "../components/SendNotification";
+import { ProjectsTable } from "../components/ProjectsTable";
 
 export function AllProjects() {
   return (
