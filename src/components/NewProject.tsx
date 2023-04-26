@@ -108,12 +108,12 @@ export function NewProject() {
               </Label>
               <TextInput id='endDate' name='endDate' type='date' value={projectData.endDate} onChange={handleChange} />
             </div>
-            <AutoSuggestForm />
             <div className='sm:col-span-2'>
               <Label htmlFor='projectLeader'>
                 Project's Leader<span className='text-[#F12323]'>*</span>
               </Label>
-              <Select
+              <AutoSuggestForm />
+              {/* <Select
                 id='projectLeader'
                 required={true}
                 defaultValue='---Chọn---(bắt buộc)'
@@ -124,7 +124,7 @@ export function NewProject() {
                 {member.map((member) => (
                   <option key={member}>{member}</option>
                 ))}
-              </Select>
+              </Select> */}
             </div>
             <div className='sm:col-span-2'>
               <Label htmlFor='projectMember'>

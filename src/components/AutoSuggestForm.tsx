@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
@@ -27,17 +27,13 @@ export function AutoSuggestForm() {
 
     return (
       <span>
-        <span className=''>
-          {parts.map((part, index) => {
-            const className = "";
-
-            return (
-              <span className={className} key={index}>
-                {part.text}
-              </span>
-            );
-          })}
-        </span>
+        {parts.map((part, index) => {
+          return (
+            <span style={part.highlight ? { color: "#ee0000", fontWeight: "bold" } : {}} key={index}>
+              {part.text}
+            </span>
+          );
+        })}
       </span>
     );
   };
@@ -60,7 +56,7 @@ export function AutoSuggestForm() {
   const inputProps = {
     placeholder: "Type member name",
     value,
-    onChange: onChange
+    onChange
   };
 
   return (
