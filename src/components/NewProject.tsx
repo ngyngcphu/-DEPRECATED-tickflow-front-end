@@ -1,41 +1,39 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, Dispatch, useState } from "react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { BriefcaseIcon } from "@heroicons/react/24/solid";
-import { ProjectInterface } from "../interfaces/ProjectInterface";
+import { AddProjectInterface } from "../interfaces/AddProjectInterface";
 //import { createProject } from "../services/project";
 
 import { AutoSuggestForm } from "./AutoSuggestForm";
 
 export function NewProject() {
-  const [show, setShow] = useState<boolean>(false);
-
   const department: Array<string> = ["Dự án", "Nghiên cứu", "Đội nhóm"];
   const status: Array<string> = ["Proposal", "In-progress", "Closing", "Halt", "Canceled", "Completed"];
   const member: Array<string> = ["Nguyễn Thanh Hiền", "Nguyễn Hồng Quân", "Hoàng Lương", "Nguyễn Ngọc Phú"];
-  const mentor: Array<string> = ["Nguyễn Phúc Vinh", "Cù Đỗ Thanh Nhân", "Vũ Nguyễn Minh Huy", "Ngô Minh Hồng Thái"];
 
-  const [projectData, setProjectsData] = useState<ProjectInterface>({
-    id: 0,
+  const [show, setShow] = useState<boolean>(false);
+  const [projectData, setProjectData] = useState<AddProjectInterface>({
     name: "",
     startDate: "",
     endDate: "",
     department: "",
     status: "",
-    totalMemberCollab: "",
     leaderName: "",
-    projectRole: [],
-    projectLog: []
+    memberName: [],
+    mentorName: ""
   });
+
+  console.log(projectData);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = event.target;
-    setProjectsData({ ...projectData, [id]: value });
+    setProjectData({ ...projectData, [id]: value });
   };
 
   // const createNewProject = () => {
   //   createProject(projectData).then(({ data }) => {
   //     const { id, name, startDate, endDate, department, status, totalMemberCollab, leaderName, projectRole, projectLog } = data;
-  //     setProjectsData({
+  //     setProjectData({
   //       id: id,
   //       name: name,
   //       startDate: startDate,
@@ -63,22 +61,13 @@ export function NewProject() {
         <Modal.Body>
           <div className='grid grid-cols-1 sm:grid-cols-2'>
             <div className='sm:col-span-2'>
-              <Label htmlFor='projectName'>
-                Project's name<span className='text-[#F12323]'>*</span>
-              </Label>
-              <TextInput id='projectName' name='projectName' value={projectData.name} onChange={handleChange} />
+              <ProjectName setProjectData={setProjectData} />
             </div>
             <div>
               <Label htmlFor='department'>
                 Department<span className='text-[#F12323]'>*</span>
               </Label>
-              <Select
-                id='department'
-                required={true}
-                defaultValue='---Chọn---(bắt buộc)'
-                value={projectData.department}
-                onChange={handleChange}
-              >
+              <Select id='department' required={true} value={"---Chọn---(bắt buộc)" || projectData.department} onChange={handleChange}>
                 <option disabled>---Chọn---(bắt buộc)</option>
                 {department.map((department) => (
                   <option key={department}>{department}</option>
@@ -89,7 +78,7 @@ export function NewProject() {
               <Label htmlFor='status'>
                 Status<span className='text-[#F12323]'>*</span>
               </Label>
-              <Select id='status' required={true} defaultValue='---Chọn---(bắt buộc)' value={projectData.status} onChange={handleChange}>
+              <Select id='status' required={true} value={"---Chọn---(bắt buộc)" || projectData.status} onChange={handleChange}>
                 <option disabled>---Chọn---(bắt buộc)</option>
                 {status.map((status) => (
                   <option key={status}>{status}</option>
@@ -109,22 +98,10 @@ export function NewProject() {
               <TextInput id='endDate' name='endDate' type='date' value={projectData.endDate} onChange={handleChange} />
             </div>
             <div className='sm:col-span-2'>
-              <Label htmlFor='projectLeader'>
+              <Label htmlFor='leaderName'>
                 Project's Leader<span className='text-[#F12323]'>*</span>
               </Label>
-              <AutoSuggestForm />
-              {/* <Select
-                id='projectLeader'
-                required={true}
-                defaultValue='---Chọn---(bắt buộc)'
-                value={projectData.leaderName}
-                onChange={handleChange}
-              >
-                <option disabled>---Chọn---(bắt buộc)</option>
-                {member.map((member) => (
-                  <option key={member}>{member}</option>
-                ))}
-              </Select> */}
+              <AutoSuggestForm id='leaderName' setProjectData={setProjectData} />
             </div>
             <div className='sm:col-span-2'>
               <Label htmlFor='projectMember'>
@@ -138,13 +115,8 @@ export function NewProject() {
               </Select>
             </div>
             <div className='sm:col-span-2'>
-              <Label htmlFor='mentors'>Mentors</Label>
-              <Select id='mentors' defaultValue='(Optional)'>
-                <option disabled>(Optional)</option>
-                {mentor.map((mentor) => (
-                  <option key={mentor}>{mentor}</option>
-                ))}
-              </Select>
+              <Label htmlFor='mentorName'>Mentors</Label>
+              <AutoSuggestForm id='mentorName' setProjectData={setProjectData} />
             </div>
           </div>
         </Modal.Body>
@@ -157,6 +129,29 @@ export function NewProject() {
           </Button>
         </Modal.Footer>
       </Modal>
+    </div>
+  );
+}
+
+interface ProjectNameProps {
+  setProjectData: Dispatch<React.SetStateAction<AddProjectInterface>>;
+}
+
+function ProjectName(props: ProjectNameProps) {
+  const [projectName, setProjectName] = useState<string>("");
+
+  return (
+    <div className='sm:col-span-2'>
+      <Label htmlFor='name'>
+        Project's name<span className='text-[#F12323]'>*</span>
+      </Label>
+      <TextInput
+        id='name'
+        name='name'
+        value={projectName}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => setProjectName(event.target.value)}
+        onBlur={() => props.setProjectData((prev) => ({ ...prev, name: projectName }))}
+      />
     </div>
   );
 }

@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { Dispatch, useState } from "react";
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import { MembersName } from "../name/MembersName";
+import { AddProjectInterface } from "../interfaces/AddProjectInterface";
 
-export function AutoSuggestForm() {
+interface AutoSuggestFormProps {
+  id: string;
+  setProjectData: Dispatch<React.SetStateAction<AddProjectInterface>>;
+}
+
+export function AutoSuggestForm(props: AutoSuggestFormProps) {
   const escapeRegexCharacters = (str: string) => {
     return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   };
@@ -54,13 +60,18 @@ export function AutoSuggestForm() {
   };
 
   const inputProps = {
-    placeholder: "Type member name",
     value,
-    onChange
+    onChange,
+    onBlur: () =>
+      props.setProjectData((prev) => ({
+        ...prev,
+        [props.id]: value
+      }))
   };
 
   return (
     <Autosuggest
+      id={props.id}
       suggestions={suggestions}
       onSuggestionsFetchRequested={onSuggestionsFetchRequested}
       onSuggestionsClearRequested={onSuggestionsClearRequested}
