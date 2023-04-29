@@ -4,7 +4,7 @@ export interface AddProjectInterface {
   endDate: string;
   department: string;
   status: string;
-  leaderName: string;
+  leaderName: Array<string>;
   memberName: Array<string>;
-  mentorName: string;
+  mentorName: Array<string>;
 }

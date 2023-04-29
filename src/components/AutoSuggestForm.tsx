@@ -1,4 +1,4 @@
-import { Dispatch, useState } from "react";
+import { Dispatch, KeyboardEvent, useState } from "react";
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
@@ -51,6 +51,37 @@ export function AutoSuggestForm(props: AutoSuggestFormProps) {
     setValue(newValue);
   };
 
+  const handleChange = () => {
+    if (value.trim() === "") return;
+    if (props.id === "leaderName") {
+      props.setProjectData((prev) => ({
+        ...prev,
+        leaderName: [...prev.leaderName, value]
+      }));
+    } else if (props.id === "memberName") {
+      props.setProjectData((prev) => ({
+        ...prev,
+        memberName: [...prev.memberName, value]
+      }));
+    } else {
+      props.setProjectData((prev) => ({
+        ...prev,
+        mentorName: [...prev.mentorName, value]
+      }));
+    }
+    setValue("");
+  };
+
+  const onBlur = () => {
+    handleChange();
+  };
+
+  const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleChange();
+    }
+  };
+
   const onSuggestionsFetchRequested = ({ value }: Autosuggest.SuggestionsFetchRequestedParams) => {
     setSuggestions(getSuggestions(value));
   };
@@ -62,11 +93,8 @@ export function AutoSuggestForm(props: AutoSuggestFormProps) {
   const inputProps = {
     value,
     onChange,
-    onBlur: () =>
-      props.setProjectData((prev) => ({
-        ...prev,
-        [props.id]: value
-      }))
+    onBlur,
+    onKeyDown
   };
 
   return (
