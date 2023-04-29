@@ -1,16 +1,22 @@
-import { Dispatch, KeyboardEvent, useState } from "react";
+import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
-import { MembersName } from "../name/MembersName";
+import { Button, Modal } from "flowbite-react";
+import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
+
 import { AddProjectInterface } from "../interfaces/AddProjectInterface";
 
 interface AutoSuggestFormProps {
   id: string;
-  setProjectData: Dispatch<React.SetStateAction<AddProjectInterface>>;
+  setProjectData: Dispatch<SetStateAction<AddProjectInterface>>;
+  temp: Array<string>;
+  setTemp: Dispatch<SetStateAction<Array<string>>>;
 }
 
 export function AutoSuggestForm(props: AutoSuggestFormProps) {
+  const [show, setShow] = useState<boolean>(false);
+
   const escapeRegexCharacters = (str: string) => {
     return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   };
@@ -18,10 +24,10 @@ export function AutoSuggestForm(props: AutoSuggestFormProps) {
   const getSuggestions = (value: string) => {
     const escapedValue = escapeRegexCharacters(value.trim());
     if (escapedValue === "") {
-      return [];
+      return props.temp;
     }
     const regex = new RegExp("\\b" + escapedValue, "i");
-    return MembersName.filter((member) => regex.test(getSuggestionValue(member)));
+    return props.temp.filter((member) => regex.test(getSuggestionValue(member)));
   };
 
   const getSuggestionValue = (suggestion: string) => suggestion;
@@ -51,8 +57,17 @@ export function AutoSuggestForm(props: AutoSuggestFormProps) {
     setValue(newValue);
   };
 
+  const removeNameInTemp = (name: string) => {
+    props.setTemp(props.temp.filter((i: string) => i !== name));
+  };
+
   const handleChange = () => {
     if (value.trim() === "") return;
+    if (props.temp.find((name: string) => name === value) === undefined) {
+      setShow(true);
+      setValue("");
+      return;
+    }
     if (props.id === "leaderName") {
       props.setProjectData((prev) => ({
         ...prev,
@@ -69,6 +84,7 @@ export function AutoSuggestForm(props: AutoSuggestFormProps) {
         mentorName: [...prev.mentorName, value]
       }));
     }
+    removeNameInTemp(value);
     setValue("");
   };
 
@@ -98,14 +114,30 @@ export function AutoSuggestForm(props: AutoSuggestFormProps) {
   };
 
   return (
-    <Autosuggest
-      id={props.id}
-      suggestions={suggestions}
-      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-      onSuggestionsClearRequested={onSuggestionsClearRequested}
-      getSuggestionValue={getSuggestionValue}
-      renderSuggestion={renderSuggestion}
-      inputProps={inputProps}
-    />
+    <>
+      <Autosuggest
+        id={props.id}
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        inputProps={inputProps}
+        shouldRenderSuggestions={() => true}
+      />
+      <Modal show={show} size='md' popup={true} onClose={() => setShow(false)}>
+        <Modal.Body>
+          <div className='text-center'>
+            <ExclamationCircleIcon className='mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200' />
+            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>Không tồn tại thành viên này!</h3>
+            <div className='flex justify-center gap-4'>
+              <Button color='failure' onClick={() => setShow(false)}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 }

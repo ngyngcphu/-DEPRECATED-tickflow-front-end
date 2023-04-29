@@ -1,10 +1,10 @@
-import { ChangeEvent, useState, useRef } from "react";
+import { ChangeEvent, useEffect, useState, useRef } from "react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { BriefcaseIcon } from "@heroicons/react/24/solid";
 import { AddProjectInterface } from "../interfaces/AddProjectInterface";
 //import { createProject } from "../services/project";
-
 import { AutoSuggestForm } from "./AutoSuggestForm";
+import { MembersName } from "../name/MembersName";
 
 export function NewProject() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -13,6 +13,8 @@ export function NewProject() {
   const status: Array<string> = ["Proposal", "In-progress", "Closing", "Halt", "Canceled", "Completed"];
 
   const [show, setShow] = useState<boolean>(false);
+  const [temp, setTemp] = useState<Array<string>>(MembersName);
+
   const [projectData, setProjectData] = useState<AddProjectInterface>({
     name: "",
     startDate: "",
@@ -23,6 +25,10 @@ export function NewProject() {
     memberName: [],
     mentorName: []
   });
+
+  useEffect(() => {
+    setTemp(MembersName);
+  }, [show]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = event.target;
@@ -118,25 +124,27 @@ export function NewProject() {
                 <Label htmlFor='leaderName'>
                   Project's Leader<span className='text-[#F12323]'>*</span>
                 </Label>
-                <AutoSuggestForm id='leaderName' setProjectData={setProjectData} />
+                <AutoSuggestForm id='leaderName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
                 {projectData.leaderName.map((leader, index) => (
-                  <li key={index}>{leader}</li>
+                  <span className='text-red' key={index}>
+                    &times; {leader}
+                  </span>
                 ))}
               </div>
               <div className='sm:col-span-2'>
                 <Label htmlFor='memberName'>
                   Project's Member<span className='text-[#F12323]'>*</span>
                 </Label>
-                <AutoSuggestForm id='memberName' setProjectData={setProjectData} />
+                <AutoSuggestForm id='memberName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
                 {projectData.memberName.map((member, index) => (
-                  <li key={index}>{member}</li>
+                  <span key={index}>&times; {member}</span>
                 ))}
               </div>
               <div className='sm:col-span-2'>
                 <Label htmlFor='mentorName'>Mentors</Label>
-                <AutoSuggestForm id='mentorName' setProjectData={setProjectData} />
+                <AutoSuggestForm id='mentorName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
                 {projectData.mentorName.map((mentor, index) => (
-                  <li key={index}>{mentor}</li>
+                  <span key={index}>&times; {mentor}</span>
                 ))}
               </div>
             </div>
@@ -147,6 +155,7 @@ export function NewProject() {
               onClick={() => {
                 handleClear();
                 setShow(false);
+                setTemp(MembersName);
               }}
             >
               Cancel
@@ -156,6 +165,7 @@ export function NewProject() {
               onClick={() => {
                 handleClear();
                 setShow(false);
+                setTemp(MembersName);
               }}
             >
               Create
