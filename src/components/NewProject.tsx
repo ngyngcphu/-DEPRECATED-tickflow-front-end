@@ -78,7 +78,7 @@ export function NewProject() {
           <Modal.Header className='border-b border-gray-200 !p-6 dark:border-gray-700'>
             <strong className='text-[#19A69C] font-archivo text-2xl'>Create Project</strong>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className='overflow-y-auto h-[450px]'>
             <div className='grid grid-cols-1 sm:grid-cols-2'>
               <div className='sm:col-span-2'>
                 <Label htmlFor='name'>
@@ -126,9 +126,21 @@ export function NewProject() {
                 </Label>
                 <AutoSuggestForm id='leaderName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
                 {projectData.leaderName.map((leader, index) => (
-                  <span className='text-red' key={index}>
-                    &times; {leader}
-                  </span>
+                  <p key={index}>
+                    <span
+                      className='text-[#F12323] text-[20px] cursor-pointer'
+                      onClick={() => {
+                        setProjectData((prev) => ({
+                          ...prev,
+                          leaderName: projectData.leaderName.filter((_, i) => i !== index)
+                        }));
+                        setTemp([...temp, leader]);
+                      }}
+                    >
+                      &times;
+                    </span>{" "}
+                    {leader}
+                  </p>
                 ))}
               </div>
               <div className='sm:col-span-2'>
@@ -137,14 +149,42 @@ export function NewProject() {
                 </Label>
                 <AutoSuggestForm id='memberName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
                 {projectData.memberName.map((member, index) => (
-                  <span key={index}>&times; {member}</span>
+                  <p key={index}>
+                    <span
+                      className='text-[#F12323] text-[20px] cursor-pointer'
+                      onClick={() => {
+                        setProjectData((prev) => ({
+                          ...prev,
+                          memberName: projectData.memberName.filter((_, i) => i !== index)
+                        }));
+                        setTemp([...temp, member]);
+                      }}
+                    >
+                      &times;
+                    </span>{" "}
+                    {member}
+                  </p>
                 ))}
               </div>
               <div className='sm:col-span-2'>
                 <Label htmlFor='mentorName'>Mentors</Label>
                 <AutoSuggestForm id='mentorName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
                 {projectData.mentorName.map((mentor, index) => (
-                  <span key={index}>&times; {mentor}</span>
+                  <p key={index}>
+                    <span
+                      className='text-[#F12323] text-[20px] cursor-pointer'
+                      onClick={() => {
+                        setProjectData((prev) => ({
+                          ...prev,
+                          mentorName: projectData.mentorName.filter((_, i) => i !== index)
+                        }));
+                        setTemp([...temp, mentor]);
+                      }}
+                    >
+                      &times;
+                    </span>{" "}
+                    {mentor}
+                  </p>
                 ))}
               </div>
             </div>
