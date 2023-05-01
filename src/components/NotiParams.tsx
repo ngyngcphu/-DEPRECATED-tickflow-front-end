@@ -3,7 +3,7 @@ import { Button, Checkbox, Label, Select, TextInput } from "flowbite-react";
 import { ProposalProps } from "../interfaces/TemplateInterface";
 import { EmailProposal } from "../pages/templates/EmailNoti";
 import { SlackProposal } from "../pages/templates/SlackNoti";
-import { TemplatesName } from "../pages/templates/TemplatesName";
+import { TemplatesName } from "../name/TemplatesName";
 import gmailIcon from "../assets/gmailIcon.svg";
 import slackIcon from "../assets/slackIcon.svg";
 

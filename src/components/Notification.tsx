@@ -2,7 +2,7 @@ import { ReactNode, useState } from "react";
 import { Button, Modal } from "flowbite-react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import { ProposalParams } from "./NotiParams";
-import { TemplatesName } from "../pages/templates/TemplatesName";
+import { TemplatesName } from "../name/TemplatesName";
 import { ScheduleSend } from "./ScheduleSend";
 
 function Proposal() {

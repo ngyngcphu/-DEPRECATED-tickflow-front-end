@@ -131,7 +131,7 @@ See the [open issues](https://github.com/TickLabVN/TickFlow-FE/issues) for a ful
 ## Git working culture
 
 - For every updates, DO NOT push directly to `main` branch. Create a new branch, commit, publish branch and create a pull request (PR) instead.
-- A branch should have prefix `feat/` for a feature update, prefix `hotfix/` for a hotfix, `improv/` for an improvement ...
+- A branch should have prefix `feat/` for a feature update, prefix `hotfix/` for a hotfix, `improve/` for an improvement ...
 - A PR should be small enough to review. To split a large PR, use [stacked PRs](https://blog.logrocket.com/using-stacked-pull-requests-in-github/).
 
 <!-- CONTACT -->
