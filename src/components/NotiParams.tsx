@@ -27,6 +27,8 @@ export function ProposalParams() {
     link: ""
   });
 
+  const [formattedDateSchedule, setFormattedDateSchedule] = useState<string>("");
+
   const tabs: MediaTab[] = [
     {
       tabName: "Gmail",
@@ -37,7 +39,7 @@ export function ProposalParams() {
           sender={params.sender}
           receiver={params.receiver}
           timeSchedule={params.timeSchedule}
-          dateSchedule={params.dateSchedule}
+          dateSchedule={formattedDateSchedule}
           link={params.link}
         />
       ),
@@ -103,7 +105,6 @@ export function ProposalParams() {
             <Label htmlFor='receiver'>
               Người nhận<span className='text-[#F12323]'>*</span>
             </Label>
-            {/* <TextInput id='receiver' name='receiver' value={params.receiver} onChange={handleChange} /> */}
             <Select id='receiver' name='receiver' value={params.receiver} onChange={handleChange} required={true}>
               <option>---Chọn---(bắt buộc)</option>
               {mentor.map((mentor, index) => (
@@ -160,6 +161,9 @@ export function ProposalParams() {
                 type='date'
                 value={params.dateSchedule}
                 onChange={handleChange}
+                onBlur={() => {
+                  setFormattedDateSchedule(new Intl.DateTimeFormat("vi", { dateStyle: "full" }).format(new Date(params.dateSchedule)));
+                }}
               />
             </div>
           </div>
