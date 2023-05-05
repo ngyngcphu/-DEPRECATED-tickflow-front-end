@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { ChangeEvent, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { Button, Checkbox, Label, Select, TextInput } from "flowbite-react";
 import { EmailProposal } from "../pages/templates/EmailNoti";
 import { SlackProposal } from "../pages/templates/SlackNoti";
@@ -9,8 +9,7 @@ import gmailIcon from "../assets/gmailIcon.svg";
 import slackIcon from "../assets/slackIcon.svg";
 
 interface SendNotiModalProps {
-  notiData: SendNotiInterface;
-  setNotiData: Dispatch<SetStateAction<SendNotiInterface>>;
+  show: boolean;
   temp: Array<string>;
   setTemp: Dispatch<SetStateAction<Array<string>>>;
 }
@@ -23,6 +22,17 @@ interface MediaTab {
 }
 
 export function SendNotiModal(props: SendNotiModalProps) {
+  const [notiData, setNotiData] = useState<SendNotiInterface>({
+    subject: "",
+    sender: [],
+    receiver: [],
+    CC: [],
+    BCC: [],
+    timeSchedule: "",
+    dateSchedule: "",
+    link: ""
+  });
+
   const [formattedDateSchedule, setFormattedDateSchedule] = useState<string>("");
 
   const tabs: MediaTab[] = [
@@ -31,12 +41,12 @@ export function SendNotiModal(props: SendNotiModalProps) {
       icon: gmailIcon,
       component: (
         <EmailProposal
-          subject={props.notiData.subject}
-          sender={props.notiData.sender}
-          receiver={props.notiData.receiver}
-          timeSchedule={props.notiData.timeSchedule}
+          subject={notiData.subject}
+          sender={notiData.sender}
+          receiver={notiData.receiver}
+          timeSchedule={notiData.timeSchedule}
           dateSchedule={formattedDateSchedule}
-          link={props.notiData.link}
+          link={notiData.link}
         />
       ),
       disable: false
@@ -46,12 +56,12 @@ export function SendNotiModal(props: SendNotiModalProps) {
       icon: slackIcon,
       component: (
         <SlackProposal
-          subject={props.notiData.subject}
-          sender={props.notiData.sender}
-          receiver={props.notiData.receiver}
-          timeSchedule={props.notiData.timeSchedule}
-          dateSchedule={props.notiData.dateSchedule}
-          link={props.notiData.link}
+          subject={notiData.subject}
+          sender={notiData.sender}
+          receiver={notiData.receiver}
+          timeSchedule={notiData.timeSchedule}
+          dateSchedule={notiData.dateSchedule}
+          link={notiData.link}
         />
       ),
       disable: false
@@ -59,9 +69,23 @@ export function SendNotiModal(props: SendNotiModalProps) {
   ];
   const [type, setType] = useState<number>(0);
 
+  useEffect(() => {
+    console.log(notiData);
+    setNotiData({
+      subject: "",
+      sender: [],
+      receiver: [],
+      CC: [],
+      BCC: [],
+      timeSchedule: "",
+      dateSchedule: "",
+      link: ""
+    });
+  }, [props.show]);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = event.target;
-    props.setNotiData({ ...props.notiData, [id]: value });
+    setNotiData({ ...notiData, [id]: value });
   };
 
   return (
@@ -84,27 +108,27 @@ export function SendNotiModal(props: SendNotiModalProps) {
             <Label htmlFor='title'>
               Tiêu đề nội dung<span className='text-[#F12323]'>*</span>
             </Label>
-            <TextInput id='subject' name='subject' value={props.notiData.subject} onChange={handleChange} />
+            <TextInput id='subject' name='subject' value={notiData.subject} onChange={handleChange} />
           </div>
           <div>
             <Label htmlFor='sender'>
               Người gửi<span className='text-[#F12323]'>*</span>
             </Label>
-            <AutoSuggestSendNotiForm id='sender' setNotiData={props.setNotiData} temp={props.temp} setTemp={props.setTemp} />
+            <AutoSuggestSendNotiForm id='sender' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
           </div>
           <div>
             <Label htmlFor='receiver'>
               Người nhận<span className='text-[#F12323]'>*</span>
             </Label>
-            <AutoSuggestSendNotiForm id='receiver' setNotiData={props.setNotiData} temp={props.temp} setTemp={props.setTemp} />
+            <AutoSuggestSendNotiForm id='receiver' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
           </div>
           <div>
             <Label htmlFor='CC'>CC</Label>
-            <AutoSuggestSendNotiForm id='CC' setNotiData={props.setNotiData} temp={props.temp} setTemp={props.setTemp} />
+            <AutoSuggestSendNotiForm id='CC' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
           </div>
           <div>
             <Label htmlFor='BCC'>BCC</Label>
-            <AutoSuggestSendNotiForm id='BCC' setNotiData={props.setNotiData} temp={props.temp} setTemp={props.setTemp} />
+            <AutoSuggestSendNotiForm id='BCC' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
           </div>
           <div>
             <Label htmlFor='via'>
@@ -127,7 +151,7 @@ export function SendNotiModal(props: SendNotiModalProps) {
                 id='timeSchedule'
                 name='timeSchedule'
                 type='time'
-                value={props.notiData.timeSchedule}
+                value={notiData.timeSchedule}
                 onChange={handleChange}
               />
               <TextInput
@@ -135,19 +159,17 @@ export function SendNotiModal(props: SendNotiModalProps) {
                 id='dateSchedule'
                 name='dateSchedule'
                 type='date'
-                value={props.notiData.dateSchedule}
+                value={notiData.dateSchedule}
                 onChange={handleChange}
                 onBlur={() => {
-                  setFormattedDateSchedule(
-                    new Intl.DateTimeFormat("vi", { dateStyle: "full" }).format(new Date(props.notiData.dateSchedule))
-                  );
+                  setFormattedDateSchedule(new Intl.DateTimeFormat("vi", { dateStyle: "full" }).format(new Date(notiData.dateSchedule)));
                 }}
               />
             </div>
           </div>
           <div>
             <Label htmlFor='link'>Link tài liệu</Label>
-            <TextInput id='link' name='link' value={props.notiData.link} onChange={handleChange} />
+            <TextInput id='link' name='link' value={notiData.link} onChange={handleChange} />
           </div>
           <div>
             <Label htmlFor='format'>
