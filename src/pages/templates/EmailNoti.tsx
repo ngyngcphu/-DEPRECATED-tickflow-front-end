@@ -1,5 +1,5 @@
 import { Preview, Container, Section, Text, Hr } from "@react-email/components";
-import { ProposalProps } from "../../interfaces/TemplateInterface";
+import { ProposalProps } from "../../interfaces/SendNotiInterface";
 
 export function EmailProposal(props: ProposalProps) {
   return (
@@ -47,12 +47,15 @@ export function EmailProposal(props: ProposalProps) {
                 {props.timeSchedule} {props.dateSchedule}{" "}
               </b>
             </Text>
-            <Text className='!text-[16px]'>Hình thức: Offline tại Lab (ONLINE: Đường link)</Text>
             <Text className='!text-[16px]'>
-              LINK file proposal:{" "}
-              <span className='italic underline text-[rgba(0,0,0,0.4)]'>
-                <a href={props.link}>LINK proposal</a>
-              </span>
+              - Hình thức:
+              <b> Offline tại Lab (ONLINE: Đường link) </b>
+            </Text>
+            <Text className='!text-[16px]'>
+              - LINK file proposal:
+              <b>
+                <a href={props.link}> LINK proposal </a>
+              </b>
             </Text>
           </Section>
           <Section>
@@ -63,7 +66,7 @@ export function EmailProposal(props: ProposalProps) {
           </Section>
           <Section>
             <Text className='!text-[16px]'>
-              Kính mến, <span className='underline inline text-[rgba(0,0,0,0.4)]'>{props.sender}</span>
+              Kính mến,<b> {props.sender} </b>
             </Text>
           </Section>
         </Container>

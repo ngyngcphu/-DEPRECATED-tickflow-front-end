@@ -3,10 +3,10 @@ import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { BriefcaseIcon } from "@heroicons/react/24/solid";
 import { AddProjectInterface } from "../interfaces/AddProjectInterface";
 //import { createProject } from "../services/project";
-import { AutoSuggestForm } from "./AutoSuggestForm";
+import { AutoSuggestNewProjectForm } from "../components/AutoSuggestNewProjectForm";
 import { MembersName } from "../name/MembersName";
 
-export function NewProject() {
+export function NewProjectModal() {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const department: Array<string> = ["Dự án", "Nghiên cứu", "Đội nhóm"];
@@ -124,7 +124,7 @@ export function NewProject() {
                 <Label htmlFor='leaderName'>
                   Project's Leader<span className='text-[#F12323]'>*</span>
                 </Label>
-                <AutoSuggestForm id='leaderName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
+                <AutoSuggestNewProjectForm id='leaderName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
                 {projectData.leaderName.map((leader, index) => (
                   <p key={index}>
                     <span
@@ -147,7 +147,7 @@ export function NewProject() {
                 <Label htmlFor='memberName'>
                   Project's Member<span className='text-[#F12323]'>*</span>
                 </Label>
-                <AutoSuggestForm id='memberName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
+                <AutoSuggestNewProjectForm id='memberName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
                 {projectData.memberName.map((member, index) => (
                   <p key={index}>
                     <span
@@ -168,7 +168,7 @@ export function NewProject() {
               </div>
               <div className='sm:col-span-2'>
                 <Label htmlFor='mentorName'>Mentors</Label>
-                <AutoSuggestForm id='mentorName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
+                <AutoSuggestNewProjectForm id='mentorName' setProjectData={setProjectData} temp={temp} setTemp={setTemp} />
                 {projectData.mentorName.map((mentor, index) => (
                   <p key={index}>
                     <span

@@ -4,16 +4,16 @@ import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import { Button, Modal } from "flowbite-react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
-import { AddProjectInterface } from "../interfaces/AddProjectInterface";
+import { SendNotiInterface } from "../interfaces/SendNotiInterface";
 
-interface AutoSuggestFormProps {
+interface AutoSuggestSendNotiFormProps {
   id: string;
-  setProjectData: Dispatch<SetStateAction<AddProjectInterface>>;
+  setNotiData: Dispatch<SetStateAction<SendNotiInterface>>;
   temp: Array<string>;
   setTemp: Dispatch<SetStateAction<Array<string>>>;
 }
 
-export function AutoSuggestForm(props: AutoSuggestFormProps) {
+export function AutoSuggestSendNotiForm(props: AutoSuggestSendNotiFormProps) {
   const [show, setShow] = useState<boolean>(false);
 
   const escapeRegexCharacters = (str: string) => {
@@ -67,20 +67,25 @@ export function AutoSuggestForm(props: AutoSuggestFormProps) {
       setValue("");
       return;
     }
-    if (props.id === "leaderName") {
-      props.setProjectData((prev) => ({
+    if (props.id === "sender") {
+      props.setNotiData((prev) => ({
         ...prev,
-        leaderName: [...prev.leaderName, value]
+        sender: [...prev.sender, value]
       }));
-    } else if (props.id === "memberName") {
-      props.setProjectData((prev) => ({
+    } else if (props.id === "receiver") {
+      props.setNotiData((prev) => ({
         ...prev,
-        memberName: [...prev.memberName, value]
+        receiver: [...prev.receiver, value]
+      }));
+    } else if (props.id === "CC") {
+      props.setNotiData((prev) => ({
+        ...prev,
+        CC: [...prev.CC, value]
       }));
     } else {
-      props.setProjectData((prev) => ({
+      props.setNotiData((prev) => ({
         ...prev,
-        mentorName: [...prev.mentorName, value]
+        BCC: [...prev.BCC, value]
       }));
     }
     removeNameInTemp(value);

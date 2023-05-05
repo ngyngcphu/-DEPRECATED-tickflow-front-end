@@ -1,4 +1,4 @@
-import { ProposalProps } from "../../interfaces/TemplateInterface";
+import { ProposalProps } from "../../interfaces/SendNotiInterface";
 
 export function SlackProposal(props: ProposalProps) {
   return (

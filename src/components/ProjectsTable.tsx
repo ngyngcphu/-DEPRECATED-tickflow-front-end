@@ -3,7 +3,7 @@ import { useNavigate, NavigateFunction, useSearchParams } from "react-router-dom
 import { Button, Checkbox, Table } from "flowbite-react";
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/solid";
-import { NewProject } from "./NewProject";
+import { NewProjectModal } from "../modals/NewProjectModal";
 import { AllProjectsInterface } from "../interfaces/AllProjectInterface";
 import { getAllProjects } from "../services/project";
 
@@ -60,7 +60,7 @@ export function ProjectsTable() {
           </div>
           <div className='flex items-center ml-auto space-x-2'>
             <TrashIcon className='ml-auto w-6' />
-            <NewProject />
+            <NewProjectModal />
           </div>
         </div>
       </div>

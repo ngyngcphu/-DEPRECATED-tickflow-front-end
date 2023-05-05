@@ -1,27 +1,73 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { Button, Modal } from "flowbite-react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
-import { ProposalParams } from "./NotiParams";
+import { SendNotiModal } from "../modals/SendNotiModal";
 import { TemplatesName } from "../name/TemplatesName";
 import { ScheduleSend } from "./ScheduleSend";
+import { MembersName } from "../name/MembersName";
+import { SendNotiInterface } from "../interfaces/SendNotiInterface";
 
 function Proposal() {
   const [show, setShow] = useState<boolean>(false);
+  const [temp, setTemp] = useState<Array<string>>(MembersName);
+
+  const [notiData, setNotiData] = useState<SendNotiInterface>({
+    subject: "",
+    sender: [],
+    receiver: [],
+    CC: [],
+    BCC: [],
+    timeSchedule: "",
+    dateSchedule: "",
+    link: ""
+  });
+
+  useEffect(() => {
+    setTemp(MembersName);
+  }, [show]);
+
+  const handleClear = () => {
+    console.log(notiData);
+    setNotiData({
+      subject: "",
+      sender: [],
+      receiver: [],
+      CC: [],
+      BCC: [],
+      timeSchedule: "",
+      dateSchedule: "",
+      link: ""
+    });
+  };
 
   return (
     <div>
       <span onClick={() => setShow(true)}>{TemplatesName[0]}</span>
       <Modal show={show} size='6xl' popup={true} onClose={() => setShow(false)}>
         <Modal.Body className='!p-0'>
-          <ProposalParams />
+          <SendNotiModal notiData={notiData} setNotiData={setNotiData} temp={temp} setTemp={setTemp} />
         </Modal.Body>
         <Modal.Footer className='flex justify-between'>
-          <Button className='bg-gray-400 hover:!bg-[#444444] dark:bg-gray-600 dark:hover:!bg-[#444444]' onClick={() => setShow(false)}>
+          <Button
+            className='bg-gray-400 hover:!bg-[#444444] dark:bg-gray-600 dark:hover:!bg-[#444444]'
+            onClick={() => {
+              handleClear();
+              setShow(false);
+              setTemp(MembersName);
+            }}
+          >
             Cancel
           </Button>
           <div className='flex gap-5 items-center justify-items-center'>
             <ScheduleSend />
-            <Button className='bg-[#00B1E5] hover:!bg-blue-500 dark:bg-blue-100 dark:!hover:!bg-blue-50' onClick={() => setShow(false)}>
+            <Button
+              className='bg-[#00B1E5] hover:!bg-blue-500 dark:bg-blue-100 dark:!hover:!bg-blue-50'
+              onClick={() => {
+                handleClear();
+                setShow(false);
+                setTemp(MembersName);
+              }}
+            >
               Send
             </Button>
           </div>
