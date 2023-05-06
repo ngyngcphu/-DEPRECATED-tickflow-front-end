@@ -1,4 +1,4 @@
-import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
+import { Dispatch, KeyboardEvent, SetStateAction, useState, useRef } from "react";
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
@@ -14,6 +14,8 @@ interface AutoSuggestSendNotiFormProps {
 }
 
 export function AutoSuggestSendNotiForm(props: AutoSuggestSendNotiFormProps) {
+  const inputRef = useRef<HTMLInputElement>();
+
   const [show, setShow] = useState<boolean>(false);
 
   const escapeRegexCharacters = (str: string) => {
@@ -99,6 +101,10 @@ export function AutoSuggestSendNotiForm(props: AutoSuggestSendNotiFormProps) {
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       handleChange();
+      console.log(inputRef.current);
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 0);
     }
   };
 
@@ -117,6 +123,12 @@ export function AutoSuggestSendNotiForm(props: AutoSuggestSendNotiFormProps) {
     onKeyDown
   };
 
+  const storeInputReference = (autosuggest: Autosuggest) => {
+    if (autosuggest !== null) {
+      inputRef.current = autosuggest.input;
+    }
+  };
+
   return (
     <>
       <Autosuggest
@@ -128,6 +140,7 @@ export function AutoSuggestSendNotiForm(props: AutoSuggestSendNotiFormProps) {
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
         shouldRenderSuggestions={() => true}
+        ref={storeInputReference}
       />
       <Modal show={show} size='md' popup={true} onClose={() => setShow(false)}>
         <Modal.Body>
