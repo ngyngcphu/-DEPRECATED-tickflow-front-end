@@ -1,11 +1,18 @@
-import { ChangeEvent, ReactNode, useState } from "react";
+import { ChangeEvent, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { Button, Checkbox, Label, Select, TextInput } from "flowbite-react";
-import { ProposalProps } from "../interfaces/TemplateInterface";
 import { EmailProposal } from "../pages/templates/EmailNoti";
 import { SlackProposal } from "../pages/templates/SlackNoti";
 import { TemplatesName } from "../name/TemplatesName";
+import { AutoSuggestSendNotiForm } from "../components/AutoSuggestSendNotiForm";
+import { SendNotiInterface } from "../interfaces/SendNotiInterface";
 import gmailIcon from "../assets/gmailIcon.svg";
 import slackIcon from "../assets/slackIcon.svg";
+
+interface SendNotiModalProps {
+  show: boolean;
+  temp: Array<string>;
+  setTemp: Dispatch<SetStateAction<Array<string>>>;
+}
 
 interface MediaTab {
   tabName: string;
@@ -14,18 +21,19 @@ interface MediaTab {
   disable: boolean;
 }
 
-export function ProposalParams() {
-  const member: Array<string> = ["Nguyễn Thanh Hiền", "Nguyễn Hồng Quân", "Hoàng Lương", "Nguyễn Ngọc Phú"];
-  const mentor: Array<string> = ["Nguyễn Phúc Vinh", "Cù Đỗ Thanh Nhân", "Vũ Nguyễn Minh Huy", "Ngô Minh Hồng Thái"];
-
-  const [params, setParams] = useState<ProposalProps>({
+export function SendNotiModal(props: SendNotiModalProps) {
+  const [notiData, setNotiData] = useState<SendNotiInterface>({
     subject: "",
-    sender: "",
-    receiver: "",
+    sender: [],
+    receiver: [],
+    CC: [],
+    BCC: [],
     timeSchedule: "",
     dateSchedule: "",
     link: ""
   });
+
+  const [formattedDateSchedule, setFormattedDateSchedule] = useState<string>("");
 
   const tabs: MediaTab[] = [
     {
@@ -33,12 +41,12 @@ export function ProposalParams() {
       icon: gmailIcon,
       component: (
         <EmailProposal
-          subject={params.subject}
-          sender={params.sender}
-          receiver={params.receiver}
-          timeSchedule={params.timeSchedule}
-          dateSchedule={params.dateSchedule}
-          link={params.link}
+          subject={notiData.subject}
+          sender={notiData.sender}
+          receiver={notiData.receiver}
+          timeSchedule={notiData.timeSchedule}
+          dateSchedule={formattedDateSchedule}
+          link={notiData.link}
         />
       ),
       disable: false
@@ -48,12 +56,12 @@ export function ProposalParams() {
       icon: slackIcon,
       component: (
         <SlackProposal
-          subject={params.subject}
-          sender={params.sender}
-          receiver={params.receiver}
-          timeSchedule={params.timeSchedule}
-          dateSchedule={params.dateSchedule}
-          link={params.link}
+          subject={notiData.subject}
+          sender={notiData.sender}
+          receiver={notiData.receiver}
+          timeSchedule={notiData.timeSchedule}
+          dateSchedule={notiData.dateSchedule}
+          link={notiData.link}
         />
       ),
       disable: false
@@ -61,9 +69,23 @@ export function ProposalParams() {
   ];
   const [type, setType] = useState<number>(0);
 
+  useEffect(() => {
+    console.log(notiData);
+    setNotiData({
+      subject: "",
+      sender: [],
+      receiver: [],
+      CC: [],
+      BCC: [],
+      timeSchedule: "",
+      dateSchedule: "",
+      link: ""
+    });
+  }, [props.show]);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = event.target;
-    setParams({ ...params, [id]: value });
+    setNotiData({ ...notiData, [id]: value });
   };
 
   return (
@@ -86,48 +108,27 @@ export function ProposalParams() {
             <Label htmlFor='title'>
               Tiêu đề nội dung<span className='text-[#F12323]'>*</span>
             </Label>
-            <TextInput id='subject' name='subject' value={params.subject} onChange={handleChange} />
+            <TextInput id='subject' name='subject' value={notiData.subject} onChange={handleChange} />
           </div>
           <div>
             <Label htmlFor='sender'>
               Người gửi<span className='text-[#F12323]'>*</span>
             </Label>
-            <Select id='sender' name='sender' value={params.sender} onChange={handleChange} required={true}>
-              <option>---Chọn---(bắt buộc)</option>
-              {member.map((member, index) => (
-                <option key={index}>{member}</option>
-              ))}
-            </Select>
+            <AutoSuggestSendNotiForm id='sender' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
           </div>
           <div>
             <Label htmlFor='receiver'>
               Người nhận<span className='text-[#F12323]'>*</span>
             </Label>
-            {/* <TextInput id='receiver' name='receiver' value={params.receiver} onChange={handleChange} /> */}
-            <Select id='receiver' name='receiver' value={params.receiver} onChange={handleChange} required={true}>
-              <option>---Chọn---(bắt buộc)</option>
-              {mentor.map((mentor, index) => (
-                <option key={index}>{mentor}</option>
-              ))}
-            </Select>
+            <AutoSuggestSendNotiForm id='receiver' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
           </div>
           <div>
             <Label htmlFor='CC'>CC</Label>
-            <Select id='CC'>
-              <option>(Optional)</option>
-              {member.map((member, index) => (
-                <option key={index}>{member}</option>
-              ))}
-            </Select>
+            <AutoSuggestSendNotiForm id='CC' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
           </div>
           <div>
             <Label htmlFor='BCC'>BCC</Label>
-            <Select id='BCC'>
-              <option>(Optional)</option>
-              {member.map((member, index) => (
-                <option key={index}>{member}</option>
-              ))}
-            </Select>
+            <AutoSuggestSendNotiForm id='BCC' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
           </div>
           <div>
             <Label htmlFor='via'>
@@ -150,7 +151,7 @@ export function ProposalParams() {
                 id='timeSchedule'
                 name='timeSchedule'
                 type='time'
-                value={params.timeSchedule}
+                value={notiData.timeSchedule}
                 onChange={handleChange}
               />
               <TextInput
@@ -158,14 +159,17 @@ export function ProposalParams() {
                 id='dateSchedule'
                 name='dateSchedule'
                 type='date'
-                value={params.dateSchedule}
+                value={notiData.dateSchedule}
                 onChange={handleChange}
+                onBlur={() => {
+                  setFormattedDateSchedule(new Intl.DateTimeFormat("vi", { dateStyle: "full" }).format(new Date(notiData.dateSchedule)));
+                }}
               />
             </div>
           </div>
           <div>
             <Label htmlFor='link'>Link tài liệu</Label>
-            <TextInput id='link' name='link' value={params.link} onChange={handleChange} />
+            <TextInput id='link' name='link' value={notiData.link} onChange={handleChange} />
           </div>
           <div>
             <Label htmlFor='format'>

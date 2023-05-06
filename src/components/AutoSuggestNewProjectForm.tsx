@@ -6,14 +6,14 @@ import { Button, Modal } from "flowbite-react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import { AddProjectInterface } from "../interfaces/AddProjectInterface";
 
-interface AutoSuggestFormProps {
+interface AutoSuggestNewProjectFormProps {
   id: string;
   setProjectData: Dispatch<SetStateAction<AddProjectInterface>>;
   temp: Array<string>;
   setTemp: Dispatch<SetStateAction<Array<string>>>;
 }
 
-export function AutoSuggestForm(props: AutoSuggestFormProps) {
+export function AutoSuggestNewProjectForm(props: AutoSuggestNewProjectFormProps) {
   const [show, setShow] = useState<boolean>(false);
 
   const escapeRegexCharacters = (str: string) => {

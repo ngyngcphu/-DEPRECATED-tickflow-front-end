@@ -14,7 +14,8 @@ module.exports = {
       '2xl': '1536px',
     },
     fontFamily: {
-      'archivo': ['Archivo', 'sans-serif']
+      'archivo': ['Archivo', 'sans-serif'],
+      'inter': ['Inter', 'sans-serif'],
     },
     fontSize: {
       sm: ['1rem', {
