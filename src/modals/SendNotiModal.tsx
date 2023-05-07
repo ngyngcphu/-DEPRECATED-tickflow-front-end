@@ -44,6 +44,8 @@ export function SendNotiModal(props: SendNotiModalProps) {
           subject={notiData.subject}
           sender={notiData.sender}
           receiver={notiData.receiver}
+          CC={notiData.CC}
+          BCC={notiData.BCC}
           timeSchedule={notiData.timeSchedule}
           dateSchedule={formattedDateSchedule}
           link={notiData.link}
@@ -59,6 +61,8 @@ export function SendNotiModal(props: SendNotiModalProps) {
           subject={notiData.subject}
           sender={notiData.sender}
           receiver={notiData.receiver}
+          CC={notiData.CC}
+          BCC={notiData.BCC}
           timeSchedule={notiData.timeSchedule}
           dateSchedule={notiData.dateSchedule}
           link={notiData.link}

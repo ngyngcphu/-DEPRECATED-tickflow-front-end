@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { useNavigate, NavigateFunction, useSearchParams } from "react-router-dom";
-import { Button, Checkbox, Table } from "flowbite-react";
+import { Breadcrumb, Button, Checkbox, Table } from "flowbite-react";
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
-import { TrashIcon } from "@heroicons/react/24/solid";
+import { BriefcaseIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { NewProjectModal } from "../modals/NewProjectModal";
 import { AllProjectsInterface } from "../interfaces/AllProjectInterface";
+import { SendNotification } from "../components/SendNotification";
 import { getAllProjects } from "../services/project";
 
-export function ProjectsTable() {
+export function AllProjectsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const navigate: NavigateFunction = useNavigate();
@@ -34,7 +35,12 @@ export function ProjectsTable() {
   };
 
   return (
-    <div>
+    <>
+      <Breadcrumb aria-label='Solid background breadcrumb example' className='bg-gray-50 py-3 px-5 dark:bg-gray-700'>
+        <Breadcrumb.Item icon={BriefcaseIcon} className='dark:text-white font-archivo'>
+          Projects
+        </Breadcrumb.Item>
+      </Breadcrumb>
       <div className='flex items-center mb-2'>
         <div className='grid grid-cols-4 items-center'>
           <div className='flex gap-2 col-span-3 overflow-x-scroll'>
@@ -60,6 +66,7 @@ export function ProjectsTable() {
           </div>
           <div className='flex items-center ml-auto space-x-2'>
             <TrashIcon className='ml-auto w-6' />
+            <SendNotification />
             <NewProjectModal />
           </div>
         </div>
@@ -101,6 +108,6 @@ export function ProjectsTable() {
           ))}
         </Table.Body>
       </Table>
-    </div>
+    </>
   );
 }
