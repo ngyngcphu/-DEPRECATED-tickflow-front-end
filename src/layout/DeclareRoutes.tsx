@@ -1,6 +1,6 @@
 import { ComponentProps, FC, ReactNode } from "react";
 import { BriefcaseIcon, CogIcon, DocumentTextIcon, HomeIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import { AllProjects } from "../pages/AllProjectsPage";
+import { AllProjectsPage } from "../pages/AllProjectsPage";
 import { Project } from "../pages/project/Project";
 
 interface RouteProps {
@@ -27,7 +27,7 @@ export const RoutesGroup1: RouteProps[] = [
     title: "Projects",
     icon: BriefcaseIcon,
     href: "/projects",
-    component: <AllProjects />
+    component: <AllProjectsPage />
   },
   {
     title: "Members",

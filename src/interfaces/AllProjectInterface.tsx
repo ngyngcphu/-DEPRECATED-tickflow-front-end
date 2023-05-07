@@ -3,6 +3,8 @@ export interface AllProjectsInterface {
   name: string;
   department: string;
   status: string;
-  totalMemberCollab: string;
   leaderName: string;
+  totalMember: number;
+  startDate: string;
+  endDate: string;
 }

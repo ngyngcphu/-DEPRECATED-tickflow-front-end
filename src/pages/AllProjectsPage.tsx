@@ -16,7 +16,7 @@ export function AllProjectsPage() {
   const tabs: Array<string> = ["All Projects", "Proposal", "In progress", "Closing", "Completed", "Canceled"];
   const [type, setType] = useState<string | null>(searchParams.get("view"));
 
-  const titles: Array<string> = ["Project's name", "Department", "Status", "Total Member/Collab", "Leader's name"];
+  const titles: Array<string> = ["Project's name", "Department", "Status", "Leader's name", "Total Member", "Start date", "End date"];
 
   const [allProjectsData, setAllProjectsData] = useState<AllProjectsInterface[]>([]);
 
@@ -72,38 +72,29 @@ export function AllProjectsPage() {
         </div>
       </div>
       <Table hoverable={true}>
-        <Table.Head className='font-archivo !text-[rgba(5,165,157,1)] bg-gradient-to-b from-[rgba(5,165,157,0.2)] to-[rgba(255,255,255,0.02)]'>
-          <Table.HeadCell className='!p-4 border-r dark:border-gray-700 sr-only'>
-            <Checkbox />
-          </Table.HeadCell>
+        <Table.Head className='bg-gray-50'>
           {titles.map((title) => (
-            <Table.HeadCell key={title} className='border-r dark:border-gray-700'>
+            <Table.HeadCell
+              key={title}
+              className='border-r border-b border-solid border-gray-200 dark:border-gray-700 font-inter font-semibold text-sm text-gray-600 dark:text-gray-50'
+            >
               {title}
             </Table.HeadCell>
           ))}
-          <Table.HeadCell>Edit</Table.HeadCell>
         </Table.Head>
         <Table.Body className='divide-y'>
           {allProjectsData.filter(filterProjects).map((data, index) => (
             <Table.Row key={index} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
-              <Table.Cell className='!p-4'>
+              <Table.Cell className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700 border-r dark:border-gray-700 space-x-2'>
                 <Checkbox />
+                <span onClick={() => navigate(`${data.id}`, { state: { type } })}>{data.name}</span>
               </Table.Cell>
-              <Table.Cell
-                className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700 border-r dark:border-gray-700'
-                onClick={() => navigate(`${data.id}`, { state: { type } })}
-              >
-                {data.name}
-              </Table.Cell>
-              <Table.Cell className='border-r dark:border-gray-700 text-center'>{data.department}</Table.Cell>
-              <Table.Cell className='border-r dark:border-gray-700 text-center'>{data.status}</Table.Cell>
-              <Table.Cell className='border-r dark:border-gray-700 text-center'>{data.totalMemberCollab}</Table.Cell>
-              <Table.Cell className='whitespace-nowrap border-r dark:border-gray-700'>{data.leaderName}</Table.Cell>
-              <Table.Cell className='border-r dark:border-gray-700'>
-                <a href='/tables' className='font-medium text-blue-600 hover:underline dark:text-blue-700'>
-                  Edit
-                </a>
-              </Table.Cell>
+              <Table.Cell className='border-r dark:border-gray-700'>{data.department}</Table.Cell>
+              <Table.Cell className='border-r dark:border-gray-700'>{data.status}</Table.Cell>
+              <Table.Cell className='border-r dark:border-gray-700'>{data.leaderName}</Table.Cell>
+              <Table.Cell className='border-r dark:border-gray-700 text-right'>{data.totalMember}</Table.Cell>
+              <Table.Cell className='border-r dark:border-gray-700'>{data.startDate}</Table.Cell>
+              <Table.Cell className='whitespace-nowrap border-r dark:border-gray-700'>{data.endDate}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
