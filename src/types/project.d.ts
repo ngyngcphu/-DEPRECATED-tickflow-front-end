@@ -1,16 +1,16 @@
-interface ProjectRoleProps {
+type ProjectRoleProps = {
   name: string;
   role: string;
   department: string;
-}
+};
 
-interface ProjectLogProps {
+type ProjectLogProps = {
   log: string;
   date: string;
   note: string;
-}
+};
 
-export interface ProjectInterface {
+type Project = {
   id: number;
   name: string;
   startDate: string;
@@ -21,4 +21,4 @@ export interface ProjectInterface {
   leaderName: string;
   projectRole: ProjectRoleProps[];
   projectLog: ProjectLogProps[];
-}
+};

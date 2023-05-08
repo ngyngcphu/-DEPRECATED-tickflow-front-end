@@ -2,11 +2,7 @@ import { useState } from "react";
 import { Button, Modal } from "flowbite-react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 
-interface DeleteProjectProps {
-  name: string;
-}
-
-export function DeleteProject(props: DeleteProjectProps) {
+export function DeleteProject(props: { name: string }) {
   const [show, setShow] = useState<boolean>(false);
 
   return (

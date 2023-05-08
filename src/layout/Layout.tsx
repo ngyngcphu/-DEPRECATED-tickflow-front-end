@@ -1,12 +1,12 @@
-import { Suspense, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { Drawer } from "flowbite";
-import { DarkThemeToggle, Navbar, Sidebar, Spinner } from "flowbite-react";
+import { DarkThemeToggle, Navbar, Sidebar } from "flowbite-react";
 import { Bars3CenterLeftIcon, UserIcon } from "@heroicons/react/24/outline";
 import { BsGithub } from "react-icons/bs";
-import { RoutesChild, RoutesGroup1, RoutesGroup2 } from "./DeclareRoutes";
-import { Search } from "../components/Search";
-import { OffCanvasSideBar } from "./OffCanvasSideBar";
+import { Search } from "@components";
+import { RoutesChild, RoutesGroup1, RoutesGroup2 } from "@constants";
+import { OffCanvasSideBar } from "@layout";
 import img from "../assets/LOGO.svg";
 
 export function Layout() {
@@ -90,25 +90,17 @@ export function Layout() {
           </Sidebar.Items>
         </Sidebar>
         <main className='flex-1 overflow-auto' ref={mainRef}>
-          <Suspense
-            fallback={
-              <div className='flex h-full items-center justify-center'>
-                <Spinner />
-              </div>
-            }
-          >
-            <Routes>
-              {RoutesGroup1.map(({ href, component: Component }) => (
-                <Route key={href} path={href} element={Component} />
-              ))}
-              {RoutesGroup2.map(({ href, component: Component }) => (
-                <Route key={href} path={href} element={Component} />
-              ))}
-              {RoutesChild.map(({ href, component: Component }) => (
-                <Route key={href} path={href} element={Component} />
-              ))}
-            </Routes>
-          </Suspense>
+          <Routes>
+            {RoutesGroup1.map(({ href, component: Component }) => (
+              <Route key={href} path={href} element={Component} />
+            ))}
+            {RoutesGroup2.map(({ href, component: Component }) => (
+              <Route key={href} path={href} element={Component} />
+            ))}
+            {RoutesChild.map(({ href, component: Component }) => (
+              <Route key={href} path={href} element={Component} />
+            ))}
+          </Routes>
         </main>
       </div>
     </div>

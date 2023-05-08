@@ -1,10 +1,9 @@
 import { ChangeEvent, useEffect, useState, useRef } from "react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { BriefcaseIcon } from "@heroicons/react/24/solid";
-import { AddProjectInterface } from "../interfaces/AddProjectInterface";
 //import { createProject } from "../services/project";
-import { AutoSuggestNewProjectForm } from "../components/AutoSuggestNewProjectForm";
-import { MembersName } from "../name/MembersName";
+import { AutoSuggestNewProjectForm } from "@components";
+import { MembersName } from "@constants";
 
 export function NewProjectModal() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -15,7 +14,7 @@ export function NewProjectModal() {
   const [show, setShow] = useState<boolean>(false);
   const [temp, setTemp] = useState<Array<string>>(MembersName);
 
-  const [projectData, setProjectData] = useState<AddProjectInterface>({
+  const [projectData, setProjectData] = useState<AddProject>({
     name: "",
     startDate: "",
     endDate: "",

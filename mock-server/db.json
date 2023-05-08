@@ -1,14 +1,15 @@
 {
+  "projectField": ["Project's name", "Department", "Status", "Leader's name", "Total Member", "Start date", "End date"],
   "projects": [
     {
       "id": 0,
       "name": "STM32",
-      "startDate": "dd/mm/yyyy",
-      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Proposal",
-      "totalMemberCollab": "1/1",
       "leaderName": "Phạm Thị Hiền",
+      "totalMember": 2,
+      "startDate": "dd/mm/yyyy",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Phạm Thị Hiền",
@@ -21,12 +22,12 @@
     {
       "id": 1,
       "name": "Music Box",
-      "startDate": "dd/mm/yyyy",
-      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Proposal",
-      "totalMemberCollab": "1/0",
       "leaderName": "Hồng Thiện Nhân",
+      "totalMember": 1,
+      "startDate": "dd/mm/yyyy",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Hồng Thiện Nhân",
@@ -39,12 +40,12 @@
     {
       "id": 2,
       "name": "Application Protocol",
-      "startDate": "dd/mm/yyyy",
-      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Proposal",
-      "totalMemberCollab": "1/0",
       "leaderName": "Nguyễn Hồng Quân",
+      "totalMember": 1,
+      "startDate": "dd/mm/yyyy",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Nguyễn Hồng Quân",
@@ -57,12 +58,12 @@
     {
       "id": 3,
       "name": "Monodepth",
-      "startDate": "dd/mm/yyyy",
-      "endDate": "dd/mm/yyyy",
       "department": "Nghiên cứu",
       "status": "In progress",
-      "totalMemberCollab": "2/-",
       "leaderName": "Vũ Nguyễn Minh Huy",
+      "totalMember": 2,
+      "startDate": "dd/mm/yyyy",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Vũ Nguyễn Minh Huy",
@@ -80,12 +81,12 @@
     {
       "id": 4,
       "name": "TickFlow",
-      "startDate": "2023-11-01",
-      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "In progress",
-      "totalMemberCollab": "4/0",
       "leaderName": "Nguyễn Thanh Hiền",
+      "totalMember": 4,
+      "startDate": "2023-11-01",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Nguyễn Thanh Hiền",
@@ -174,12 +175,12 @@
     {
       "id": 5,
       "name": "Kahoot",
-      "startDate": "dd/mm/yyyy",
-      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Canceled",
-      "totalMemberCollab": "2/0",
       "leaderName": "Hoàng Lương",
+      "totalMember": 2,
+      "startDate": "dd/mm/yyyy",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Hoàng Lương",
@@ -197,12 +198,12 @@
     {
       "id": 6,
       "name": "Signal Modulation",
-      "startDate": "dd/mm/yyyy",
-      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "In progress",
-      "totalMemberCollab": "1/0",
       "leaderName": "Nguyễn Văn Lợi",
+      "totalMember": 1,
+      "startDate": "dd/mm/yyyy",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Nguyễn Văn Lợi",
@@ -215,12 +216,12 @@
     {
       "id": 7,
       "name": "Extension Board",
-      "startDate": "dd/mm/yyyy",
-      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Closing",
-      "totalMemberCollab": "1/1",
       "leaderName": "Phạm Thị Hiền",
+      "totalMember": 2,
+      "startDate": "dd/mm/yyyy",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Phạm Thị Hiền",
@@ -238,12 +239,12 @@
     {
       "id": 8,
       "name": "Mạch điều khiển động cơ",
-      "startDate": "dd/mm/yyyy",
-      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Closing",
-      "totalMemberCollab": "1/2",
       "leaderName": "Nguyễn Thanh Hiền",
+      "totalMember": 3,
+      "startDate": "dd/mm/yyyy",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Nguyễn Thanh Hiền",
@@ -256,12 +257,12 @@
     {
       "id": 9,
       "name": "TickFund",
-      "startDate": "dd/mm/yyyy",
-      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Completed",
-      "totalMemberCollab": "3/-",
       "leaderName": "Nguyễn Phúc Vinh",
+      "totalMember": 3,
+      "startDate": "dd/mm/yyyy",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Nguyễn Phúc Vinh",
@@ -284,12 +285,12 @@
     {
       "id": 10,
       "name": "TickKit",
-      "startDate": "dd/mm/yyyy",
-      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Completed",
-      "totalMemberCollab": "3/-",
       "leaderName": "Ngô Minh Hồng Thái",
+      "totalMember": 3,
+      "startDate": "dd/mm/yyyy",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Ngô Minh Hồng Thái",
@@ -302,12 +303,12 @@
     {
       "id": 11,
       "name": "Khóa thẻ từ TickLab",
-      "startDate": "dd/mm/yyyy",
-      "endDate": "dd/mm/yyyy",
       "department": "Dự án",
       "status": "Canceled",
-      "totalMemberCollab": "1/0",
       "leaderName": "Hồng Thiện Nhân",
+      "totalMember": 1,
+      "startDate": "dd/mm/yyyy",
+      "endDate": "dd/mm/yyyy",
       "projectRole": [
         {
           "name": "Hồng Thiện Nhân",

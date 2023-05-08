@@ -3,37 +3,22 @@ import { useNavigate, NavigateFunction } from "react-router-dom";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { ExclamationCircleIcon, UserIcon, LockClosedIcon } from "@heroicons/react/24/solid";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { login } from "../services/login";
+import { login } from "@services";
 import img from "../assets/login.png";
-
-interface InitialFormValues {
-  username: string;
-  password: string;
-}
-
-interface FormError {
-  username: string;
-  password: string;
-}
-
-interface ValidColor {
-  username: string;
-  password: string;
-}
 
 export function LoginPage() {
   const navigate: NavigateFunction = useNavigate();
   const [showModalCreateAccount, setShowModalCreateAccount] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<string>("password");
-  const [validColor, setValidColor] = useState<ValidColor>({
+  const [validColor, setValidColor] = useState<Auth>({
     username: "grey",
     password: "grey"
   });
-  const [formValues, setFormValues] = useState<InitialFormValues>({
+  const [formValues, setFormValues] = useState<Auth>({
     username: "",
     password: ""
   });
-  const [formError, setFormError] = useState<FormError>({
+  const [formError, setFormError] = useState<Auth>({
     username: "",
     password: ""
   });
@@ -85,8 +70,8 @@ export function LoginPage() {
     }
   }, [formError]);
 
-  const validate = (values: InitialFormValues) => {
-    const errors: FormError = {
+  const validate = (values: Auth) => {
+    const errors: Auth = {
       username: "",
       password: ""
     };

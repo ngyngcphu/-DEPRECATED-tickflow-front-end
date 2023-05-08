@@ -1,4 +1,4 @@
-export interface AddProjectInterface {
+type AddProject = {
   name: string;
   startDate: string;
   endDate: string;
@@ -7,4 +7,4 @@ export interface AddProjectInterface {
   leaderName: Array<string>;
   memberName: Array<string>;
   mentorName: Array<string>;
-}
+};

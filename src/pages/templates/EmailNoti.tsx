@@ -1,7 +1,6 @@
 import { Preview, Container, Section, Text, Hr } from "@react-email/components";
-import { ProposalProps } from "../../interfaces/SendNotiInterface";
 
-export function EmailProposal(props: ProposalProps) {
+export function EmailProposal(props: SendNoti) {
   return (
     <div>
       {" "}

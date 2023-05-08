@@ -1,4 +1,4 @@
-export interface SendNotiInterface {
+type SendNoti = {
   subject: string;
   sender: Array<string>;
   receiver: Array<string>;
@@ -7,4 +7,4 @@ export interface SendNotiInterface {
   timeSchedule: string;
   dateSchedule: string;
   link: string;
-}
+};

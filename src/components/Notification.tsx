@@ -1,10 +1,9 @@
 import { ReactNode, useState, useEffect } from "react";
 import { Button, Modal } from "flowbite-react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
-import { SendNotiModal } from "../modals/SendNotiModal";
-import { TemplatesName } from "../name/TemplatesName";
-import { ScheduleSend } from "./ScheduleSend";
-import { MembersName } from "../name/MembersName";
+import { ScheduleSend } from "@components";
+import { MembersName, TemplatesName } from "@constants";
+import { SendNotiModal } from "@modals";
 
 function Proposal() {
   const [show, setShow] = useState<boolean>(false);
