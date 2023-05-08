@@ -1,20 +1,6 @@
-import { ComponentProps, FC, ReactNode } from "react";
 import { BriefcaseIcon, CogIcon, DocumentTextIcon, HomeIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { AllProjectsPage } from "../pages/AllProjectsPage";
 import { Project } from "../pages/project/Project";
-
-interface RouteProps {
-  title: string;
-  icon: FC<ComponentProps<"svg">>;
-  href: string;
-  component: ReactNode;
-}
-
-interface RouteChild {
-  title: string;
-  href: string;
-  component: ReactNode;
-}
 
 export const RoutesGroup1: RouteProps[] = [
   {

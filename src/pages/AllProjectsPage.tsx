@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate, NavigateFunction, useSearchParams } from "react-router-dom";
 import { Breadcrumb, Button, Checkbox, Spinner, Table } from "flowbite-react";
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { BriefcaseIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { NewProjectModal } from "../modals/NewProjectModal";
-import { AllProjectsInterface } from "../interfaces/AllProjectInterface";
 import { SendNotification } from "../components/SendNotification";
-import { getAllProjects } from "../services/project";
+import { /*getProjectField,*/ getAllProjects } from "../services/project";
 
 export function AllProjectsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,12 +16,13 @@ export function AllProjectsPage() {
   const [type, setType] = useState<string | null>(searchParams.get("view"));
 
   const titles: Array<string> = ["Project's name", "Department", "Status", "Leader's name", "Total Member", "Start date", "End date"];
-
-  const [allProjectsData, setAllProjectsData] = useState<AllProjectsInterface[]>([]);
+  //const [projectField, setProjectField] = useState<Array<string>>([]);
+  const [allProjectsData, setAllProjectsData] = useState<AllProjects[]>([]);
 
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
+      //const { field } = await getProjectField();
       const { data } = await getAllProjects();
       setAllProjectsData(data);
       setLoading(false);
@@ -31,13 +31,13 @@ export function AllProjectsPage() {
     getData();
   }, []);
 
-  const filterProjects = (allProjectsData: AllProjectsInterface) => {
+  const filterProjects = useMemo(() => {
     if (type === null || type === tabs[0]) {
-      return true;
+      return allProjectsData;
     } else {
-      return allProjectsData.status === type;
+      return allProjectsData.filter((project) => project.status === type);
     }
-  };
+  }, [type, allProjectsData]);
 
   return (
     <>
@@ -83,9 +83,9 @@ export function AllProjectsPage() {
       ) : (
         <Table hoverable={true}>
           <Table.Head className='bg-gray-50'>
-            {titles.map((title) => (
+            {titles.map((title, index) => (
               <Table.HeadCell
-                key={title}
+                key={index}
                 className='border-r border-b border-solid border-gray-200 dark:border-gray-700 font-inter font-semibold text-sm text-gray-600 dark:text-gray-50'
               >
                 {title}
@@ -93,7 +93,7 @@ export function AllProjectsPage() {
             ))}
           </Table.Head>
           <Table.Body className='divide-y'>
-            {allProjectsData.filter(filterProjects).map((data, index) => (
+            {filterProjects.map((data, index) => (
               <Table.Row key={index} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
                 <Table.Cell className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700 border-r dark:border-gray-700 space-x-2'>
                   <Checkbox />

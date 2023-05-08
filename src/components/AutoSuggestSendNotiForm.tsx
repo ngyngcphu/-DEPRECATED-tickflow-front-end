@@ -1,19 +1,12 @@
-import { Dispatch, KeyboardEvent, SetStateAction, useState, useRef } from "react";
+import { KeyboardEvent, useState, useRef } from "react";
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import { Button, Modal } from "flowbite-react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
-import { SendNotiInterface } from "../interfaces/SendNotiInterface";
+import { AutoSuggestSendNoti } from "../interfaces/autoSuggest";
 
-interface AutoSuggestSendNotiFormProps {
-  id: string;
-  setNotiData: Dispatch<SetStateAction<SendNotiInterface>>;
-  temp: Array<string>;
-  setTemp: Dispatch<SetStateAction<Array<string>>>;
-}
-
-export function AutoSuggestSendNotiForm(props: AutoSuggestSendNotiFormProps) {
+export function AutoSuggestSendNotiForm(props: AutoSuggestSendNoti) {
   const inputRef = useRef<HTMLInputElement>();
 
   const [show, setShow] = useState<boolean>(false);

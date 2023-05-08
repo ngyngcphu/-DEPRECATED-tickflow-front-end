@@ -1,28 +1,15 @@
-import { ChangeEvent, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Button, Checkbox, Label, Select, TextInput } from "flowbite-react";
 import { EmailProposal } from "../pages/templates/EmailNoti";
 import { SlackProposal } from "../pages/templates/SlackNoti";
-import { TemplatesName } from "../name/TemplatesName";
+import { TemplatesName } from "../constants/templatesName";
 import { AutoSuggestSendNotiForm } from "../components/AutoSuggestSendNotiForm";
-import { SendNotiInterface } from "../interfaces/SendNotiInterface";
+import { SendNotification } from "../interfaces/sendNotification";
 import gmailIcon from "../assets/gmailIcon.svg";
 import slackIcon from "../assets/slackIcon.svg";
 
-interface SendNotiModalProps {
-  show: boolean;
-  temp: Array<string>;
-  setTemp: Dispatch<SetStateAction<Array<string>>>;
-}
-
-interface MediaTab {
-  tabName: string;
-  icon: string;
-  component: ReactNode;
-  disable: boolean;
-}
-
-export function SendNotiModal(props: SendNotiModalProps) {
-  const [notiData, setNotiData] = useState<SendNotiInterface>({
+export function SendNotiModal(props: SendNotification) {
+  const [notiData, setNotiData] = useState<SendNoti>({
     subject: "",
     sender: [],
     receiver: [],

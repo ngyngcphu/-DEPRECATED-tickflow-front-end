@@ -1,19 +1,12 @@
-import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import { Button, Modal } from "flowbite-react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
-import { AddProjectInterface } from "../interfaces/AddProjectInterface";
+import { AutoSuggestNewProject } from "../interfaces/autoSuggest";
 
-interface AutoSuggestNewProjectFormProps {
-  id: string;
-  setProjectData: Dispatch<SetStateAction<AddProjectInterface>>;
-  temp: Array<string>;
-  setTemp: Dispatch<SetStateAction<Array<string>>>;
-}
-
-export function AutoSuggestNewProjectForm(props: AutoSuggestNewProjectFormProps) {
+export function AutoSuggestNewProjectForm(props: AutoSuggestNewProject) {
   const [show, setShow] = useState<boolean>(false);
 
   const escapeRegexCharacters = (str: string) => {

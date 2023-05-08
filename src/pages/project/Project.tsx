@@ -4,7 +4,6 @@ import { Breadcrumb, Checkbox, Dropdown, Label, Table, TextInput } from "flowbit
 import { BriefcaseIcon, PencilIcon, TrashIcon, UserIcon } from "@heroicons/react/24/solid";
 import projectImage from "../../assets/projectImage.svg";
 import { SendNotification } from "../../components/SendNotification";
-import { ProjectInterface } from "../../interfaces/ProjectInterface";
 import { getProject } from "../../services/project";
 import { AddMember } from "./AddMember";
 import { DeleteProject } from "./DeleteProject";
@@ -15,7 +14,7 @@ export function Project() {
   const { type } = state;
   const titles: Array<string> = ["Project Log", "Date", "Note"];
 
-  const [projectData, setProjectData] = useState<ProjectInterface>({
+  const [projectData, setProjectData] = useState<Project>({
     id: 0,
     name: "",
     startDate: "",

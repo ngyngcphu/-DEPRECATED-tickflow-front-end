@@ -1,6 +1,4 @@
-import { SendNotiInterface } from "../../interfaces/SendNotiInterface";
-
-export function SlackProposal(props: SendNotiInterface) {
+export function SlackProposal(props: SendNoti) {
   return (
     <div className='text-left text-[15px] leading-6 overflow-y-scroll h-96'>
       <div className='font-archivo mb-2'>

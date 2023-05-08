@@ -1,4 +1,4 @@
-export interface AllProjectsInterface {
+type AllProjects = {
   id: number;
   name: string;
   department: string;
@@ -7,4 +7,4 @@ export interface AllProjectsInterface {
   totalMember: number;
   startDate: string;
   endDate: string;
-}
+};
