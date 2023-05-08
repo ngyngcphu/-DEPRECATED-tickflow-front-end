@@ -1,10 +1,10 @@
 import { KeyboardEvent, useState } from "react";
+import { Button, Modal } from "flowbite-react";
+import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
-import { Button, Modal } from "flowbite-react";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
-import { AutoSuggestNewProject } from "../interfaces/autoSuggest";
+import { AutoSuggestNewProject } from "@interfaces";
 
 export function AutoSuggestNewProjectForm(props: AutoSuggestNewProject) {
   const [show, setShow] = useState<boolean>(false);

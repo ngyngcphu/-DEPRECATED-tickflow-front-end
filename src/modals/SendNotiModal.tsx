@@ -1,10 +1,9 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Button, Checkbox, Label, Select, TextInput } from "flowbite-react";
-import { EmailProposal } from "../pages/templates/EmailNoti";
-import { SlackProposal } from "../pages/templates/SlackNoti";
-import { TemplatesName } from "../constants/templatesName";
-import { AutoSuggestSendNotiForm } from "../components/AutoSuggestSendNotiForm";
-import { SendNotification } from "../interfaces/sendNotification";
+import { AutoSuggestSendNotiForm } from "@components";
+import { TemplatesName } from "@constants";
+import { SendNotification } from "@interfaces";
+import { EmailProposal, SlackProposal } from "@pages";
 import gmailIcon from "../assets/gmailIcon.svg";
 import slackIcon from "../assets/slackIcon.svg";
 

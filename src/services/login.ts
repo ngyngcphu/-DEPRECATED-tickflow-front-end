@@ -1,4 +1,4 @@
-import { request } from "../utils/request";
+import { request } from "@utils";
 
 export const login = (username: string, password: string) => {
   return request.post("/auth/login", {

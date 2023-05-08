@@ -2,8 +2,8 @@ import { ChangeEvent, useEffect, useState, useRef } from "react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { BriefcaseIcon } from "@heroicons/react/24/solid";
 //import { createProject } from "../services/project";
-import { AutoSuggestNewProjectForm } from "../components/AutoSuggestNewProjectForm";
-import { MembersName } from "../constants/membersName";
+import { AutoSuggestNewProjectForm } from "@components";
+import { MembersName } from "@constants";
 
 export function NewProjectModal() {
   const rootRef = useRef<HTMLDivElement>(null);

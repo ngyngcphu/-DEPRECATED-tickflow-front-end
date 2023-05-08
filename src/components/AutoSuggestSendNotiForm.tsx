@@ -1,10 +1,10 @@
 import { KeyboardEvent, useState, useRef } from "react";
+import { Button, Modal } from "flowbite-react";
+import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
-import { Button, Modal } from "flowbite-react";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
-import { AutoSuggestSendNoti } from "../interfaces/autoSuggest";
+import { AutoSuggestSendNoti } from "@interfaces";
 
 export function AutoSuggestSendNotiForm(props: AutoSuggestSendNoti) {
   const inputRef = useRef<HTMLInputElement>();

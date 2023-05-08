@@ -1,4 +1,4 @@
-import { callProject } from "../utils/request";
+import { callProject } from "@utils";
 
 export const getProjectField = () => {
   return callProject.get("/projectField");

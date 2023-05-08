@@ -1,5 +1,5 @@
 import { Dropdown } from "flowbite-react";
-import { Notification } from "./Notification";
+import { Notification } from "@components";
 
 export function SendNotification() {
   return (

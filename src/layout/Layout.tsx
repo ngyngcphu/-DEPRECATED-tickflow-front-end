@@ -4,9 +4,9 @@ import { Drawer } from "flowbite";
 import { DarkThemeToggle, Navbar, Sidebar } from "flowbite-react";
 import { Bars3CenterLeftIcon, UserIcon } from "@heroicons/react/24/outline";
 import { BsGithub } from "react-icons/bs";
-import { RoutesChild, RoutesGroup1, RoutesGroup2 } from "./DeclareRoutes";
-import { Search } from "../components/Search";
-import { OffCanvasSideBar } from "./OffCanvasSideBar";
+import { Search } from "@components";
+import { RoutesChild, RoutesGroup1, RoutesGroup2 } from "@constants";
+import { OffCanvasSideBar } from "@layout";
 import img from "../assets/LOGO.svg";
 
 export function Layout() {

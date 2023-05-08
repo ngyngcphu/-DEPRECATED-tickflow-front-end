@@ -3,7 +3,7 @@ import { useNavigate, NavigateFunction } from "react-router-dom";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { ExclamationCircleIcon, UserIcon, LockClosedIcon } from "@heroicons/react/24/solid";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { login } from "../services/login";
+import { login } from "@services";
 import img from "../assets/login.png";
 
 export function LoginPage() {

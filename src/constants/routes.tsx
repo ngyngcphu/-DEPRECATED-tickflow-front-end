@@ -1,6 +1,5 @@
 import { BriefcaseIcon, CogIcon, DocumentTextIcon, HomeIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import { AllProjectsPage } from "../pages/AllProjectsPage";
-import { Project } from "../pages/project/Project";
+import { AllProjectsPage, Project } from "@pages";
 
 export const RoutesGroup1: RouteProps[] = [
   {

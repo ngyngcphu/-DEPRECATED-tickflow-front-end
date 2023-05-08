@@ -2,7 +2,7 @@ import { forwardRef, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Sidebar } from "flowbite-react";
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/outline";
-import { RoutesGroup1, RoutesGroup2 } from "./DeclareRoutes";
+import { RoutesGroup1, RoutesGroup2 } from "@constants";
 import img from "../assets/LOGO.svg";
 
 export const OffCanvasSideBar = forwardRef<HTMLDivElement>((props, ref) => {

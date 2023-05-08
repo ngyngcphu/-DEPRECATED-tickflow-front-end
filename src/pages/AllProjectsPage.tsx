@@ -3,9 +3,9 @@ import { useNavigate, NavigateFunction, useSearchParams } from "react-router-dom
 import { Breadcrumb, Button, Checkbox, Spinner, Table } from "flowbite-react";
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { BriefcaseIcon, TrashIcon } from "@heroicons/react/24/solid";
-import { NewProjectModal } from "../modals/NewProjectModal";
-import { SendNotification } from "../components/SendNotification";
-import { /*getProjectField,*/ getAllProjects } from "../services/project";
+import { SendNotification } from "@components";
+import { NewProjectModal } from "@modals";
+import { /*getProjectField,*/ getAllProjects } from "@services";
 
 export function AllProjectsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
