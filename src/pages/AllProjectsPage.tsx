@@ -1,11 +1,11 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate, NavigateFunction, useSearchParams } from "react-router-dom";
-import { Breadcrumb, Button, Checkbox, Spinner, Table } from "flowbite-react";
+import { Badge, Breadcrumb, Button, Checkbox, Spinner, Table } from "flowbite-react";
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { BriefcaseIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { SendNotification } from "@components";
 import { NewProjectModal } from "@modals";
-import { /*getProjectField,*/ getAllProjects } from "@services";
+import { getProjectField, getAllProjects } from "@services";
 
 export function AllProjectsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,15 +15,17 @@ export function AllProjectsPage() {
   const tabs: Array<string> = ["All Projects", "Proposal", "In progress", "Closing", "Completed", "Canceled"];
   const [type, setType] = useState<string | null>(searchParams.get("view"));
 
-  const titles: Array<string> = ["Project's name", "Department", "Status", "Leader's name", "Total Member", "Start date", "End date"];
-  //const [projectField, setProjectField] = useState<Array<string>>([]);
+  const [projectField, setProjectField] = useState<Array<string>>([]);
   const [allProjectsData, setAllProjectsData] = useState<AllProjects[]>([]);
 
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      //const { field } = await getProjectField();
-      const { data } = await getAllProjects();
+      const projectField = await getProjectField();
+      const projectData = await getAllProjects();
+      const field = projectField.data;
+      const data = projectData.data;
+      setProjectField(field);
       setAllProjectsData(data);
       setLoading(false);
     };
@@ -32,18 +34,31 @@ export function AllProjectsPage() {
   }, []);
 
   const filterProjects = useMemo(() => {
+    let result: AllProjects[];
     if (type === null || type === tabs[0]) {
-      return allProjectsData;
+      result = allProjectsData;
     } else {
-      return allProjectsData.filter((project) => project.status === type);
+      result = allProjectsData.filter((project) => project.status === type);
     }
+
+    return result;
   }, [type, allProjectsData]);
+
+  const selectColor = (department: string) => {
+    if (department === "Dự án") {
+      return "bg-blue-50 text-blue-500";
+    } else if (department === "Nghiên cứu") {
+      return "bg-purple-50 text-purple-500";
+    } else {
+      return "bg-teal-50 text-teal-500";
+    }
+  };
 
   return (
     <>
       <Breadcrumb aria-label='Solid background breadcrumb example' className='bg-gray-50 py-3 px-5 dark:bg-gray-700'>
-        <Breadcrumb.Item icon={BriefcaseIcon} className='dark:text-white font-archivo'>
-          Projects
+        <Breadcrumb.Item icon={BriefcaseIcon} className='dark:text-white'>
+          <span className='font-bold'>Projects</span>
         </Breadcrumb.Item>
       </Breadcrumb>
       <div className='flex items-center mb-2'>
@@ -82,25 +97,27 @@ export function AllProjectsPage() {
         </div>
       ) : (
         <Table hoverable={true}>
-          <Table.Head className='bg-gray-50'>
-            {titles.map((title, index) => (
+          <Table.Head className='bg-gray-50 '>
+            {projectField.map((field, index) => (
               <Table.HeadCell
                 key={index}
-                className='border-r border-b border-solid border-gray-200 dark:border-gray-700 font-inter font-semibold text-sm text-gray-600 dark:text-gray-50'
+                className='border-r border-b border-solid border-gray-200 dark:border-gray-600 font-semibold text-sm text-gray-600 dark:text-gray-50'
               >
-                {title}
+                {field}
               </Table.HeadCell>
             ))}
           </Table.Head>
-          <Table.Body className='divide-y'>
+          <Table.Body className='divide-y font-semibold text-sm'>
             {filterProjects.map((data, index) => (
               <Table.Row key={index} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
                 <Table.Cell className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700 border-r dark:border-gray-700 space-x-2'>
                   <Checkbox />
                   <span onClick={() => navigate(`${data.id}`, { state: { type } })}>{data.name}</span>
                 </Table.Cell>
-                <Table.Cell className='border-r dark:border-gray-700'>
-                  <span className='bg-green-500 p-4 rounded-full'>{data.department}</span>
+                <Table.Cell className='border-r dark:border-gray-700 flex whitespace-nowrap p-4'>
+                  <Badge className={selectColor(data.department)} style={{ borderRadius: "20px" }}>
+                    {data.department}
+                  </Badge>
                 </Table.Cell>
                 <Table.Cell className='border-r dark:border-gray-700'>{data.status}</Table.Cell>
                 <Table.Cell className='border-r dark:border-gray-700'>{data.leaderName}</Table.Cell>

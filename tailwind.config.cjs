@@ -14,21 +14,21 @@ module.exports = {
       '2xl': '1536px',
     },
     fontFamily: {
+      sans: ['Inter', 'sans-serif'],
       'archivo': ['Archivo', 'sans-serif'],
-      'inter': ['Inter', 'sans-serif'],
     },
     fontSize: {
       sm: ['1rem', {
-          lineHeight: '1.25rem',
+        lineHeight: '1.25rem',
       }],
       lg: ['1.125rem', {
-          lineHeight: '1.75rem'
+        lineHeight: '1.75rem'
       }],
       xl: ['1.25rem', {
-          lineHeight: '1.75rem'
+        lineHeight: '1.75rem'
       }],
       '2xl': ['1.5rem', {
-          lineHeight: '2rem'
+        lineHeight: '2rem'
       }]
     },
     extend: {},

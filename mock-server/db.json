@@ -4,7 +4,7 @@
     {
       "id": 0,
       "name": "STM32",
-      "department": "Dự án",
+      "department": "Nghiên cứu",
       "status": "Proposal",
       "leaderName": "Phạm Thị Hiền",
       "totalMember": 2,
@@ -81,7 +81,7 @@
     {
       "id": 4,
       "name": "TickFlow",
-      "department": "Dự án",
+      "department": "Đội nhóm",
       "status": "In progress",
       "leaderName": "Nguyễn Thanh Hiền",
       "totalMember": 4,
@@ -175,7 +175,7 @@
     {
       "id": 5,
       "name": "Kahoot",
-      "department": "Dự án",
+      "department": "Nghiên cứu",
       "status": "Canceled",
       "leaderName": "Hoàng Lương",
       "totalMember": 2,
@@ -198,7 +198,7 @@
     {
       "id": 6,
       "name": "Signal Modulation",
-      "department": "Dự án",
+      "department": "Đội nhóm",
       "status": "In progress",
       "leaderName": "Nguyễn Văn Lợi",
       "totalMember": 1,
@@ -239,7 +239,7 @@
     {
       "id": 8,
       "name": "Mạch điều khiển động cơ",
-      "department": "Dự án",
+      "department": "Đội nhóm",
       "status": "Closing",
       "leaderName": "Nguyễn Thanh Hiền",
       "totalMember": 3,
@@ -303,7 +303,7 @@
     {
       "id": 11,
       "name": "Khóa thẻ từ TickLab",
-      "department": "Dự án",
+      "department": "Nghiên cứu",
       "status": "Canceled",
       "leaderName": "Hồng Thiện Nhân",
       "totalMember": 1,
