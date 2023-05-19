@@ -70,7 +70,7 @@ export function NewProjectModal() {
     <div>
       <Button style={{ backgroundColor: "#19A69C" }} onClick={() => setShow(true)}>
         <BriefcaseIcon className='mr-3 w-4' />
-        New Project
+        Tạo dự án
       </Button>
       <div ref={rootRef}>
         <Modal show={show} onClose={() => setShow(false)} root={rootRef.current ?? undefined}>

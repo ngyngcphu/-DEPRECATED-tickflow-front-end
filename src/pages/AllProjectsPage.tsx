@@ -12,7 +12,7 @@ export function AllProjectsPage() {
   const navigate: NavigateFunction = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const tabs: Array<string> = ["All Projects", "Proposal", "In progress", "Closing", "Completed", "Canceled"];
+  const tabs: Array<string> = ["All Projects", "Proposal", "On-going", "Closing", "Completed", "Canceled", "Halt"];
   const [type, setType] = useState<string | null>(searchParams.get("view"));
 
   const [projectField, setProjectField] = useState<Array<string>>([]);
@@ -44,13 +44,31 @@ export function AllProjectsPage() {
     return result;
   }, [type, allProjectsData]);
 
-  const selectColor = (department: string) => {
+  // stupid code =))
+  const selectColorDepartment = (department: string) => {
     if (department === "Dự án") {
       return "bg-blue-50 text-blue-500";
     } else if (department === "Nghiên cứu") {
       return "bg-purple-50 text-purple-500";
     } else {
       return "bg-teal-50 text-teal-500";
+    }
+  };
+
+  // stupid code =))
+  const selectColorStatus = (status: string) => {
+    if (status === "Proposal") {
+      return "bg-amber-50 text-amber-500";
+    } else if (status === "On-going") {
+      return "bg-teal-50 text-teal-500";
+    } else if (status === "Closing") {
+      return "bg-blue-50 text-blue-500";
+    } else if (status === "Completed") {
+      return "bg-purple-50 text-purple-500";
+    } else if (status === "Canceled") {
+      return "bg-gray-50 text-gray-500";
+    } else if (status === "Halt") {
+      return "bg-red-50 text-red-500";
     }
   };
 
@@ -62,7 +80,7 @@ export function AllProjectsPage() {
         </Breadcrumb.Item>
       </Breadcrumb>
       <div className='flex items-center mb-2'>
-        <div className='grid grid-cols-4 items-center'>
+        <div className='grid grid-cols-5 items-center'>
           <div className='flex gap-2 col-span-3 overflow-x-scroll'>
             {tabs.map((tab, index) => (
               <Button
@@ -84,8 +102,8 @@ export function AllProjectsPage() {
               <p className='truncate'>Add View</p>
             </Button>
           </div>
-          <div className='flex items-center ml-auto space-x-2'>
-            <TrashIcon className='ml-auto w-6' />
+          <div className='flex col-span-2 gap-2 items-center ml-auto'>
+            <TrashIcon className='ml-auto w-6 text-gray-400' />
             <SendNotification />
             <NewProjectModal />
           </div>
@@ -115,11 +133,15 @@ export function AllProjectsPage() {
                   <span onClick={() => navigate(`${data.id}`, { state: { type } })}>{data.name}</span>
                 </Table.Cell>
                 <Table.Cell className='border-r dark:border-gray-700 flex whitespace-nowrap p-4'>
-                  <Badge className={selectColor(data.department)} style={{ borderRadius: "20px" }}>
+                  <Badge className={selectColorDepartment(data.department)} style={{ borderRadius: "20px" }}>
                     {data.department}
                   </Badge>
                 </Table.Cell>
-                <Table.Cell className='border-r dark:border-gray-700'>{data.status}</Table.Cell>
+                <Table.Cell className='border-r dark:border-gray-700'>
+                  <Badge className={selectColorStatus(data.status)} style={{ borderRadius: "20px" }}>
+                    {data.status}
+                  </Badge>
+                </Table.Cell>
                 <Table.Cell className='border-r dark:border-gray-700'>{data.leaderName}</Table.Cell>
                 <Table.Cell className='border-r dark:border-gray-700 text-right'>{data.totalMember}</Table.Cell>
                 <Table.Cell className='border-r dark:border-gray-700'>{data.startDate}</Table.Cell>
