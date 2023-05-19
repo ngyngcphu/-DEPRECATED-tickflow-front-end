@@ -3,8 +3,7 @@ import { useNavigate, NavigateFunction, useSearchParams } from "react-router-dom
 import { Badge, Breadcrumb, Button, Checkbox, Spinner, Table } from "flowbite-react";
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { BriefcaseIcon, TrashIcon } from "@heroicons/react/24/solid";
-import { SendNotification } from "@components";
-import { NewProjectModal } from "@modals";
+import { AddProject, SendNotification } from "@components";
 import { getProjectField, getAllProjects } from "@services";
 
 export function AllProjectsPage() {
@@ -105,7 +104,7 @@ export function AllProjectsPage() {
           <div className='flex col-span-2 gap-2 items-center ml-auto'>
             <TrashIcon className='ml-auto w-6 text-gray-400' />
             <SendNotification />
-            <NewProjectModal />
+            <AddProject />
           </div>
         </div>
       </div>

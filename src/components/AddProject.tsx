@@ -5,7 +5,7 @@ import { BriefcaseIcon } from "@heroicons/react/24/solid";
 import { AutoSuggestNewProjectForm } from "@components";
 import { MembersName } from "@constants";
 
-export function NewProjectModal() {
+export function AddProject() {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const department: Array<string> = ["Dự án", "Nghiên cứu", "Đội nhóm"];
@@ -67,7 +67,7 @@ export function NewProjectModal() {
   // }
 
   return (
-    <div>
+    <>
       <Button style={{ backgroundColor: "#19A69C" }} onClick={() => setShow(true)}>
         <BriefcaseIcon className='mr-3 w-4' />
         Tạo dự án
@@ -212,6 +212,6 @@ export function NewProjectModal() {
           </Modal.Footer>
         </Modal>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,13 +1,13 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
-import { Breadcrumb, Checkbox, Dropdown, Label, Table, TextInput } from "flowbite-react";
-import { BriefcaseIcon, PencilIcon, TrashIcon, UserIcon } from "@heroicons/react/24/solid";
+import { Breadcrumb, Card, Checkbox, Dropdown, Label, Table, TextInput } from "flowbite-react";
+import { BriefcaseIcon, PencilIcon } from "@heroicons/react/24/solid";
 import { SendNotification } from "@components";
 import { getProject } from "@services";
-import { AddMember, DeleteProject } from "@pages";
-import projectImage from "../../assets/projectImage.svg";
+import { AddMember, DeleteProject } from "@components";
+import projectImage from "../assets/projectImage.svg";
 
-export function Project() {
+export function DetailProject() {
   const { projectId } = useParams<string>();
   const { state } = useLocation();
   const { type } = state;
@@ -58,11 +58,11 @@ export function Project() {
     <div>
       <Breadcrumb aria-label='Solid background breadcrumb example' className='bg-gray-50 py-3 px-5 dark:bg-gray-700'>
         <Breadcrumb.Item icon={BriefcaseIcon}>
-          <Link to={type ? `/projects?view=${type}` : "/projects"} className='dark:text-white font-archivo'>
+          <Link to={type ? `/projects?view=${type}` : "/projects"} className='dark:text-white'>
             Projects
           </Link>
         </Breadcrumb.Item>
-        <Breadcrumb.Item className='dark:text-white font-archivo'>{projectData.name}</Breadcrumb.Item>
+        <Breadcrumb.Item className='dark:text-white'>{projectData.name}</Breadcrumb.Item>
       </Breadcrumb>
       <div className='grid grid-cols-4'>
         <div>
@@ -72,7 +72,7 @@ export function Project() {
             </div>
             <div>
               <div className='flex items-center justify-center gap-2'>
-                <span className='font-archivo text-[35px] text-[#19A69C]'>{projectData.name}</span>
+                <span className='text-[35px] text-[#19A69C]'>{projectData.name}</span>
                 <PencilIcon className='h-6' />
               </div>
               <div>
@@ -110,54 +110,77 @@ export function Project() {
           <DeleteProject name={projectData.name} />
         </div>
         <div className='col-span-3 overflow-y-scroll h-[500px] mx-5'>
-          <div className='flex w-full items-center sm:justify-end mb-2'>
-            <SendNotification />
-          </div>
           <div className='flex justify-between items-center mb-2'>
-            <p className='font-archivo text-[30px] text-[#444444]'>Project Role</p>
-            <p className='underline decoration-sky-500 text-slate-400 dark:text-sky-400 font-semibold'>
-              Current member: {projectData.totalMemberCollab}
-            </p>
-          </div>
-          <div className='grid grid-cols-3 gap-5 mb-5 items-center justify-items-center'>
-            <div className='ml-1 mb-3'>
+            <p className='text-3xl font-bold text-gray-600'>Vai trò</p>
+            <div className='flex gap-2 items-center justify-items-center'>
+              <SendNotification />
               <AddMember />
             </div>
-
+          </div>
+          <div className='grid grid-cols-3 gap-5 mb-5 items-center justify-items-center'>
             {projectData.projectRole.map((data, index) => (
-              <div key={index} className='grid grid-cols-4 gap-8'>
-                <div className='w-12'>
-                  <UserIcon className='border-4 border-green-400 rounded-full cursor-pointer fill-[#999999] hover:fill-gray-700' />
-                </div>
-                <div className='grid col-span-3 items-center'>
-                  <div className='font-archivo text-[#666666] truncate'>{data.name}</div>
-                  <div className='flex justify-between items-center'>
-                    <div className='text-[#53B1EE] font-medium'>
-                      <Dropdown label={data.role} inline={true}>
-                        <Dropdown.Item>Member</Dropdown.Item>
-                        <Dropdown.Item>Leader</Dropdown.Item>
-                        <Dropdown.Item>Council</Dropdown.Item>
-                      </Dropdown>
-                    </div>
-                    <div className='flex items-center bg-[#F12323] opacity-50 rounded-md'>
-                      <div>
-                        <TrashIcon fill='white' className='h-4' />
-                      </div>
-                      <div className='text-white'>Delete</div>
+              <div key={index} className='max-w-sm'>
+                <Card>
+                  <div className='flex justify-end px-4 pt-4'>
+                    <Dropdown inline={true} label=''>
+                      <Dropdown.Item>
+                        <a
+                          href='#'
+                          className='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
+                        >
+                          Edit
+                        </a>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        <a
+                          href='#'
+                          className='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
+                        >
+                          Export Data
+                        </a>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        <a
+                          href='#'
+                          className='block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
+                        >
+                          Delete
+                        </a>
+                      </Dropdown.Item>
+                    </Dropdown>
+                  </div>
+                  <div className='flex flex-col items-center pb-10'>
+                    <img
+                      className='mb-3 h-24 w-24 rounded-full shadow-lg'
+                      src='https://flowbite.com/docs/images/people/profile-picture-3.jpg'
+                      alt='Bonnie image'
+                    />
+                    <h5 className='mb-1 text-xl font-medium text-gray-900 dark:text-white'>Bonnie Green</h5>
+                    <span className='text-sm text-gray-500 dark:text-gray-400'>Visual Designer</span>
+                    <div className='mt-4 flex space-x-3 lg:mt-6'>
+                      <a
+                        href='#'
+                        className='inline-flex items-center rounded-lg bg-blue-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                      >
+                        Add friend
+                      </a>
+                      <a
+                        href='#'
+                        className='inline-flex items-center rounded-lg border border-gray-300 bg-white py-2 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700'
+                      >
+                        Message
+                      </a>
                     </div>
                   </div>
-                  <div className='flex'>
-                    <div className='bg-green-100 rounded-md'>{data.department}</div>
-                  </div>
-                </div>
+                </Card>
               </div>
             ))}
           </div>
           <div className='flex'>
-            <p className='font-archivo text-[30px] text-[#444444] mb-2'>Project Log</p>
+            <p className='text-[30px] text-[#444444] mb-2'>Project Log</p>
           </div>
           <Table hoverable={true}>
-            <Table.Head className='font-archivo !text-[rgba(5,165,157,1)] bg-gradient-to-b from-[rgba(5,165,157,0.2)] to-[rgba(255,255,255,0.02)]'>
+            <Table.Head className='!text-[rgba(5,165,157,1)] bg-gradient-to-b from-[rgba(5,165,157,0.2)] to-[rgba(255,255,255,0.02)]'>
               <Table.HeadCell className='!p-4 border-r dark:border-gray-700 sr-only'>
                 <Checkbox />
               </Table.HeadCell>

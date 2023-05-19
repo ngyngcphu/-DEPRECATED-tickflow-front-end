@@ -1,5 +1,5 @@
 import { Label, Button, Modal, Select, TextInput } from "flowbite-react";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import { UserPlusIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
 export function AddMember() {
@@ -9,11 +9,11 @@ export function AddMember() {
   const [show, setShow] = useState<boolean>(false);
 
   return (
-    <div className='grid grid-cols-4 gap-8'>
-      <div className='w-12 cursor-pointer'>
-        <PlusIcon className='bg-[#999999] hover:bg-gray-700 rounded-full fill-white' onClick={() => setShow(true)} />
-      </div>
-      <div className='grid col-span-3 items-center'>Add new member</div>
+    <>
+      <Button style={{ backgroundColor: "#19A69C" }} onClick={() => setShow(true)}>
+        <UserPlusIcon className='mr-3 w-5' />
+        Thêm thành viên
+      </Button>
       <Modal show={show} size='sm' onClose={() => setShow(false)}>
         <Modal.Header className='border-b border-gray-200 !p-6 dark:border-gray-700'>
           <strong className='text-[#19A69C] font-archivo text-2xl'>Add new member</strong>
@@ -57,6 +57,6 @@ export function AddMember() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 }
