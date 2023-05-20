@@ -46,28 +46,28 @@ export function AllProjectsPage() {
   // stupid code =))
   const selectColorDepartment = (department: string) => {
     if (department === "Dự án") {
-      return "bg-blue-50 text-blue-500";
+      return "bg-blue-300 bg-opacity-20 text-blue-500";
     } else if (department === "Nghiên cứu") {
-      return "bg-purple-50 text-purple-500";
+      return "bg-purple-300 bg-opacity-20 text-purple-500";
     } else {
-      return "bg-teal-50 text-teal-500";
+      return "bg-teal-300 bg-opacity-20 text-teal-500";
     }
   };
 
   // stupid code =))
   const selectColorStatus = (status: string) => {
     if (status === "Proposal") {
-      return "bg-yellow-50 text-yellow-500";
+      return "bg-yellow-300 bg-opacity-20 text-yellow-500";
     } else if (status === "On-going") {
-      return "bg-teal-50 text-teal-500";
+      return "bg-teal-300 bg-opacity-20 text-teal-500";
     } else if (status === "Closing") {
-      return "bg-blue-50 text-blue-500";
+      return "bg-blue-300 bg-opacity-20 text-blue-500";
     } else if (status === "Completed") {
-      return "bg-purple-50 text-purple-500";
+      return "bg-purple-300 bg-opacity-20 text-purple-500";
     } else if (status === "Canceled") {
-      return "bg-gray-50 text-gray-500";
+      return "bg-gray-300 bg-opacity-20 text-gray-500";
     } else if (status === "Halt") {
-      return "bg-red-50 text-red-500";
+      return "bg-red-300 bg-opacity-20 text-red-500";
     }
   };
 
@@ -75,7 +75,7 @@ export function AllProjectsPage() {
     <>
       <Breadcrumb aria-label='Solid background breadcrumb example' className='bg-gray-50 py-3 px-5 dark:bg-gray-700'>
         <Breadcrumb.Item icon={BriefcaseIcon} className='dark:text-white'>
-          <span className='font-bold'>Projects</span>
+          <span className='text-gray-700 text-sm font-medium dark:text-white'>Projects</span>
         </Breadcrumb.Item>
       </Breadcrumb>
       <div className='flex items-center mb-2'>

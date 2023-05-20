@@ -1,6 +1,6 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { /*ChangeEvent,*/ useEffect, useState } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
-import { Breadcrumb, Card, Label, TextInput, Timeline } from "flowbite-react";
+import { Badge, Breadcrumb, Card, Timeline } from "flowbite-react";
 import { BriefcaseIcon, PencilIcon } from "@heroicons/react/24/solid";
 import { SendNotification } from "@components";
 import { getProject } from "@services";
@@ -19,19 +19,19 @@ export function DetailProject() {
     endDate: "",
     department: "",
     status: "",
-    totalMemberCollab: "",
+    totalMember: 0,
     leaderName: "",
     projectRole: [],
     projectLog: []
   });
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = event.target;
-    setProjectData({
-      ...projectData,
-      [id]: value
-    });
-  };
+  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const { id, value } = event.target;
+  //   setProjectData({
+  //     ...projectData,
+  //     [id]: value
+  //   });
+  // };
 
   useEffect(() => {
     if (projectId && projectId.length > 0) {
@@ -44,7 +44,7 @@ export function DetailProject() {
           endDate: endDate,
           department: department,
           status: status,
-          totalMemberCollab: totalMember,
+          totalMember: totalMember,
           leaderName: leaderName,
           projectRole: projectRole,
           projectLog: projectLog
@@ -54,7 +54,7 @@ export function DetailProject() {
   }, []);
 
   // stupid code =))
-  const selectColor = (role: string) => {
+  const selectColorRole = (role: string) => {
     if (role === "Leader") {
       return "text-teal-600";
     } else if (role === "Member") {
@@ -66,15 +66,45 @@ export function DetailProject() {
     }
   };
 
+  // stupid code =))
+  const selectColorDepartment = (department: string) => {
+    if (department === "Dự án") {
+      return "bg-blue-300 bg-opacity-20 text-blue-500";
+    } else if (department === "Nghiên cứu") {
+      return "bg-purple-300 bg-opacity-20 text-purple-500";
+    } else {
+      return "bg-teal-300 bg-opacity-20 text-teal-500";
+    }
+  };
+
+  // stupid code =))
+  const selectColorStatus = (status: string) => {
+    if (status === "Proposal") {
+      return "bg-yellow-300 bg-opacity-20 text-yellow-500";
+    } else if (status === "On-going") {
+      return "bg-teal-300 bg-opacity-20 text-teal-500";
+    } else if (status === "Closing") {
+      return "bg-blue-300 bg-opacity-20 text-blue-500";
+    } else if (status === "Completed") {
+      return "bg-purple-300 bg-opacity-20 text-purple-500";
+    } else if (status === "Canceled") {
+      return "bg-gray-300 bg-opacity-20 text-gray-500";
+    } else if (status === "Halt") {
+      return "bg-red-300 bg-opacity-20 text-red-500";
+    }
+  };
+
   return (
     <div>
       <Breadcrumb aria-label='Solid background breadcrumb example' className='bg-gray-50 py-3 px-5 dark:bg-gray-700'>
         <Breadcrumb.Item icon={BriefcaseIcon}>
-          <Link to={type ? `/projects?view=${type}` : "/projects"} className='dark:text-white'>
+          <Link to={type ? `/projects?view=${type}` : "/projects"} className='text-gray-700 text-sm font-medium dark:text-white'>
             Projects
           </Link>
         </Breadcrumb.Item>
-        <Breadcrumb.Item className='dark:text-white'>{projectData.name}</Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <span className='text-gray-700 text-sm font-bold dark:text-white'>{projectData.name}</span>
+        </Breadcrumb.Item>
       </Breadcrumb>
       <div className='grid grid-cols-5'>
         <div>
@@ -82,40 +112,36 @@ export function DetailProject() {
             <div className='grid justify-items-center'>
               <img src={projectImage} alt='projectImage' />
             </div>
-            <div>
+            <div className='grid gap-4'>
               <div className='flex items-center justify-center gap-2'>
-                <span className='text-[35px] text-[#19A69C]'>{projectData.name}</span>
+                <span className='text-3xl font-semibold text-teal-500'>{projectData.name}</span>
                 <PencilIcon className='h-6' />
               </div>
-              <div>
-                <Label htmlFor='startDate'>
-                  Start date:<span className='text-[#F12323]'>*</span>
-                </Label>
-                <TextInput id='startDate' name='startDate' type='date' value={projectData.startDate} onChange={handleChange} />
-              </div>
-              <div>
-                <Label htmlFor='endDate'>
-                  End date:<span className='text-[#F12323]'>*</span>
-                </Label>
-                <TextInput id='endDate' name='endDate' type='date' value={projectData.endDate} onChange={handleChange} />
-              </div>
-              <div>
-                <Label htmlFor='department'>
-                  Department:<span className='text-[#F12323]'>*</span>
-                </Label>
-                <TextInput id='department' name='department' value={projectData.department} onChange={handleChange} />
-              </div>
-              <div>
-                <Label htmlFor='status'>
-                  Status:<span className='text-[#F12323]'>*</span>
-                </Label>
-                <TextInput id='status' name='status' value={projectData.status} onChange={handleChange} />
-              </div>
-              <div>
-                <Label htmlFor='member'>
-                  Total Member/Collab:<span className='text-[#F12323]'>*</span>
-                </Label>
-                <TextInput id='member' name='member' value={projectData.totalMemberCollab} onChange={handleChange} />
+              <div className='grid gap-4 text-gray-600 dark:text-white text-sm font-semibold'>
+                <div className='flex items-center'>
+                  <p className='min-w-0 flex-1 truncate'>Ban</p>
+                  <Badge className={selectColorDepartment(projectData.department)} style={{ borderRadius: "20px" }}>
+                    {projectData.department}
+                  </Badge>
+                </div>
+                <div className='flex items-center'>
+                  <p className='min-w-0 flex-1 truncate'>Trạng thái</p>
+                  <Badge className={selectColorStatus(projectData.status)} style={{ borderRadius: "20px" }}>
+                    {projectData.status}
+                  </Badge>
+                </div>
+                <div className='flex items-center'>
+                  <p className='min-w-0 flex-1 truncate'>Ngày bắt đầu</p>
+                  <p className='text-sm font-medium text-gray-500 dark:text-white'>{projectData.startDate}</p>
+                </div>
+                <div className='flex items-center'>
+                  <p className='min-w-0 flex-1 truncate'>Ngày kết thúc</p>
+                  <p className='text-sm font-medium text-gray-500 dark:text-white'>{projectData.endDate}</p>
+                </div>
+                <div className='flex items-center'>
+                  <p className='min-w-0 flex-1 truncate'>Số thành viên</p>
+                  <p className='text-sm font-medium text-gray-500 dark:text-white'>{projectData.totalMember}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -139,8 +165,8 @@ export function DetailProject() {
                     alt='Bonnie image'
                   />
                   <div className='grid col-span-5 gap-2'>
-                    <h5 className={selectColor(data.role) + " " + "text-lg font-medium dark:text-white"}>{data.name}</h5>
-                    <h5 className={selectColor(data.role) + " " + "text-sm font-medium dark:text-white"}>{data.role}</h5>
+                    <h5 className={selectColorRole(data.role) + " " + "text-lg font-medium dark:text-white"}>{data.name}</h5>
+                    <h5 className={selectColorRole(data.role) + " " + "text-sm font-medium dark:text-white"}>{data.role}</h5>
                   </div>
                 </div>
               </Card>

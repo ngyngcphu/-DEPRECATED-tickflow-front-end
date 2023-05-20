@@ -8,8 +8,8 @@ export function SendNotification() {
       arrowIcon={false}
       label={
         <>
-          <EnvelopeOpenIcon className='mr-3 w-4 text-blue-500 font-extrabold' />
-          <span className='text-blue-500'>Gửi thông báo</span>
+          <EnvelopeOpenIcon className='mr-3 w-4 text-blue-500' />
+          <span className='text-blue-500 text-sm font-semibold'>Gửi thông báo</span>
           <ChevronDownIcon className='ml-3 w-5 text-blue-500' />
         </>
       }

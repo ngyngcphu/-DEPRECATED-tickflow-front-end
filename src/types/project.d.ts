@@ -17,7 +17,7 @@ type Project = {
   endDate: string;
   department: string;
   status: string;
-  totalMemberCollab: string;
+  totalMember: number;
   leaderName: string;
   projectRole: ProjectRoleProps[];
   projectLog: ProjectLogProps[];
