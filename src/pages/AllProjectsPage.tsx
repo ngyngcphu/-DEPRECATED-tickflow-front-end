@@ -57,7 +57,7 @@ export function AllProjectsPage() {
   // stupid code =))
   const selectColorStatus = (status: string) => {
     if (status === "Proposal") {
-      return "bg-amber-50 text-amber-500";
+      return "bg-yellow-50 text-yellow-500";
     } else if (status === "On-going") {
       return "bg-teal-50 text-teal-500";
     } else if (status === "Closing") {

@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
-import { Breadcrumb, Card, Checkbox, Dropdown, Label, Table, TextInput } from "flowbite-react";
+import { Breadcrumb, Card, Label, TextInput, Timeline } from "flowbite-react";
 import { BriefcaseIcon, PencilIcon } from "@heroicons/react/24/solid";
 import { SendNotification } from "@components";
 import { getProject } from "@services";
@@ -11,7 +11,6 @@ export function DetailProject() {
   const { projectId } = useParams<string>();
   const { state } = useLocation();
   const { type } = state;
-  const titles: Array<string> = ["Project Log", "Date", "Note"];
 
   const [projectData, setProjectData] = useState<Project>({
     id: 0,
@@ -54,6 +53,19 @@ export function DetailProject() {
     }
   }, []);
 
+  // stupid code =))
+  const selectColor = (role: string) => {
+    if (role === "Leader") {
+      return "text-teal-600";
+    } else if (role === "Member") {
+      return "text-blue-700";
+    } else if (role === "Mentor") {
+      return "text-gray-600";
+    } else if (role === "Council") {
+      return "text-purple-600";
+    }
+  };
+
   return (
     <div>
       <Breadcrumb aria-label='Solid background breadcrumb example' className='bg-gray-50 py-3 px-5 dark:bg-gray-700'>
@@ -64,7 +76,7 @@ export function DetailProject() {
         </Breadcrumb.Item>
         <Breadcrumb.Item className='dark:text-white'>{projectData.name}</Breadcrumb.Item>
       </Breadcrumb>
-      <div className='grid grid-cols-4'>
+      <div className='grid grid-cols-5'>
         <div>
           <div className='overflow-y-scroll h-[450px]'>
             <div className='grid justify-items-center'>
@@ -109,7 +121,7 @@ export function DetailProject() {
           </div>
           <DeleteProject name={projectData.name} />
         </div>
-        <div className='col-span-3 overflow-y-scroll h-[500px] mx-5'>
+        <div className='col-span-4 overflow-y-scroll h-[500px] mx-5'>
           <div className='flex justify-between items-center mb-2'>
             <p className='text-3xl font-bold text-gray-600'>Vai trò</p>
             <div className='flex gap-2 items-center justify-items-center'>
@@ -119,98 +131,36 @@ export function DetailProject() {
           </div>
           <div className='grid grid-cols-3 gap-5 mb-5 items-center justify-items-center'>
             {projectData.projectRole.map((data, index) => (
-              <div key={index} className='max-w-sm'>
-                <Card>
-                  <div className='flex justify-end px-4 pt-4'>
-                    <Dropdown inline={true} label=''>
-                      <Dropdown.Item>
-                        <a
-                          href='#'
-                          className='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
-                        >
-                          Edit
-                        </a>
-                      </Dropdown.Item>
-                      <Dropdown.Item>
-                        <a
-                          href='#'
-                          className='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
-                        >
-                          Export Data
-                        </a>
-                      </Dropdown.Item>
-                      <Dropdown.Item>
-                        <a
-                          href='#'
-                          className='block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'
-                        >
-                          Delete
-                        </a>
-                      </Dropdown.Item>
-                    </Dropdown>
+              <Card key={index} className='min-w-full min-h-full'>
+                <div className='grid grid-cols-7 items-center'>
+                  <img
+                    className='h-16 w-16 rounded-full shadow-lg grid col-span-2'
+                    src='https://flowbite.com/docs/images/people/profile-picture-3.jpg'
+                    alt='Bonnie image'
+                  />
+                  <div className='grid col-span-5 gap-2'>
+                    <h5 className={selectColor(data.role) + " " + "text-lg font-medium dark:text-white"}>{data.name}</h5>
+                    <h5 className={selectColor(data.role) + " " + "text-sm font-medium dark:text-white"}>{data.role}</h5>
                   </div>
-                  <div className='flex flex-col items-center pb-10'>
-                    <img
-                      className='mb-3 h-24 w-24 rounded-full shadow-lg'
-                      src='https://flowbite.com/docs/images/people/profile-picture-3.jpg'
-                      alt='Bonnie image'
-                    />
-                    <h5 className='mb-1 text-xl font-medium text-gray-900 dark:text-white'>Bonnie Green</h5>
-                    <span className='text-sm text-gray-500 dark:text-gray-400'>Visual Designer</span>
-                    <div className='mt-4 flex space-x-3 lg:mt-6'>
-                      <a
-                        href='#'
-                        className='inline-flex items-center rounded-lg bg-blue-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-                      >
-                        Add friend
-                      </a>
-                      <a
-                        href='#'
-                        className='inline-flex items-center rounded-lg border border-gray-300 bg-white py-2 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700'
-                      >
-                        Message
-                      </a>
-                    </div>
-                  </div>
-                </Card>
-              </div>
+                </div>
+              </Card>
             ))}
           </div>
           <div className='flex'>
-            <p className='text-[30px] text-[#444444] mb-2'>Project Log</p>
+            <p className='text-3xl font-bold text-gray-600 mb-2'>Project Log</p>
           </div>
-          <Table hoverable={true}>
-            <Table.Head className='!text-[rgba(5,165,157,1)] bg-gradient-to-b from-[rgba(5,165,157,0.2)] to-[rgba(255,255,255,0.02)]'>
-              <Table.HeadCell className='!p-4 border-r dark:border-gray-700 sr-only'>
-                <Checkbox />
-              </Table.HeadCell>
-              {titles.map((title) => (
-                <Table.HeadCell key={title} className='border-r dark:border-gray-700'>
-                  {title}
-                </Table.HeadCell>
-              ))}
-              <Table.HeadCell>Edit</Table.HeadCell>
-            </Table.Head>
-            <Table.Body className='divide-y'>
-              {projectData.projectLog.map((data, key) => (
-                <Table.Row key={key} className='bg-white dark:border-gray-700 dark:bg-gray-800'>
-                  <Table.Cell className='!p-4'>
-                    <Checkbox />
-                  </Table.Cell>
-                  <Table.Cell className='font-medium text-blue-600 hover:underline cursor-pointer dark:text-blue-700'>
-                    {data.log}
-                  </Table.Cell>
-                  <Table.Cell className='border-r dark:border-gray-700'>{data.date}</Table.Cell>
-                  <Table.Cell className='border-r dark:border-gray-700'>{data.note}</Table.Cell>
-                  <Table.Cell className='border-r dark:border-gray-700'>
-                    <a href='/tables' className='font-medium text-blue-600 hover:underline dark:text-blue-700'>
-                      Edit
-                    </a>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table>
+          <Timeline className='mx-2'>
+            {projectData.projectLog.map((data, index) => (
+              <Timeline.Item key={index}>
+                <Timeline.Point />
+                <Timeline.Content>
+                  <Timeline.Time>{Intl.DateTimeFormat("vi", { dateStyle: "full" }).format(new Date(data.date))}</Timeline.Time>
+                  <Timeline.Title>{data.log}</Timeline.Title>
+                  <Timeline.Body>{data.note}</Timeline.Body>
+                </Timeline.Content>
+              </Timeline.Item>
+            ))}
+          </Timeline>
         </div>
       </div>
     </div>

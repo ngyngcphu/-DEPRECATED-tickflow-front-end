@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const request = axios.create({
-  baseURL: "http://localhost:3030"
+  baseURL: "https://server.tickflow.net"
 });
 
 export const callProject = axios.create({
