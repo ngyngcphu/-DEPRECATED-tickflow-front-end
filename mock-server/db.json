@@ -4,7 +4,7 @@
     {
       "id": 0,
       "name": "STM32",
-      "department": "Dự án",
+      "department": "Nghiên cứu",
       "status": "Proposal",
       "leaderName": "Phạm Thị Hiền",
       "totalMember": 2,
@@ -41,7 +41,7 @@
       "id": 2,
       "name": "Application Protocol",
       "department": "Dự án",
-      "status": "Proposal",
+      "status": "On-going",
       "leaderName": "Nguyễn Hồng Quân",
       "totalMember": 1,
       "startDate": "dd/mm/yyyy",
@@ -59,7 +59,7 @@
       "id": 3,
       "name": "Monodepth",
       "department": "Nghiên cứu",
-      "status": "In progress",
+      "status": "On-going",
       "leaderName": "Vũ Nguyễn Minh Huy",
       "totalMember": 2,
       "startDate": "dd/mm/yyyy",
@@ -81,8 +81,8 @@
     {
       "id": 4,
       "name": "TickFlow",
-      "department": "Dự án",
-      "status": "In progress",
+      "department": "Đội nhóm",
+      "status": "On-going",
       "leaderName": "Nguyễn Thanh Hiền",
       "totalMember": 4,
       "startDate": "2023-11-01",
@@ -127,47 +127,47 @@
       "projectLog": [
         {
           "log": "Thành viên rời dự án",
-          "date": "14/03/2023",
+          "date": "2023-03-14",
           "note": "ChimcanhcutCute"
         },
         {
           "log": "Bắt đầu: Giai đoạn hiện thực",
-          "date": "4/03/2023",
+          "date": "2023-03-04",
           "note": ""
         },
         {
           "log": "Thuyết trình proposal lần 2",
-          "date": "04/03/2023",
+          "date": "2023-03-04",
           "note": "Meow"
         },
         {
           "log": "Nộp proposal lần 2",
-          "date": "28/02/2023",
+          "date": "2023-02-28",
           "note": "Meow Meow"
         },
         {
           "log": "Thành viên gia nhập",
-          "date": "02/12/2022",
+          "date": "2022-12-02",
           "note": "Cutmeo"
         },
         {
           "log": "Thuyết trình proposal lần 1",
-          "date": "02/12/2022",
+          "date": "2022-12-02",
           "note": "Failed"
         },
         {
           "log": "Nộp proposal lần 1",
-          "date": "19/11/2022",
+          "date": "2022-11-19",
           "note": "Failed"
         },
         {
           "log": "Thành viên gia nhập",
-          "date": "01/11/2022",
+          "date": "2022-11-01",
           "note": "Failed"
         },
         {
           "log": "Bắt đầu: Giai đoạn Proposal",
-          "date": "01/11/2022",
+          "date": "2022-11-01",
           "note": "Failed"
         }
       ]
@@ -175,8 +175,8 @@
     {
       "id": 5,
       "name": "Kahoot",
-      "department": "Dự án",
-      "status": "Canceled",
+      "department": "Nghiên cứu",
+      "status": "Closing",
       "leaderName": "Hoàng Lương",
       "totalMember": 2,
       "startDate": "dd/mm/yyyy",
@@ -198,8 +198,8 @@
     {
       "id": 6,
       "name": "Signal Modulation",
-      "department": "Dự án",
-      "status": "In progress",
+      "department": "Đội nhóm",
+      "status": "Closing",
       "leaderName": "Nguyễn Văn Lợi",
       "totalMember": 1,
       "startDate": "dd/mm/yyyy",
@@ -217,7 +217,7 @@
       "id": 7,
       "name": "Extension Board",
       "department": "Dự án",
-      "status": "Closing",
+      "status": "Completed",
       "leaderName": "Phạm Thị Hiền",
       "totalMember": 2,
       "startDate": "dd/mm/yyyy",
@@ -239,8 +239,8 @@
     {
       "id": 8,
       "name": "Mạch điều khiển động cơ",
-      "department": "Dự án",
-      "status": "Closing",
+      "department": "Đội nhóm",
+      "status": "Completed",
       "leaderName": "Nguyễn Thanh Hiền",
       "totalMember": 3,
       "startDate": "dd/mm/yyyy",
@@ -258,7 +258,7 @@
       "id": 9,
       "name": "TickFund",
       "department": "Dự án",
-      "status": "Completed",
+      "status": "Canceled",
       "leaderName": "Nguyễn Phúc Vinh",
       "totalMember": 3,
       "startDate": "dd/mm/yyyy",
@@ -286,7 +286,7 @@
       "id": 10,
       "name": "TickKit",
       "department": "Dự án",
-      "status": "Completed",
+      "status": "Canceled",
       "leaderName": "Ngô Minh Hồng Thái",
       "totalMember": 3,
       "startDate": "dd/mm/yyyy",
@@ -303,8 +303,8 @@
     {
       "id": 11,
       "name": "Khóa thẻ từ TickLab",
-      "department": "Dự án",
-      "status": "Canceled",
+      "department": "Nghiên cứu",
+      "status": "Halt",
       "leaderName": "Hồng Thiện Nhân",
       "totalMember": 1,
       "startDate": "dd/mm/yyyy",

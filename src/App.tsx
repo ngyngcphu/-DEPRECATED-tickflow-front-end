@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage";
 import { Layout } from "./layout/Layout";
 import { AllProjectsPage } from "./pages/AllProjectsPage";
-import { Project } from "./pages/project/Project";
+import { DetailProject } from "./pages/DetailProject";
 
 export default function App() {
   return (
@@ -11,7 +11,7 @@ export default function App() {
       <Route path='/*' element={<Layout />}>
         <Route path='overview' element={<Layout />} />
         <Route path='projects' element={<AllProjectsPage />} />
-        <Route path='projects/:projectId' element={<Project />} />
+        <Route path='projects/:projectId' element={<DetailProject />} />
       </Route>
     </Routes>
   );
