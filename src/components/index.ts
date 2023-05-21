@@ -3,10 +3,10 @@
  */
 
 export * from "./AddMember";
+export * from "./AddProject";
 export * from "./AutoSuggestNewProjectForm";
 export * from "./AutoSuggestSendNotiForm";
 export * from "./DeleteProject";
-export * from "./AddProject";
 export * from "./Notification";
 export * from "./ScheduleSend";
 export * from "./Search";
