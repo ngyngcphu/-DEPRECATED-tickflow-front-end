@@ -48,10 +48,6 @@ export default defineConfig({
       {
         find: "@store",
         replacement: path.resolve(__dirname, "src/store")
-      },
-      {
-        find: "@utils",
-        replacement: path.resolve(__dirname, "src/utils")
       }
     ]
   }

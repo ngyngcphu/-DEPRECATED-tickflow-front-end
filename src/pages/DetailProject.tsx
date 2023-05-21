@@ -1,14 +1,14 @@
 import { /*ChangeEvent,*/ useEffect, useState } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, /*useParams,*/ useLocation } from "react-router-dom";
 import { Badge, Breadcrumb, Card, Timeline } from "flowbite-react";
 import { BriefcaseIcon, CalendarIcon, PencilIcon } from "@heroicons/react/24/solid";
 import { SendNotification } from "@components";
-import { getProject } from "@services";
+//import { getProject } from "@services";
 import { AddMember, DeleteProject } from "@components";
 import projectImage from "../assets/projectImage.svg";
 
 export function DetailProject() {
-  const { projectId } = useParams<string>();
+  //const { projectId } = useParams<string>();
   const { state } = useLocation();
   const { type } = state;
 
@@ -34,23 +34,35 @@ export function DetailProject() {
   // };
 
   useEffect(() => {
-    if (projectId && projectId.length > 0) {
-      getProject(projectId).then(({ data }) => {
-        const { id, name, startDate, endDate, department, status, totalMember, leaderName, projectRole, projectLog } = data;
-        setProjectData({
-          id: id,
-          name: name,
-          startDate: startDate,
-          endDate: endDate,
-          department: department,
-          status: status,
-          totalMember: totalMember,
-          leaderName: leaderName,
-          projectRole: projectRole,
-          projectLog: projectLog
-        });
-      });
-    }
+    setProjectData({
+      id: 0,
+      name: "",
+      startDate: "",
+      endDate: "",
+      department: "",
+      status: "",
+      totalMember: 0,
+      leaderName: "",
+      projectRole: [],
+      projectLog: []
+    });
+    // if (projectId && projectId.length > 0) {
+    //   getProject(projectId).then(({ data }) => {
+    //     const { id, name, startDate, endDate, department, status, totalMember, leaderName, projectRole, projectLog } = data;
+    //     setProjectData({
+    //       id: id,
+    //       name: name,
+    //       startDate: startDate,
+    //       endDate: endDate,
+    //       department: department,
+    //       status: status,
+    //       totalMember: totalMember,
+    //       leaderName: leaderName,
+    //       projectRole: projectRole,
+    //       projectLog: projectLog
+    //     });
+    //   });
+    // }
   }, []);
 
   // stupid code =))

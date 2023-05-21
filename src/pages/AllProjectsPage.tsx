@@ -4,7 +4,7 @@ import { Badge, Breadcrumb, Button, Checkbox, Spinner, Table } from "flowbite-re
 import { TableCellsIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { BriefcaseIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { AddProject, SendNotification } from "@components";
-import { getProjectField, getAllProjects } from "@services";
+//import { projectService } from "@services";
 
 export function AllProjectsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,12 +20,10 @@ export function AllProjectsPage() {
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      const projectField = await getProjectField();
-      const projectData = await getAllProjects();
-      const field = projectField.data;
-      const data = projectData.data;
-      setProjectField(field);
-      setAllProjectsData(data);
+      // const projectField = await projectService.getField;
+      // const projectData = await projectService.getAll;
+      setProjectField([]);
+      setAllProjectsData([]);
       setLoading(false);
     };
 

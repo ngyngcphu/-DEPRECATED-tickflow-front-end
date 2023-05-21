@@ -1,13 +1,13 @@
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
-import { useNavigate, NavigateFunction } from "react-router-dom";
+//import { useNavigate, NavigateFunction } from "react-router-dom";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { ExclamationCircleIcon, UserIcon, LockClosedIcon } from "@heroicons/react/24/solid";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { login } from "@services";
+import { authService } from "@services";
 import img from "../assets/login.png";
 
 export function LoginPage() {
-  const navigate: NavigateFunction = useNavigate();
+  //const navigate: NavigateFunction = useNavigate();
   const [showModalCreateAccount, setShowModalCreateAccount] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<string>("password");
   const [validColor, setValidColor] = useState<Auth>({
@@ -59,13 +59,13 @@ export function LoginPage() {
   useEffect(() => {
     const { username, password } = formError;
     if (username.length === 0 && password.length === 0 && submit) {
-      login(formValues.username, formValues.password).then((response) => {
+      authService.login(formValues.username, formValues.password).then((response) => {
         console.log(response);
-        if (response.data.isAuthenticated === true) {
-          navigate("/overview");
-        } else {
-          setShowModalLoginSuccess(true);
-        }
+        // if (response.data.isAuthenticated === true) {
+        //   navigate("/overview");
+        // } else {
+        //   setShowModalLoginSuccess(true);
+        // }
       });
     }
   }, [formError]);
