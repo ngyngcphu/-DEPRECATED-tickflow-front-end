@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const request = axios.create({
-  baseURL: "http://server.tickflow.net"
+  baseURL: "http://localhost:3030"
 });
 
 export const callProject = axios.create({
-  baseURL: "https://mockserver.tickflow.net"
+  baseURL: import.meta.env.VITE_BACKEND_URL
 });
