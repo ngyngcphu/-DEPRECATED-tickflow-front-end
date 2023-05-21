@@ -1,7 +1,7 @@
 import { /*ChangeEvent,*/ useEffect, useState } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 import { Badge, Breadcrumb, Card, Timeline } from "flowbite-react";
-import { BriefcaseIcon, PencilIcon } from "@heroicons/react/24/solid";
+import { BriefcaseIcon, CalendarIcon, PencilIcon } from "@heroicons/react/24/solid";
 import { SendNotification } from "@components";
 import { getProject } from "@services";
 import { AddMember, DeleteProject } from "@components";
@@ -175,10 +175,10 @@ export function DetailProject() {
           <div className='flex'>
             <p className='text-3xl font-bold text-gray-600 mb-2'>Project Log</p>
           </div>
-          <Timeline className='mx-2'>
+          <Timeline className='mx-4'>
             {projectData.projectLog.map((data, index) => (
               <Timeline.Item key={index}>
-                <Timeline.Point />
+                <Timeline.Point icon={CalendarIcon} />
                 <Timeline.Content>
                   <Timeline.Time>{Intl.DateTimeFormat("vi", { dateStyle: "full" }).format(new Date(data.date))}</Timeline.Time>
                   <Timeline.Title>{data.log}</Timeline.Title>
