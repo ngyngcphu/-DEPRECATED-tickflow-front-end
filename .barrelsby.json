@@ -7,7 +7,8 @@
     "./src/modals",
     "./src/pages",
     "./src/services",
-    "./src/store"
+    "./src/store",
+    "./src/utils"
   ],
   "exclude": [".test.ts"],
   "delete": true

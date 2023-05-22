@@ -26,7 +26,8 @@
       "@modals": ["src/modals"],
       "@pages": ["src/pages"],
       "@services": ["src/services"],
-      "@store": ["src/store"]
+      "@store": ["src/store"],
+      "@utils": ["src/utils"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx", "**/*.js", "*.cjs"],

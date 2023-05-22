@@ -1,4 +1,4 @@
-import { server } from './server';
+import { server } from '@utils';
 
 const login = async (username: string, password: string): Promise<string> => {
   try {
