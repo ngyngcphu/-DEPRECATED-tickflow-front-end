@@ -2,7 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { authService } from '@services';
 import { AxiosError } from 'axios';
 
-const user = JSON.parse(localStorage.getItem('user') || '');
+const userStr = localStorage.getItem('user');
+let user = null;
+if (userStr) {
+  user = JSON.parse(userStr);
+}
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -46,4 +50,4 @@ const authSlice = createSlice({
   }
 });
 
-export const reducer = authSlice.reducer;
+export default authSlice.reducer;

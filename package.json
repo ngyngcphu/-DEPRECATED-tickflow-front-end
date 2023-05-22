@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.16",
+    "@hookform/resolvers": "^3.1.0",
     "@react-email/components": "^0.0.6",
     "@reduxjs/toolkit": "^1.9.5",
     "autosuggest-highlight": "^3.3.4",
@@ -27,7 +28,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
     "react-redux": "^8.0.5",
-    "react-router-dom": "^6.9.0"
+    "react-router-dom": "^6.9.0",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@types/autosuggest-highlight": "^3.2.0",
