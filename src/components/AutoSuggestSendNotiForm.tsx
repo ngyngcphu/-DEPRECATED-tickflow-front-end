@@ -1,10 +1,10 @@
-import { KeyboardEvent, useState, useRef } from "react";
-import { Button, Modal } from "flowbite-react";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
-import Autosuggest from "react-autosuggest";
-import AutosuggestHighlightMatch from "autosuggest-highlight/match";
-import AutosuggestHighlightParse from "autosuggest-highlight/parse";
-import { AutoSuggestSendNoti } from "@interfaces";
+import { KeyboardEvent, useState, useRef } from 'react';
+import { Button, Modal } from 'flowbite-react';
+import { ExclamationCircleIcon } from '@heroicons/react/24/solid';
+import Autosuggest from 'react-autosuggest';
+import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
+import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
+import { AutoSuggestSendNoti } from '@interfaces';
 
 export function AutoSuggestSendNotiForm(props: AutoSuggestSendNoti) {
   const inputRef = useRef<HTMLInputElement>();
@@ -12,15 +12,15 @@ export function AutoSuggestSendNotiForm(props: AutoSuggestSendNoti) {
   const [show, setShow] = useState<boolean>(false);
 
   const escapeRegexCharacters = (str: string) => {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   };
 
   const getSuggestions = (value: string) => {
     const escapedValue = escapeRegexCharacters(value.trim());
-    if (escapedValue === "") {
+    if (escapedValue === '') {
       return props.temp;
     }
-    const regex = new RegExp("\\b" + escapedValue, "i");
+    const regex = new RegExp('\\b' + escapedValue, 'i');
     return props.temp.filter((member) => regex.test(getSuggestionValue(member)));
   };
 
@@ -35,7 +35,10 @@ export function AutoSuggestSendNotiForm(props: AutoSuggestSendNoti) {
       <span>
         {parts.map((part, index) => {
           return (
-            <span style={part.highlight ? { color: "#ee0000", fontWeight: "bold" } : {}} key={index}>
+            <span
+              style={part.highlight ? { color: '#ee0000', fontWeight: 'bold' } : {}}
+              key={index}
+            >
               {part.text}
             </span>
           );
@@ -44,7 +47,7 @@ export function AutoSuggestSendNotiForm(props: AutoSuggestSendNoti) {
     );
   };
 
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>('');
   const [suggestions, setSuggestions] = useState<Array<string>>([]);
 
   const onChange = (event: React.FormEvent, { newValue }: Autosuggest.ChangeEvent) => {
@@ -56,23 +59,23 @@ export function AutoSuggestSendNotiForm(props: AutoSuggestSendNoti) {
   };
 
   const handleChange = () => {
-    if (value.trim() === "") return;
+    if (value.trim() === '') return;
     if (props.temp.find((name: string) => name === value) === undefined) {
       setShow(true);
-      setValue("");
+      setValue('');
       return;
     }
-    if (props.id === "sender") {
+    if (props.id === 'sender') {
       props.setNotiData((prev) => ({
         ...prev,
         sender: [...prev.sender, value]
       }));
-    } else if (props.id === "receiver") {
+    } else if (props.id === 'receiver') {
       props.setNotiData((prev) => ({
         ...prev,
         receiver: [...prev.receiver, value]
       }));
-    } else if (props.id === "CC") {
+    } else if (props.id === 'CC') {
       props.setNotiData((prev) => ({
         ...prev,
         CC: [...prev.CC, value]
@@ -84,7 +87,7 @@ export function AutoSuggestSendNotiForm(props: AutoSuggestSendNoti) {
       }));
     }
     removeNameInTemp(value);
-    setValue("");
+    setValue('');
   };
 
   const onBlur = () => {
@@ -92,7 +95,7 @@ export function AutoSuggestSendNotiForm(props: AutoSuggestSendNoti) {
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       handleChange();
       console.log(inputRef.current);
       setTimeout(() => {
@@ -139,7 +142,9 @@ export function AutoSuggestSendNotiForm(props: AutoSuggestSendNoti) {
         <Modal.Body>
           <div className='text-center'>
             <ExclamationCircleIcon className='mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200' />
-            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>Không tồn tại thành viên này!</h3>
+            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>
+              Không tồn tại thành viên này!
+            </h3>
             <div className='flex justify-center gap-4'>
               <Button color='failure' onClick={() => setShow(false)}>
                 Cancel

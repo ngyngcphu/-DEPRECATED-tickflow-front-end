@@ -1,29 +1,29 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import { Button, Checkbox, Label, Select, TextInput } from "flowbite-react";
-import { AutoSuggestSendNotiForm } from "@components";
-import { TemplatesName } from "@constants";
-import { SendNotification } from "@interfaces";
-import { EmailProposal, SlackProposal } from "@pages";
-import gmailIcon from "../assets/gmailIcon.svg";
-import slackIcon from "../assets/slackIcon.svg";
+import { ChangeEvent, useEffect, useState } from 'react';
+import { Button, Checkbox, Label, Select, TextInput } from 'flowbite-react';
+import { AutoSuggestSendNotiForm } from '@components';
+import { TemplatesName } from '@constants';
+import { SendNotification } from '@interfaces';
+import { EmailProposal, SlackProposal } from '@pages';
+import gmailIcon from '../assets/gmailIcon.svg';
+import slackIcon from '../assets/slackIcon.svg';
 
 export function SendNotiModal(props: SendNotification) {
   const [notiData, setNotiData] = useState<SendNoti>({
-    subject: "",
+    subject: '',
     sender: [],
     receiver: [],
     CC: [],
     BCC: [],
-    timeSchedule: "",
-    dateSchedule: "",
-    link: ""
+    timeSchedule: '',
+    dateSchedule: '',
+    link: ''
   });
 
-  const [formattedDateSchedule, setFormattedDateSchedule] = useState<string>("");
+  const [formattedDateSchedule, setFormattedDateSchedule] = useState<string>('');
 
   const tabs: MediaTab[] = [
     {
-      tabName: "Gmail",
+      tabName: 'Gmail',
       icon: gmailIcon,
       component: (
         <EmailProposal
@@ -40,7 +40,7 @@ export function SendNotiModal(props: SendNotification) {
       disable: false
     },
     {
-      tabName: "Slack",
+      tabName: 'Slack',
       icon: slackIcon,
       component: (
         <SlackProposal
@@ -62,14 +62,14 @@ export function SendNotiModal(props: SendNotification) {
   useEffect(() => {
     console.log(notiData);
     setNotiData({
-      subject: "",
+      subject: '',
       sender: [],
       receiver: [],
       CC: [],
       BCC: [],
-      timeSchedule: "",
-      dateSchedule: "",
-      link: ""
+      timeSchedule: '',
+      dateSchedule: '',
+      link: ''
     });
   }, [props.show]);
 
@@ -80,7 +80,7 @@ export function SendNotiModal(props: SendNotification) {
 
   return (
     <div className='grid grid-cols-5'>
-      <div className='grid col-span-2 items-start gap-2'>
+      <div className='col-span-2 grid items-start gap-2'>
         <div className='bg-[#CCCCCC]'>
           <div className='p-4'>
             <Label htmlFor='templateName'>
@@ -93,32 +93,57 @@ export function SendNotiModal(props: SendNotification) {
             </Select>
           </div>
         </div>
-        <div className='grid grid-cols-2 overflow-y-scroll h-96 p-4 gap-5'>
+        <div className='grid h-96 grid-cols-2 gap-5 overflow-y-scroll p-4'>
           <div className='col-span-2'>
             <Label htmlFor='title'>
               Tiêu đề nội dung<span className='text-[#F12323]'>*</span>
             </Label>
-            <TextInput id='subject' name='subject' value={notiData.subject} onChange={handleChange} />
+            <TextInput
+              id='subject'
+              name='subject'
+              value={notiData.subject}
+              onChange={handleChange}
+            />
           </div>
           <div>
             <Label htmlFor='sender'>
               Người gửi<span className='text-[#F12323]'>*</span>
             </Label>
-            <AutoSuggestSendNotiForm id='sender' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
+            <AutoSuggestSendNotiForm
+              id='sender'
+              setNotiData={setNotiData}
+              temp={props.temp}
+              setTemp={props.setTemp}
+            />
           </div>
           <div>
             <Label htmlFor='receiver'>
               Người nhận<span className='text-[#F12323]'>*</span>
             </Label>
-            <AutoSuggestSendNotiForm id='receiver' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
+            <AutoSuggestSendNotiForm
+              id='receiver'
+              setNotiData={setNotiData}
+              temp={props.temp}
+              setTemp={props.setTemp}
+            />
           </div>
           <div>
             <Label htmlFor='CC'>CC</Label>
-            <AutoSuggestSendNotiForm id='CC' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
+            <AutoSuggestSendNotiForm
+              id='CC'
+              setNotiData={setNotiData}
+              temp={props.temp}
+              setTemp={props.setTemp}
+            />
           </div>
           <div>
             <Label htmlFor='BCC'>BCC</Label>
-            <AutoSuggestSendNotiForm id='BCC' setNotiData={setNotiData} temp={props.temp} setTemp={props.setTemp} />
+            <AutoSuggestSendNotiForm
+              id='BCC'
+              setNotiData={setNotiData}
+              temp={props.temp}
+              setTemp={props.setTemp}
+            />
           </div>
           <div>
             <Label htmlFor='via'>
@@ -152,7 +177,11 @@ export function SendNotiModal(props: SendNotification) {
                 value={notiData.dateSchedule}
                 onChange={handleChange}
                 onBlur={() => {
-                  setFormattedDateSchedule(new Intl.DateTimeFormat("vi", { dateStyle: "full" }).format(new Date(notiData.dateSchedule)));
+                  setFormattedDateSchedule(
+                    new Intl.DateTimeFormat('vi', { dateStyle: 'full' }).format(
+                      new Date(notiData.dateSchedule)
+                    )
+                  );
                 }}
               />
             </div>
@@ -173,26 +202,28 @@ export function SendNotiModal(props: SendNotification) {
           <div id='checkbox' className='col-span-2'>
             <div className='flex items-center gap-2'>
               <Label htmlFor='accept'>Send to all member</Label>
-              <Checkbox id='accept' className='bg-gray-200 border-gray-500 dark:bg-gray-100' />
+              <Checkbox id='accept' className='border-gray-500 bg-gray-200 dark:bg-gray-100' />
             </div>
           </div>
           <div className='col-span-2'>
-            <hr className='h-px bg-gray-700 border-0 dark:bg-gray-200'></hr>
+            <hr className='h-px border-0 bg-gray-700 dark:bg-gray-200'></hr>
           </div>
         </div>
       </div>
       <div className='col-span-3'>
         <div>
-          <div className='flex justify-between items-center justify-items-center p-4'>
+          <div className='flex items-center justify-between justify-items-center p-4'>
             {tabs.map((tab, index) => (
               <Button
                 key={index}
                 disabled={tabs[index].disable}
                 className='w-60 text-black hover:!bg-[#999999]'
-                style={type === index ? { backgroundColor: "#999999" } : { backgroundColor: "#E6E6E6" }}
+                style={
+                  type === index ? { backgroundColor: '#999999' } : { backgroundColor: '#E6E6E6' }
+                }
                 onClick={() => setType(index)}
               >
-                <div className='flex gap-2 items-center justify-items-center'>
+                <div className='flex items-center justify-items-center gap-2'>
                   <img src={tab.icon} alt='gmailIcon'></img>
                   <span className='text-black'>{tab.tabName}</span>
                 </div>
@@ -200,7 +231,7 @@ export function SendNotiModal(props: SendNotification) {
             ))}
           </div>
         </div>
-        <div className='px-5 overflow-y-scroll h-96'>{tabs[type].component}</div>
+        <div className='h-96 overflow-y-scroll px-5'>{tabs[type].component}</div>
       </div>
     </div>
   );
