@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 export const server = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL

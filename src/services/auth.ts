@@ -1,13 +1,13 @@
-import { server } from "./server";
+import { server } from './server';
 
 const login = async (username: string, password: string): Promise<string> => {
   try {
-    const response = await server.post("/auth/login", {
+    const response = await server.post('/auth/login', {
       username,
       password
     });
     if (response.data.isAuthenticated) {
-      localStorage.setItem("user", JSON.stringify(response.data));
+      localStorage.setItem('user', JSON.stringify(response.data));
     }
     return response.data;
   } catch (error) {
@@ -17,7 +17,7 @@ const login = async (username: string, password: string): Promise<string> => {
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem('user');
 };
 export const authService = {
   login,
