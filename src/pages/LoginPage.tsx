@@ -1,49 +1,39 @@
-import { ChangeEvent, FormEvent, useState, useEffect } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 //import { useNavigate, NavigateFunction } from "react-router-dom";
-// import { useForm } from 'react-hook-form';
-// import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Label, Modal, TextInput } from 'flowbite-react';
 import { ExclamationCircleIcon, UserIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { authService } from '@services';
-import img from '../assets/login.png';
-
-// const {
-//   register,
-//   handleSubmit,
-//   reset,
-//   formState: { errors }
-// }
+import { validationSchema } from '@utils';
+import img from '../assets/login.svg';
 
 export function LoginPage() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<Auth>({
+    resolver: yupResolver(validationSchema)
+  });
+
   //const navigate: NavigateFunction = useNavigate();
+
   const [showModalCreateAccount, setShowModalCreateAccount] = useState<boolean>(false);
+  const [showModalLoginSuccess, setShowModalLoginSuccess] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<string>('password');
   const [validColor, setValidColor] = useState<Auth>({
-    username: 'grey',
-    password: 'grey'
+    username: 'gray',
+    password: 'gray'
   });
   const [formValues, setFormValues] = useState<Auth>({
     username: '',
     password: ''
   });
-  const [formError, setFormError] = useState<Auth>({
-    username: '',
-    password: ''
-  });
-  const [submit, setSubmit] = useState<boolean>(false);
-  const [showModalLoginSuccess, setShowModalLoginSuccess] = useState<boolean>(false);
 
-  const onClickCreateAccount = () => {
-    setShowModalCreateAccount(true);
-  };
-
-  const onCloseCreateAccount = () => {
-    setShowModalCreateAccount(false);
-  };
-
-  const onCloseLoginSuccess = () => {
-    setShowModalLoginSuccess(false);
+  const onSubmit = (data: Auth) => {
+    console.log(data);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -59,15 +49,8 @@ export function LoginPage() {
     }
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setFormError(validate(formValues));
-    setSubmit(true);
-  };
-
   useEffect(() => {
-    const { username, password } = formError;
-    if (username.length === 0 && password.length === 0 && submit) {
+    if (!errors.username?.message && !errors.password?.message) {
       authService.login(formValues.username, formValues.password).then((response) => {
         console.log(response);
         // if (response.data.isAuthenticated === true) {
@@ -77,26 +60,10 @@ export function LoginPage() {
         // }
       });
     }
-  }, [formError]);
-
-  const validate = (values: Auth) => {
-    const errors: Auth = {
-      username: '',
-      password: ''
-    };
-    if (!values.username) {
-      errors.username = 'Username is required!';
-    }
-    if (!values.password) {
-      errors.password = 'Password is required!';
-    } else if (values.password.length <= 8) {
-      errors.password = 'Password must be more than 8 characters';
-    }
-    return errors;
-  };
+  }, [errors]);
 
   useEffect(() => {
-    if (formError.username.length > 0) {
+    if (errors.username?.message) {
       setValidColor((prevState) => ({
         ...prevState,
         username: 'failure'
@@ -104,11 +71,11 @@ export function LoginPage() {
     } else {
       setValidColor((prevState) => ({
         ...prevState,
-        username: 'grey'
+        username: 'gray'
       }));
     }
 
-    if (formError.password.length > 0) {
+    if (errors.password?.message) {
       setValidColor((prevState) => ({
         ...prevState,
         password: 'failure'
@@ -116,16 +83,16 @@ export function LoginPage() {
     } else {
       setValidColor((prevState) => ({
         ...prevState,
-        password: 'grey'
+        password: 'gray'
       }));
     }
-  }, [formError]);
+  }, [errors]);
 
   const handleFocusUsername = () => {
     if (validColor.username === 'failure') {
       setValidColor((prevState) => ({
         ...prevState,
-        username: 'grey'
+        username: 'gray'
       }));
     }
   };
@@ -134,21 +101,21 @@ export function LoginPage() {
     if (validColor.password === 'failure') {
       setValidColor((prevState) => ({
         ...prevState,
-        password: 'grey'
+        password: 'gray'
       }));
     }
   };
 
   return (
-    <div className='h-screen bg-[#F8F8F8] '>
+    <div className='h-screen'>
       <div className='container mx-auto h-screen bg-[#DDF3F2]'>
         <div className='grid-cols-2 lg:grid'>
           <div className='hidden h-screen items-center justify-items-center lg:flex lg:grid'>
             <img className='w-2/3' src={img} />
           </div>
-          <div className='h-screen rounded-l-3xl bg-[#FFFFFF] py-4'>
+          <div className='h-screen rounded-l-3xl bg-white py-4'>
             <h1 className='mb-5 text-center font-archivo text-[70px] text-[#19A69C]'>Log in</h1>
-            <form className='flex flex-col gap-2' onSubmit={handleSubmit}>
+            <form className='flex flex-col gap-2' onSubmit={handleSubmit(onSubmit)}>
               <Label
                 className='ml-32 font-archivo text-[20px]'
                 htmlFor='username'
@@ -157,6 +124,7 @@ export function LoginPage() {
                 Username <span className='text-[#F12323]'>*</span>
               </Label>
               <TextInput
+                {...register('username')}
                 className='mx-28'
                 sizing='lg'
                 color={validColor.username}
@@ -169,7 +137,7 @@ export function LoginPage() {
                 onFocus={handleFocusUsername}
               />
               <p className='ml-32 mb-5 font-archivo text-[16px] text-[#F12323]'>
-                {formError.username}
+                {errors.username?.message}
               </p>
               <Label
                 className='ml-32 block font-archivo text-[20px]'
@@ -180,6 +148,7 @@ export function LoginPage() {
               </Label>
               <div className='relative'>
                 <TextInput
+                  {...register('password')}
                   className='mx-28'
                   sizing='lg'
                   color={validColor.password}
@@ -202,7 +171,9 @@ export function LoginPage() {
                   )}
                 </span>
               </div>
-              <p className='ml-32 font-archivo text-[16px] text-[#F12323]'>{formError.password}</p>
+              <p className='ml-32 font-archivo text-[16px] text-[#F12323]'>
+                {errors.password?.message}
+              </p>
               <Button
                 className='mx-32 mt-5 font-archivo'
                 type='submit'
@@ -222,7 +193,7 @@ export function LoginPage() {
                 type='submit'
                 size='md'
                 style={{ backgroundColor: '#F69C35', fontWeight: '800' }}
-                onClick={onClickCreateAccount}
+                onClick={() => setShowModalCreateAccount(true)}
               >
                 Create new account
               </Button>
@@ -231,7 +202,7 @@ export function LoginPage() {
               show={showModalCreateAccount}
               size='md'
               popup={true}
-              onClose={onCloseCreateAccount}
+              onClose={() => setShowModalCreateAccount(false)}
             >
               <Modal.Body>
                 <div className='text-center'>
@@ -241,7 +212,7 @@ export function LoginPage() {
                     truy cập.
                   </h3>
                   <div className='flex justify-center gap-4'>
-                    <Button color='failure' onClick={onCloseCreateAccount}>
+                    <Button color='failure' onClick={() => setShowModalCreateAccount(false)}>
                       Cancel
                     </Button>
                   </div>
@@ -252,7 +223,7 @@ export function LoginPage() {
               show={showModalLoginSuccess}
               size='md'
               popup={true}
-              onClose={onCloseLoginSuccess}
+              onClose={() => setShowModalLoginSuccess(false)}
             >
               <Modal.Body>
                 <div className='text-center'>
@@ -261,7 +232,7 @@ export function LoginPage() {
                     Sai tài khoản hoặc mật khẩu. Vui lòng kiểm tra lại thông tin đăng nhập.
                   </h3>
                   <div className='flex justify-center gap-4'>
-                    <Button color='failure' onClick={onCloseLoginSuccess}>
+                    <Button color='failure' onClick={() => setShowModalLoginSuccess(false)}>
                       Cancel
                     </Button>
                   </div>
