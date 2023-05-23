@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate, Navigate, NavigateFunction } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Label, Modal, TextInput } from 'flowbite-react';
-import { ExclamationCircleIcon, UserIcon, LockClosedIcon } from '@heroicons/react/24/solid';
+import { Button, Label, TextInput } from 'flowbite-react';
+import { UserIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import { NOT_AVAILABLE } from '@constants';
 import { RootState, login, useAppDispatch } from '@store';
 import { validationSchema } from '@utils';
 import img from '../assets/login.svg';
@@ -24,8 +27,6 @@ export function LoginPage() {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   const dispatch = useAppDispatch();
 
-  const [showModalCreateAccount, setShowModalCreateAccount] = useState<boolean>(false);
-  const [showModalLoginSuccess, setShowModalLoginSuccess] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<string>('password');
 
   const handleLogin = async (formValues: Auth) => {
@@ -33,7 +34,6 @@ export function LoginPage() {
     try {
       await dispatch(login({ username, password })).unwrap();
       navigate('/overview');
-      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -119,7 +119,11 @@ export function LoginPage() {
               </Button>
             </form>
             <hr className='mx-28 mt-8 h-px border-0 bg-gray-200 dark:bg-gray-700' />
-            <a href='#' className='mb-5 grid justify-items-center text-[#05A59D] hover:underline'>
+            <a
+              href='#'
+              className='mb-5 grid justify-items-center text-[#05A59D] hover:underline'
+              onClick={() => toast.error(NOT_AVAILABLE)}
+            >
               Forgot password?
             </a>
             <div className='grid'>
@@ -128,52 +132,11 @@ export function LoginPage() {
                 type='submit'
                 size='md'
                 style={{ backgroundColor: '#F69C35', fontWeight: '800' }}
-                onClick={() => setShowModalCreateAccount(true)}
+                onClick={() => toast.error(NOT_AVAILABLE)}
               >
                 Create new account
               </Button>
             </div>
-            <Modal
-              show={showModalCreateAccount}
-              size='md'
-              popup={true}
-              onClose={() => setShowModalCreateAccount(false)}
-            >
-              <Modal.Body>
-                <div className='text-center'>
-                  <ExclamationCircleIcon className='mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200' />
-                  <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>
-                    Hiện tại chưa có chức năng này. Bạn vui lòng liên hệ Admin để nhận thông tin
-                    truy cập.
-                  </h3>
-                  <div className='flex justify-center gap-4'>
-                    <Button color='failure' onClick={() => setShowModalCreateAccount(false)}>
-                      Cancel
-                    </Button>
-                  </div>
-                </div>
-              </Modal.Body>
-            </Modal>
-            <Modal
-              show={showModalLoginSuccess}
-              size='md'
-              popup={true}
-              onClose={() => setShowModalLoginSuccess(false)}
-            >
-              <Modal.Body>
-                <div className='text-center'>
-                  <ExclamationCircleIcon className='mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200' />
-                  <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>
-                    Sai tài khoản hoặc mật khẩu. Vui lòng kiểm tra lại thông tin đăng nhập.
-                  </h3>
-                  <div className='flex justify-center gap-4'>
-                    <Button color='failure' onClick={() => setShowModalLoginSuccess(false)}>
-                      Cancel
-                    </Button>
-                  </div>
-                </div>
-              </Modal.Body>
-            </Modal>
           </div>
         </div>
       </div>

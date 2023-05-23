@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
-const userdb = JSON.parse(fs.readFileSync('users.json', 'UFT-8'));
+const userdb = JSON.parse(fs.readFileSync('users.json', 'UTF-8'));
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
@@ -39,11 +39,11 @@ server.post('/auth/login', (req, res) => {
   if (isAuthenticated({ username, password }) === false) {
     const status = 401;
     const message = 'Incorrect email or password';
-    res.status(status).json({ status, message });
+    res.status(status).json({ isAuthenticated: false, message });
     return;
   }
   const access_token = createToken({ username, password });
-  res.status(200).json({ access_token });
+  res.status(200).json({ isAuthenticated: true, access_token });
 });
 
 server.use(/^(?!\/auth).*$/, (req, res, next) => {
@@ -52,7 +52,7 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
   if (!token) {
     const status = 401;
     const message = 'Error in authorization format';
-    res.status(status).json({ status, message });
+    res.status(status).json({ isAuthenticated: false, message });
     return;
   }
   try {
@@ -62,14 +62,14 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
     if (verifyTokenResult instanceof Error) {
       const status = 401;
       const message = 'Access token not provided';
-      res.status(status).json({ status, message });
+      res.status(status).json({ isAuthenticated: false, message });
       return;
     }
     next();
   } catch (err) {
     const status = 401;
     const message = 'Error access_token is revoked';
-    res.status(status).json({ status, message });
+    res.status(status).json({ isAuthenticated: false, message });
   }
 });
 

@@ -5,3 +5,4 @@
 export * from './membersName';
 export * from './routes';
 export * from './templatesName';
+export * from './toastify';

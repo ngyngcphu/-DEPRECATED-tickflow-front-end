@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { authService } from '@services';
+import { toast } from 'react-toastify';
 import { AxiosError } from 'axios';
+import { authService } from '@services';
+import { LOGIN_SUCCESS, LOGIN_FAILURE } from '@constants';
 
 const userStr = localStorage.getItem('user');
 let user = null;
@@ -13,9 +15,11 @@ export const login = createAsyncThunk(
   async ({ username, password }: Auth, thunkAPI) => {
     try {
       const data = await authService.login(username, password);
+      toast.success(LOGIN_SUCCESS);
       return { user: data };
     } catch (err) {
       const errPayload = (err as AxiosError).response?.data as ResponseError;
+      toast.error(LOGIN_FAILURE);
       throw thunkAPI.rejectWithValue(errPayload);
     }
   }
