@@ -1,11 +1,12 @@
-import { ChangeEvent, useState, useEffect } from 'react';
-//import { useNavigate, NavigateFunction } from "react-router-dom";
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate, Navigate, NavigateFunction } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Label, Modal, TextInput } from 'flowbite-react';
 import { ExclamationCircleIcon, UserIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
-import { authService } from '@services';
+import { RootState, login, useAppDispatch } from '@store';
 import { validationSchema } from '@utils';
 import img from '../assets/login.svg';
 
@@ -18,93 +19,29 @@ export function LoginPage() {
     resolver: yupResolver(validationSchema)
   });
 
-  //const navigate: NavigateFunction = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
+
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const dispatch = useAppDispatch();
 
   const [showModalCreateAccount, setShowModalCreateAccount] = useState<boolean>(false);
   const [showModalLoginSuccess, setShowModalLoginSuccess] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<string>('password');
-  const [validColor, setValidColor] = useState<Auth>({
-    username: 'gray',
-    password: 'gray'
-  });
-  const [formValues, setFormValues] = useState<Auth>({
-    username: '',
-    password: ''
-  });
 
-  const onSubmit = (data: Auth) => {
-    console.log(data);
-  };
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = event.target;
-    setFormValues({ ...formValues, [id]: value });
-  };
-
-  const handleShowPassword = () => {
-    if (showPassword === 'password') {
-      setShowPassword('text');
-    } else {
-      setShowPassword('password');
+  const handleLogin = async (formValues: Auth) => {
+    const { username, password } = formValues;
+    try {
+      await dispatch(login({ username, password })).unwrap();
+      navigate('/overview');
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  useEffect(() => {
-    if (!errors.username?.message && !errors.password?.message) {
-      authService.login(formValues.username, formValues.password).then((response) => {
-        console.log(response);
-        // if (response.data.isAuthenticated === true) {
-        //   navigate("/overview");
-        // } else {
-        //   setShowModalLoginSuccess(true);
-        // }
-      });
-    }
-  }, [errors]);
-
-  useEffect(() => {
-    if (errors.username?.message) {
-      setValidColor((prevState) => ({
-        ...prevState,
-        username: 'failure'
-      }));
-    } else {
-      setValidColor((prevState) => ({
-        ...prevState,
-        username: 'gray'
-      }));
-    }
-
-    if (errors.password?.message) {
-      setValidColor((prevState) => ({
-        ...prevState,
-        password: 'failure'
-      }));
-    } else {
-      setValidColor((prevState) => ({
-        ...prevState,
-        password: 'gray'
-      }));
-    }
-  }, [errors]);
-
-  const handleFocusUsername = () => {
-    if (validColor.username === 'failure') {
-      setValidColor((prevState) => ({
-        ...prevState,
-        username: 'gray'
-      }));
-    }
-  };
-
-  const handleFocusPassword = () => {
-    if (validColor.password === 'failure') {
-      setValidColor((prevState) => ({
-        ...prevState,
-        password: 'gray'
-      }));
-    }
-  };
+  if (isAuthenticated) {
+    return <Navigate to='/overview' />;
+  }
 
   return (
     <div className='h-screen'>
@@ -115,7 +52,7 @@ export function LoginPage() {
           </div>
           <div className='h-screen rounded-l-3xl bg-white py-4'>
             <h1 className='mb-5 text-center font-archivo text-[70px] text-[#19A69C]'>Log in</h1>
-            <form className='flex flex-col gap-2' onSubmit={handleSubmit(onSubmit)}>
+            <form className='flex flex-col gap-2' onSubmit={handleSubmit(handleLogin)}>
               <Label
                 className='ml-32 font-archivo text-[20px]'
                 htmlFor='username'
@@ -127,14 +64,11 @@ export function LoginPage() {
                 {...register('username')}
                 className='mx-28'
                 sizing='lg'
-                color={validColor.username}
+                color={errors.username ? 'failure' : 'gray'}
                 id='username'
-                value={formValues.username}
                 type='text'
                 placeholder='Username'
                 icon={UserIcon}
-                onChange={handleChange}
-                onFocus={handleFocusUsername}
               />
               <p className='ml-32 mb-5 font-archivo text-[16px] text-[#F12323]'>
                 {errors.username?.message}
@@ -151,18 +85,19 @@ export function LoginPage() {
                   {...register('password')}
                   className='mx-28'
                   sizing='lg'
-                  color={validColor.password}
+                  color={errors.password ? 'failure' : 'gray'}
                   id='password'
-                  value={formValues.password}
                   type={showPassword}
                   placeholder='Password'
                   icon={LockClosedIcon}
-                  onChange={handleChange}
-                  onFocus={handleFocusPassword}
                 />
                 <span
                   className='absolute inset-y-0 right-32 flex items-center'
-                  onClick={handleShowPassword}
+                  onClick={() =>
+                    showPassword === 'password'
+                      ? setShowPassword('text')
+                      : setShowPassword('password')
+                  }
                 >
                   {showPassword === 'text' ? (
                     <EyeIcon className='h-6' />

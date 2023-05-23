@@ -5,7 +5,7 @@ import {
   HomeIcon,
   UserCircleIcon
 } from '@heroicons/react/24/solid';
-import { AllProjectsPage, DetailProject } from '@pages';
+import { AllProjectsPage, DetailProjectPage } from '@pages';
 
 export const RoutesGroup1: RouteProps[] = [
   {
@@ -47,6 +47,6 @@ export const RoutesChild: RouteChild[] = [
   {
     title: 'ProjectId',
     href: '/projects/:projectId',
-    component: <DetailProject />
+    component: <DetailProjectPage />
   }
 ];

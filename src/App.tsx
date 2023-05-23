@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@layout';
-import { AllProjectsPage, DetailProject, LoginPage } from '@pages';
+import { AllProjectsPage, DetailProjectPage, LoginPage } from '@pages';
 
 export default function App() {
   return (
@@ -9,7 +9,7 @@ export default function App() {
       <Route path='/*' element={<Layout />}>
         <Route path='overview' element={<Layout />} />
         <Route path='projects' element={<AllProjectsPage />} />
-        <Route path='projects/:projectId' element={<DetailProject />} />
+        <Route path='projects/:projectId' element={<DetailProjectPage />} />
       </Route>
     </Routes>
   );

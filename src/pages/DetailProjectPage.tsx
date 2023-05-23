@@ -7,7 +7,7 @@ import { SendNotification } from '@components';
 import { AddMember, DeleteProject } from '@components';
 import projectImage from '../assets/projectImage.svg';
 
-export function DetailProject() {
+export function DetailProjectPage() {
   //const { projectId } = useParams<string>();
   const { state } = useLocation();
   const { type } = state;

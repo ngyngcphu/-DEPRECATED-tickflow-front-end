@@ -3,7 +3,7 @@
  */
 
 export * from './AllProjectsPage';
-export * from './DetailProject';
+export * from './DetailProjectPage';
 export * from './LoginPage';
 export * from './templates/EmailNoti';
 export * from './templates/SlackNoti';
