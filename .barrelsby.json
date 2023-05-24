@@ -3,7 +3,6 @@
     "./src/components",
     "./src/constants",
     "./src/interfaces",
-    "./src/modals",
     "./src/pages",
     "./src/services",
     "./src/store",

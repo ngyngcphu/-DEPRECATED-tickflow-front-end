@@ -22,7 +22,6 @@
       "@components": ["src/components"],
       "@constants": ["src/constants"],
       "@interfaces": ["src/interfaces"],
-      "@modals": ["src/modals"],
       "@pages": ["src/pages"],
       "@services": ["src/services"],
       "@store": ["src/store"],

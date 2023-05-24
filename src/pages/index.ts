@@ -5,5 +5,4 @@
 export * from './AllProjectsPage';
 export * from './DetailProjectPage';
 export * from './LoginPage';
-export * from './templates/EmailNoti';
-export * from './templates/SlackNoti';
+export * from './EmailNoti';

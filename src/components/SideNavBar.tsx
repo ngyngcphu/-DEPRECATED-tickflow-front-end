@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { DarkThemeToggle, Navbar, Sidebar } from 'flowbite-react';
 import { Bars3CenterLeftIcon, UserIcon } from '@heroicons/react/24/outline';
-import { Search } from '@components';
+import { Search, SidebarMobile } from '@components';
 import { RoutesChild, RoutesGroup1, RoutesGroup2 } from '@constants';
 import { useAppDispatch, RootState, setCollapse } from '@store';
 import img from '../assets/LOGO.svg';
@@ -33,9 +33,10 @@ export function SideNavBar() {
           <DarkThemeToggle />
         </div>
       </Navbar>
+      <SidebarMobile />
       <div className='flex h-full overflow-hidden bg-white dark:bg-gray-900'>
         <Sidebar
-          collapsed={collapse}
+          collapsed={true}
           className='transition-width border-r border-gray-200 duration-75 dark:border-gray-700'
         >
           <Sidebar.Items>

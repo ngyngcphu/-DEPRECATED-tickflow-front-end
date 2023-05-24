@@ -30,10 +30,6 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/interfaces')
       },
       {
-        find: '@modals',
-        replacement: path.resolve(__dirname, 'src/modals')
-      },
-      {
         find: '@pages',
         replacement: path.resolve(__dirname, 'src/pages')
       },
