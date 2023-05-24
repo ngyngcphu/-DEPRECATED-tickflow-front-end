@@ -38,8 +38,8 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/services')
       },
       {
-        find: '@store',
-        replacement: path.resolve(__dirname, 'src/store')
+        find: '@states',
+        replacement: path.resolve(__dirname, 'src/states')
       },
       {
         find: '@utils',

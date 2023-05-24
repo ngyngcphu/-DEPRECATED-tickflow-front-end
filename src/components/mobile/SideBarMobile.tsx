@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useAppDispatch, RootState, setCollapse } from '@store';
+import { useAppDispatch, RootState, setCollapse } from '@states';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 
 export function SidebarMobile() {
@@ -11,7 +11,7 @@ export function SidebarMobile() {
       <Sidebar
         onBackdropClick={() => dispatch(setCollapse(!collapse))}
         toggled={collapse}
-        breakPoint='always'
+        breakPoint='all'
         backgroundColor='#FFFFFF'
       >
         <Menu>

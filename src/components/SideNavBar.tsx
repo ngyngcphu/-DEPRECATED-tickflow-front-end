@@ -5,7 +5,7 @@ import { DarkThemeToggle, Navbar, Sidebar } from 'flowbite-react';
 import { Bars3CenterLeftIcon, UserIcon } from '@heroicons/react/24/outline';
 import { Search, SidebarMobile } from '@components';
 import { RoutesChild, RoutesGroup1, RoutesGroup2 } from '@constants';
-import { useAppDispatch, RootState, setCollapse } from '@store';
+import { useAppDispatch, RootState, setCollapse } from '@states';
 import img from '../assets/LOGO.svg';
 
 export function SideNavBar() {

@@ -4,5 +4,5 @@
 
 export * from './AllProjectsPage';
 export * from './DetailProjectPage';
-export * from './LoginPage';
 export * from './EmailNoti';
+export * from './LoginPage';

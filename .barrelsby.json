@@ -5,7 +5,7 @@
     "./src/interfaces",
     "./src/pages",
     "./src/services",
-    "./src/store",
+    "./src/states",
     "./src/utils"
   ],
   "exclude": [".test.ts"],

@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from '@store';
+import { store } from '@states';
 import './index.css';
 import App from './App';
 import { Flowbite } from 'flowbite-react';
