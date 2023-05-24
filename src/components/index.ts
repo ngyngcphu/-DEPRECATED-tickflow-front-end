@@ -8,6 +8,7 @@ export * from './AutoSuggestNewProjectForm';
 export * from './AutoSuggestSendNotiForm';
 export * from './DeleteProject';
 export * from './Notification';
+export * from './ProtectedRoute';
 export * from './ScheduleSend';
 export * from './Search';
 export * from './SendNotification';

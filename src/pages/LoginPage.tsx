@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { UserIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
-import { NOT_AVAILABLE } from '@constants';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_PENDING, NOT_AVAILABLE } from '@constants';
 import { RootState, login, useAppDispatch } from '@store';
 import { validationSchema } from '@utils';
 import img from '../assets/login.svg';
@@ -31,12 +31,24 @@ export function LoginPage() {
 
   const handleLogin = async (formValues: Auth) => {
     const { username, password } = formValues;
-    try {
-      await dispatch(login({ username, password })).unwrap();
-      navigate('/overview');
-    } catch (error) {
-      console.error(error);
-    }
+    await toast.promise(dispatch(login({ username, password })).unwrap(), {
+      pending: {
+        render() {
+          return LOGIN_PENDING;
+        }
+      },
+      success: {
+        render() {
+          navigate('/overview');
+          return LOGIN_SUCCESS;
+        }
+      },
+      error: {
+        render() {
+          return LOGIN_FAILURE;
+        }
+      }
+    });
   };
 
   if (isAuthenticated) {
