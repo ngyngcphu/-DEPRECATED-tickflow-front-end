@@ -1,24 +1,24 @@
-import { KeyboardEvent, useState } from "react";
-import { Button, Modal } from "flowbite-react";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
-import Autosuggest from "react-autosuggest";
-import AutosuggestHighlightMatch from "autosuggest-highlight/match";
-import AutosuggestHighlightParse from "autosuggest-highlight/parse";
-import { AutoSuggestNewProject } from "@interfaces";
+import { KeyboardEvent, useState } from 'react';
+import { Button, Modal } from 'flowbite-react';
+import { ExclamationCircleIcon } from '@heroicons/react/24/solid';
+import Autosuggest from 'react-autosuggest';
+import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
+import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
+import { AutoSuggestNewProject } from '@interfaces';
 
 export function AutoSuggestNewProjectForm(props: AutoSuggestNewProject) {
   const [show, setShow] = useState<boolean>(false);
 
   const escapeRegexCharacters = (str: string) => {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   };
 
   const getSuggestions = (value: string) => {
     const escapedValue = escapeRegexCharacters(value.trim());
-    if (escapedValue === "") {
+    if (escapedValue === '') {
       return props.temp;
     }
-    const regex = new RegExp("\\b" + escapedValue, "i");
+    const regex = new RegExp('\\b' + escapedValue, 'i');
     return props.temp.filter((member) => regex.test(getSuggestionValue(member)));
   };
 
@@ -33,7 +33,10 @@ export function AutoSuggestNewProjectForm(props: AutoSuggestNewProject) {
       <span>
         {parts.map((part, index) => {
           return (
-            <span style={part.highlight ? { color: "#ee0000", fontWeight: "bold" } : {}} key={index}>
+            <span
+              style={part.highlight ? { color: '#ee0000', fontWeight: 'bold' } : {}}
+              key={index}
+            >
               {part.text}
             </span>
           );
@@ -42,7 +45,7 @@ export function AutoSuggestNewProjectForm(props: AutoSuggestNewProject) {
     );
   };
 
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>('');
   const [suggestions, setSuggestions] = useState<Array<string>>([]);
 
   const onChange = (event: React.FormEvent, { newValue }: Autosuggest.ChangeEvent) => {
@@ -54,18 +57,18 @@ export function AutoSuggestNewProjectForm(props: AutoSuggestNewProject) {
   };
 
   const handleChange = () => {
-    if (value.trim() === "") return;
+    if (value.trim() === '') return;
     if (props.temp.find((name: string) => name === value) === undefined) {
       setShow(true);
-      setValue("");
+      setValue('');
       return;
     }
-    if (props.id === "leaderName") {
+    if (props.id === 'leaderName') {
       props.setProjectData((prev) => ({
         ...prev,
         leaderName: [...prev.leaderName, value]
       }));
-    } else if (props.id === "memberName") {
+    } else if (props.id === 'memberName') {
       props.setProjectData((prev) => ({
         ...prev,
         memberName: [...prev.memberName, value]
@@ -77,7 +80,7 @@ export function AutoSuggestNewProjectForm(props: AutoSuggestNewProject) {
       }));
     }
     removeNameInTemp(value);
-    setValue("");
+    setValue('');
   };
 
   const onBlur = () => {
@@ -85,7 +88,7 @@ export function AutoSuggestNewProjectForm(props: AutoSuggestNewProject) {
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       handleChange();
     }
   };
@@ -121,7 +124,9 @@ export function AutoSuggestNewProjectForm(props: AutoSuggestNewProject) {
         <Modal.Body>
           <div className='text-center'>
             <ExclamationCircleIcon className='mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200' />
-            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>Không tồn tại thành viên này!</h3>
+            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>
+              Không tồn tại thành viên này!
+            </h3>
             <div className='flex justify-center gap-4'>
               <Button color='failure' onClick={() => setShow(false)}>
                 Cancel

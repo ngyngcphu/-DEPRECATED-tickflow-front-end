@@ -1,5 +1,5 @@
-import { TextInput } from "flowbite-react";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { TextInput } from 'flowbite-react';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 export function Search() {
   return (

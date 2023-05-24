@@ -1,14 +1,14 @@
-import { Preview, Container, Section, Text, Hr } from "@react-email/components";
+import { Preview, Container, Section, Text, Hr } from '@react-email/components';
 
 export function EmailProposal(props: SendNoti) {
   return (
     <div>
-      {" "}
+      {' '}
       {/* <Html> */}
       <div /> {/* <Head /> */}
       <Preview>Chốt lịch duyệt proposal</Preview>
       <div className='font-inter'>
-        {" "}
+        {' '}
         {/* <Body> */}
         <Section>
           <Text className='!text-[16px]'>
@@ -33,17 +33,18 @@ export function EmailProposal(props: SendNoti) {
           </Section>
           <Section>
             <Text className='!text-[16px]'>
-              Dự án<b> Tên dự án </b>của<b> Tên các thành viên nhóm </b> đã hoàn thành proposal cho buổi thuyết minh đề tài. Em xin trân
-              trọng gửi lời mời tới<b> {props.receiver} </b>
-              cùng tham gia làm thành viên hội đồng duyệt dự án lần này của bạn. Sau đây là thông tin về buổi duyệt:
+              Dự án<b> Tên dự án </b>của<b> Tên các thành viên nhóm </b> đã hoàn thành proposal cho
+              buổi thuyết minh đề tài. Em xin trân trọng gửi lời mời tới<b> {props.receiver} </b>
+              cùng tham gia làm thành viên hội đồng duyệt dự án lần này của bạn. Sau đây là thông
+              tin về buổi duyệt:
             </Text>
           </Section>
           <Section>
             <Text className='!text-[16px]'>
               - Thời gian:
               <b>
-                {" "}
-                {props.timeSchedule} {props.dateSchedule}{" "}
+                {' '}
+                {props.timeSchedule} {props.dateSchedule}{' '}
               </b>
             </Text>
             <Text className='!text-[16px]'>
@@ -59,8 +60,8 @@ export function EmailProposal(props: SendNoti) {
           </Section>
           <Section>
             <Text className='!text-[16px]'>
-              Các anh/chị/bạn thành viên TickLab nếu có thể sắp xếp thời gian thì cũng có thể cùng tham dự buổi này với chúng em ạ. Chúc mọi
-              người một buổi sáng/trưa/tối vui vẻ
+              Các anh/chị/bạn thành viên TickLab nếu có thể sắp xếp thời gian thì cũng có thể cùng
+              tham dự buổi này với chúng em ạ. Chúc mọi người một buổi sáng/trưa/tối vui vẻ
             </Text>
           </Section>
           <Section>
@@ -69,7 +70,7 @@ export function EmailProposal(props: SendNoti) {
             </Text>
           </Section>
         </Container>
-      </div>{" "}
+      </div>{' '}
       {/* </Body> */}
     </div> /* </Html> */
   );

@@ -1,6 +1,6 @@
 type RouteProps = {
   title: string;
-  icon: FC<ComponentProps<"svg">>;
+  icon: FC<ComponentProps<'svg'>>;
   href: string;
   component: ReactNode;
 };

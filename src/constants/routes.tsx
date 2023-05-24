@@ -1,46 +1,52 @@
-import { BriefcaseIcon, CogIcon, DocumentTextIcon, HomeIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import { AllProjectsPage, DetailProject } from "@pages";
+import {
+  BriefcaseIcon,
+  CogIcon,
+  DocumentTextIcon,
+  HomeIcon,
+  UserCircleIcon
+} from '@heroicons/react/24/solid';
+import { AllProjectsPage, DetailProjectPage } from '@pages';
 
 export const RoutesGroup1: RouteProps[] = [
   {
-    title: "Overview",
+    title: 'Overview',
     icon: HomeIcon,
-    href: "#",
+    href: '#',
     component: <></>
   },
   {
-    title: "Projects",
+    title: 'Projects',
     icon: BriefcaseIcon,
-    href: "/projects",
+    href: '/projects',
     component: <AllProjectsPage />
   },
   {
-    title: "Members",
+    title: 'Members',
     icon: UserCircleIcon,
-    href: "#",
+    href: '#',
     component: <></>
   }
 ];
 
 export const RoutesGroup2: RouteProps[] = [
   {
-    title: "Settings",
+    title: 'Settings',
     icon: CogIcon,
-    href: "#",
+    href: '#',
     component: <></>
   },
   {
-    title: "Templates",
+    title: 'Templates',
     icon: DocumentTextIcon,
-    href: "#",
+    href: '#',
     component: <></>
   }
 ];
 
 export const RoutesChild: RouteChild[] = [
   {
-    title: "ProjectId",
-    href: "/projects/:projectId",
-    component: <DetailProject />
+    title: 'ProjectId',
+    href: '/projects/:projectId',
+    component: <DetailProjectPage />
   }
 ];

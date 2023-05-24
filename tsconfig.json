@@ -26,6 +26,7 @@
       "@modals": ["src/modals"],
       "@pages": ["src/pages"],
       "@services": ["src/services"],
+      "@store": ["src/store"],
       "@utils": ["src/utils"]
     }
   },

@@ -1,9 +1,9 @@
-import { ReactNode, useState, useEffect } from "react";
-import { Button, Modal } from "flowbite-react";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
-import { ScheduleSend } from "@components";
-import { MembersName, TemplatesName } from "@constants";
-import { SendNotiModal } from "@modals";
+import { ReactNode, useState, useEffect } from 'react';
+import { Button, Modal } from 'flowbite-react';
+import { ExclamationCircleIcon } from '@heroicons/react/24/solid';
+import { ScheduleSend } from '@components';
+import { MembersName, TemplatesName } from '@constants';
+import { SendNotiModal } from '@modals';
 
 function Proposal() {
   const [show, setShow] = useState<boolean>(false);
@@ -30,10 +30,10 @@ function Proposal() {
           >
             Cancel
           </Button>
-          <div className='flex gap-5 items-center justify-items-center'>
+          <div className='flex items-center justify-items-center gap-5'>
             <ScheduleSend />
             <Button
-              className='bg-[#00B1E5] hover:!bg-blue-500 dark:bg-blue-100 dark:!hover:!bg-blue-50'
+              className='dark:!hover:!bg-blue-50 bg-[#00B1E5] hover:!bg-blue-500 dark:bg-blue-100'
               onClick={() => {
                 setShow(false);
                 setTemp(MembersName);
