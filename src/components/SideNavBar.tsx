@@ -1,16 +1,19 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { DarkThemeToggle, Navbar, Sidebar } from 'flowbite-react';
 import { Bars3CenterLeftIcon, UserIcon } from '@heroicons/react/24/outline';
 import { Search } from '@components';
 import { RoutesChild, RoutesGroup1, RoutesGroup2 } from '@constants';
+import { useAppDispatch, RootState, setCollapse } from '@store';
 import img from '../assets/LOGO.svg';
 
 export function SideNavBar() {
   const mainRef = useRef<HTMLDivElement>(null);
   const { pathname } = useLocation();
 
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const { collapse } = useSelector((state: RootState) => state.sidebar);
+  const dispatch = useAppDispatch();
 
   return (
     <div className='flex h-screen w-full flex-col overflow-hidden'>
@@ -18,7 +21,7 @@ export function SideNavBar() {
         <div className='flex items-center'>
           <Bars3CenterLeftIcon
             className='mr-3 h-6 w-8 cursor-pointer text-gray-600 dark:text-gray-400 sm:h-8'
-            onClick={() => setCollapsed(!collapsed)}
+            onClick={() => dispatch(setCollapse(!collapse))}
           />
           <img className='h-9 sm:h-12' src={img} />
         </div>
@@ -32,7 +35,7 @@ export function SideNavBar() {
       </Navbar>
       <div className='flex h-full overflow-hidden bg-white dark:bg-gray-900'>
         <Sidebar
-          collapsed={collapsed}
+          collapsed={collapse}
           className='transition-width border-r border-gray-200 duration-75 dark:border-gray-700'
         >
           <Sidebar.Items>
