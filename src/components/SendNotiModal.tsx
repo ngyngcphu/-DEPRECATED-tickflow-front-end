@@ -3,9 +3,9 @@ import { Button, Checkbox, Label, Select, TextInput } from 'flowbite-react';
 import { AutoSuggestSendNotiForm } from '@components';
 import { TemplatesName } from '@constants';
 import { SendNotification } from '@interfaces';
-import { EmailProposal, SlackProposal } from '@pages';
+import { EmailProposal } from '@pages';
 import gmailIcon from '../assets/gmailIcon.svg';
-import slackIcon from '../assets/slackIcon.svg';
+//import slackIcon from '../assets/slackIcon.svg';
 
 export function SendNotiModal(props: SendNotification) {
   const [notiData, setNotiData] = useState<SendNoti>({
@@ -38,24 +38,24 @@ export function SendNotiModal(props: SendNotification) {
         />
       ),
       disable: false
-    },
-    {
-      tabName: 'Slack',
-      icon: slackIcon,
-      component: (
-        <SlackProposal
-          subject={notiData.subject}
-          sender={notiData.sender}
-          receiver={notiData.receiver}
-          CC={notiData.CC}
-          BCC={notiData.BCC}
-          timeSchedule={notiData.timeSchedule}
-          dateSchedule={notiData.dateSchedule}
-          link={notiData.link}
-        />
-      ),
-      disable: false
     }
+    // {
+    //   tabName: 'Slack',
+    //   icon: slackIcon,
+    //   component: (
+    //     <SlackProposal
+    //       subject={notiData.subject}
+    //       sender={notiData.sender}
+    //       receiver={notiData.receiver}
+    //       CC={notiData.CC}
+    //       BCC={notiData.BCC}
+    //       timeSchedule={notiData.timeSchedule}
+    //       dateSchedule={notiData.dateSchedule}
+    //       link={notiData.link}
+    //     />
+    //   ),
+    //   disable: false
+    // }
   ];
   const [type, setType] = useState<number>(0);
 

@@ -30,10 +30,6 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/interfaces')
       },
       {
-        find: '@modals',
-        replacement: path.resolve(__dirname, 'src/modals')
-      },
-      {
         find: '@pages',
         replacement: path.resolve(__dirname, 'src/pages')
       },
@@ -42,8 +38,8 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/services')
       },
       {
-        find: '@store',
-        replacement: path.resolve(__dirname, 'src/store')
+        find: '@states',
+        replacement: path.resolve(__dirname, 'src/states')
       },
       {
         find: '@utils',

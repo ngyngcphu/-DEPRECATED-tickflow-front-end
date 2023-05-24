@@ -3,10 +3,9 @@
     "./src/components",
     "./src/constants",
     "./src/interfaces",
-    "./src/modals",
     "./src/pages",
     "./src/services",
-    "./src/store",
+    "./src/states",
     "./src/utils"
   ],
   "exclude": [".test.ts"],
