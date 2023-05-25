@@ -1,20 +1,28 @@
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-import { DarkThemeToggle, Navbar } from 'flowbite-react';
-import { Bars3CenterLeftIcon, UserIcon } from '@heroicons/react/24/outline';
+import { toast } from 'react-toastify';
+import { Avatar, DarkThemeToggle, Dropdown, Navbar } from 'flowbite-react';
+import { Bars3CenterLeftIcon } from '@heroicons/react/24/outline';
 import { Search, SidebarMobile } from '@components';
-import { RoutesGroup1, RoutesGroup2, RoutePages } from '@constants';
-import { useAppDispatch, RootState, setCollapse } from '@states';
+import { RoutesGroup1, RoutesGroup2, RoutePages, LOGOUT } from '@constants';
+import { useAppDispatch, RootState, setCollapse, logout } from '@states';
 import img from '../assets/LOGO.svg';
 
 export function SideNavBar() {
   const mainRef = useRef<HTMLDivElement>(null);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const { collapse } = useSelector((state: RootState) => state.sidebar);
   const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+    toast.success(LOGOUT);
+  };
 
   return (
     <div className='flex h-screen w-full flex-col overflow-hidden'>
@@ -30,8 +38,26 @@ export function SideNavBar() {
           <Search />
         </div>
         <div className='flex items-center gap-2'>
-          <UserIcon className='h-6 sm:h-8' />
           <DarkThemeToggle />
+
+          <Dropdown
+            label={
+              <Avatar
+                alt='User settings'
+                img='https://flowbite.com/docs/images/people/profile-picture-5.jpg'
+                rounded={true}
+                status='online'
+              />
+            }
+            arrowIcon={false}
+            inline={true}
+          >
+            <Dropdown.Header>
+              <span className='block text-sm'>Zinu</span>
+              <span className='block truncate text-sm font-medium'>zinu@flowbite.com</span>
+            </Dropdown.Header>
+            <Dropdown.Item onClick={handleLogout}>Log out</Dropdown.Item>
+          </Dropdown>
         </div>
       </Navbar>
       <SidebarMobile />
