@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import {
   BriefcaseIcon,
   CogIcon,
@@ -10,19 +11,19 @@ import { AllProjectsPage, DetailProjectPage } from '@pages';
 export const RoutesGroup1: RouteProps[] = [
   {
     title: 'Overview',
-    icon: HomeIcon,
+    icon: <HomeIcon className='w-6 text-gray-500' />,
     href: '#',
     component: <></>
   },
   {
     title: 'Projects',
-    icon: BriefcaseIcon,
+    icon: <BriefcaseIcon className='w-6 text-gray-500' />,
     href: '/projects',
     component: <AllProjectsPage />
   },
   {
     title: 'Members',
-    icon: UserCircleIcon,
+    icon: <UserCircleIcon className='w-6 text-gray-500' />,
     href: '#',
     component: <></>
   }
@@ -31,13 +32,13 @@ export const RoutesGroup1: RouteProps[] = [
 export const RoutesGroup2: RouteProps[] = [
   {
     title: 'Settings',
-    icon: CogIcon,
+    icon: <CogIcon className='w-6 text-gray-500' />,
     href: '#',
     component: <></>
   },
   {
     title: 'Templates',
-    icon: DocumentTextIcon,
+    icon: <DocumentTextIcon className='w-6 text-gray-500' />,
     href: '#',
     component: <></>
   }
@@ -50,3 +51,19 @@ export const RoutesChild: RouteChild[] = [
     component: <DetailProjectPage />
   }
 ];
+
+export function RoutePages() {
+  return (
+    <Routes>
+      {RoutesGroup1.map(({ href, component: Component }) => (
+        <Route key={href} path={href} element={Component} />
+      ))}
+      {RoutesGroup2.map(({ href, component: Component }) => (
+        <Route key={href} path={href} element={Component} />
+      ))}
+      {RoutesChild.map(({ href, component: Component }) => (
+        <Route key={href} path={href} element={Component} />
+      ))}
+    </Routes>
+  );
+}
