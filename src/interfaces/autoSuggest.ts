@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 export interface AutoSuggestNewProject {
   id: string;
-  setProjectData: Dispatch<SetStateAction<AddProject>>;
+  setProjectData: Dispatch<SetStateAction<ProjectAdd>>;
   temp: Array<string>;
   setTemp: Dispatch<SetStateAction<Array<string>>>;
 }

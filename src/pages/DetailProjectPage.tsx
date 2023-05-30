@@ -12,7 +12,7 @@ export function DetailProjectPage() {
   const { state } = useLocation();
   const { type } = state;
 
-  const [projectData, setProjectData] = useState<Project>({
+  const [projectData, setProjectData] = useState<ProjectDetail>({
     id: 0,
     name: '',
     startDate: '',

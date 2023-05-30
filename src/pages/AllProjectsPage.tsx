@@ -1,9 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
+//import { useSelector } from 'react-redux';
 import { useNavigate, NavigateFunction, useSearchParams } from 'react-router-dom';
 import { Badge, Breadcrumb, Button, Checkbox, Spinner, Table } from 'flowbite-react';
 import { TableCellsIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { BriefcaseIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { AddProject, SendNotification } from '@components';
+//import { RootState, useAppDispatch } from '@states';
 //import { projectService } from "@services";
 
 export function AllProjectsPage() {
@@ -23,7 +25,7 @@ export function AllProjectsPage() {
   const [type, setType] = useState<string | null>(searchParams.get('view'));
 
   const [projectField, setProjectField] = useState<Array<string>>([]);
-  const [allProjectsData, setAllProjectsData] = useState<AllProjects[]>([]);
+  const [allProjectsData, setAllProjectsData] = useState<ProjectSummary[]>([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -39,7 +41,7 @@ export function AllProjectsPage() {
   }, []);
 
   const filterProjects = useMemo(() => {
-    let result: AllProjects[];
+    let result: ProjectSummary[];
     if (type === null || type === tabs[0]) {
       result = allProjectsData;
     } else {

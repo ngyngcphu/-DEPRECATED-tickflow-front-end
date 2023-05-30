@@ -1,4 +1,4 @@
-type AllProjects = {
+type ProjectSummary = {
   id: number;
   name: string;
   department: string;
