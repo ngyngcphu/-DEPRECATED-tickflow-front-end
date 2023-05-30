@@ -21,7 +21,7 @@ export function AddProject() {
   const [show, setShow] = useState<boolean>(false);
   const [temp, setTemp] = useState<Array<string>>(MembersName);
 
-  const [projectData, setProjectData] = useState<AddProject>({
+  const [projectData, setProjectData] = useState<ProjectAdd>({
     name: '',
     startDate: '',
     endDate: '',

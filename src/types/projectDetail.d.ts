@@ -10,7 +10,7 @@ type ProjectLogProps = {
   note: string;
 };
 
-type Project = {
+type ProjectDetail = {
   id: number;
   name: string;
   startDate: string;

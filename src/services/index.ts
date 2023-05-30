@@ -3,4 +3,6 @@
  */
 
 export * from './auth';
-export * from './project';
+export * from './projectDetail';
+export * from './projectField';
+export * from './projectSummary';

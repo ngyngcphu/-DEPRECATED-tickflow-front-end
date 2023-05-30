@@ -8,6 +8,10 @@ if (userStr) {
   user = JSON.parse(userStr);
 }
 
+const initialState = user
+  ? { isAuthenticated: true, user }
+  : { isAuthenticated: false, user: null };
+
 export const login = createAsyncThunk(
   'auth/login',
   async ({ username, password }: Auth, thunkAPI) => {
@@ -24,10 +28,6 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk('auth/logout', async () => {
   await authService.logout();
 });
-
-const initialState = user
-  ? { isAuthenticated: true, user }
-  : { isAuthenticated: false, user: null };
 
 const authSlice = createSlice({
   name: 'auth',
