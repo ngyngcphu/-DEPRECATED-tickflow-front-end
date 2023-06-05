@@ -112,7 +112,7 @@ export function DetailProjectPage() {
         aria-label='Solid background breadcrumb example'
         className='bg-gray-50 py-3 px-5 dark:bg-gray-700'
       >
-        <Breadcrumb.Item icon={BriefcaseIcon}>
+        <Breadcrumb.Item icon={() => <BriefcaseIcon />}>
           <Link
             to={type ? `/projects?view=${type}` : '/projects'}
             className='text-sm font-medium text-gray-700 dark:text-white'
@@ -222,7 +222,7 @@ export function DetailProjectPage() {
           <Timeline className='mx-4'>
             {projectData.projectLog.map((data, index) => (
               <Timeline.Item key={index}>
-                <Timeline.Point icon={CalendarIcon} />
+                <Timeline.Point icon={() => <CalendarIcon />} />
                 <Timeline.Content>
                   <Timeline.Time>
                     {Intl.DateTimeFormat('vi', { dateStyle: 'full' }).format(new Date(data.date))}
