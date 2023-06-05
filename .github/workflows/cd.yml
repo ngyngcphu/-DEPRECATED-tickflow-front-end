@@ -26,7 +26,6 @@ jobs:
         id: release
         with:
           release-type: node
-          package-name: tickflow-fe
           pull-request-header: 'Bot (:robot:) requested to create a new release on ${{ github.ref_name }}'
 
   build:
