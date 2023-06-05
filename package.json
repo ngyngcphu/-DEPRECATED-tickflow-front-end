@@ -1,6 +1,5 @@
 {
-  "name": "tickflow-frontend",
-  "private": true,
+  "name": "tickflow-fe",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
