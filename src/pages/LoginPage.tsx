@@ -80,7 +80,7 @@ export function LoginPage() {
                 id='username'
                 type='text'
                 placeholder='Username'
-                icon={UserIcon}
+                icon={() => <UserIcon />}
               />
               <p className='ml-32 mb-5 font-archivo text-[16px] text-[#F12323]'>
                 {errors.username?.message}
@@ -101,7 +101,7 @@ export function LoginPage() {
                   id='password'
                   type={showPassword}
                   placeholder='Password'
-                  icon={LockClosedIcon}
+                  icon={() => <LockClosedIcon />}
                 />
                 <span
                   className='absolute inset-y-0 right-32 flex items-center'

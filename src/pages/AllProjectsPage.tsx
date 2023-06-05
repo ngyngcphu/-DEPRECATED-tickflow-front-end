@@ -85,7 +85,7 @@ export function AllProjectsPage() {
         aria-label='Solid background breadcrumb example'
         className='bg-gray-50 py-3 px-5 dark:bg-gray-700'
       >
-        <Breadcrumb.Item icon={BriefcaseIcon} className='dark:text-white'>
+        <Breadcrumb.Item icon={() => <BriefcaseIcon />} className='dark:text-white'>
           <span className='text-sm font-medium text-gray-700 dark:text-white'>Projects</span>
         </Breadcrumb.Item>
       </Breadcrumb>
