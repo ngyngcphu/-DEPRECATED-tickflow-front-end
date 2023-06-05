@@ -1,11 +1,9 @@
 version: '3.8'
 
 services:
-  tickflow:
-    image: tickflow-frontend
-    build:
-      context: .
-      dockerfile: Dockerfile
+  tickflow-fe:
+    image: ghcr.io/ticklabvn/tickflow-fe:latest
     ports:
-      - 3000:3000
-    container_name: tickflow-frontend
+      - 4000:4000
+    container_name: tickflow-fe
+    restart: always
