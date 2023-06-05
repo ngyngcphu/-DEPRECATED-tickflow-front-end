@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [19.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -21,6 +21,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
+
+      - name: Setup env file
+        run: |
+          echo VITE_BACKEND_URL=${{ vars.BACKEND_URL }} >> .env
 
       - name: Install dependencies
         run: yarn
