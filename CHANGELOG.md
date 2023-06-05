@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.1](https://github.com/TickLabVN/TickFlow-FE/compare/v1.0.0...v1.0.1) (2023-06-05)
+
+
+### Bug Fixes
+
+* change all icon into wrapper arrow function ([e710efa](https://github.com/TickLabVN/TickFlow-FE/commit/e710efabff8e170995ff720942cbb43c2d8cf9a5))
+* change node-version in ci workflow ([6309ea2](https://github.com/TickLabVN/TickFlow-FE/commit/6309ea2a0e6124b14916414811c2f9c4e49d94cf))
+* remove package name in cd workflow ([a1376e7](https://github.com/TickLabVN/TickFlow-FE/commit/a1376e74cc1149586eba1ecb450870ee85a8c585))
+* set up env file in ci workflow ([89333e8](https://github.com/TickLabVN/TickFlow-FE/commit/89333e8cf6098c46e5544edab4a1663fec8ba624))
+
 ## 1.0.0 (2023-06-05)
 
 
