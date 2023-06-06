@@ -20,7 +20,7 @@ export default function App() {
         >
           <Route path='overview' element={<SideNavBar />} />
           <Route path='projects' element={<AllProjectsPage />} />
-          <Route path='projects/:projectId' element={<DetailProjectPage />} />
+          <Route path='projects/:id' element={<DetailProjectPage />} />
         </Route>
       </Routes>
     </>

@@ -5,8 +5,8 @@ export const authHeader = () => {
     user = JSON.parse(userStr);
   }
 
-  if (user && user.accessToken) {
-    return { 'x-access-token': user.accessToken };
+  if (user && user.access_token) {
+    return { 'x-access-token': user.access_token };
   } else {
     return {};
   }

@@ -13,11 +13,10 @@ server.use(jsonServer.defaults());
 
 const port = process.env.PORT || 3002;
 const SECRET_KEY = '123456789';
-const expiresIn = '1h';
 
 // Create a token from a payload
 const createToken = (payload) => {
-  return jwt.sign(payload, SECRET_KEY, { expiresIn });
+  return jwt.sign(payload, SECRET_KEY);
 };
 
 // Verify the token

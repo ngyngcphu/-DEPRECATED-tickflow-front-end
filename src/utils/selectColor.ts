@@ -23,3 +23,15 @@ export const selectColorStatus = (status: string) => {
     return 'bg-red-300 bg-opacity-20 text-red-500';
   }
 };
+
+export const selectColorRole = (role: string) => {
+  if (role === 'Leader') {
+    return 'text-teal-600';
+  } else if (role === 'Member') {
+    return 'text-blue-700';
+  } else if (role === 'Mentor') {
+    return 'text-gray-600';
+  } else if (role === 'Council') {
+    return 'text-purple-600';
+  }
+};

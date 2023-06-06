@@ -47,7 +47,7 @@ export const RoutesGroup2: RouteProps[] = [
 export const RoutesChild: RouteChild[] = [
   {
     title: 'ProjectId',
-    href: '/projects/:projectId',
+    href: '/projects/:id',
     component: <DetailProjectPage />
   }
 ];
