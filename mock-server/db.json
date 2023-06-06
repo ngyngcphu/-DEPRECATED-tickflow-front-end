@@ -1,4 +1,13 @@
 {
+  "projectTag": [
+    "All Projects",
+    "Proposal",
+    "On-going",
+    "Closing",
+    "Completed",
+    "Canceled",
+    "Halt"
+  ],
   "projectField": [
     "Project's name",
     "Department",
