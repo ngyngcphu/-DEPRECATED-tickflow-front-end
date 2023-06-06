@@ -10,7 +10,10 @@ import projectImage from '../assets/projectImage.svg';
 export function DetailProjectPage() {
   //const { projectId } = useParams<string>();
   const { state } = useLocation();
-  const { type } = state;
+  let type: string = '';
+  if (state) {
+    type = state.type;
+  }
 
   const [projectData, setProjectData] = useState<ProjectDetail>({
     id: 0,

@@ -3,5 +3,6 @@
  */
 
 export * from './authHeader';
+export * from './selectColor';
 export * from './server';
 export * from './validationSchema';

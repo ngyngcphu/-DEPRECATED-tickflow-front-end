@@ -1,21 +1,30 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { projectSummaryService } from '@services';
 
-const initialState: ProjectSummary[] = [];
+const initialState: { projectSummary: ProjectSummary[] } = { projectSummary: [] };
 
-export const getAll = createAsyncThunk('projects/getAll', async () => {
+export const getAllProjects = createAsyncThunk('projects/getAll', async () => {
   const data = await projectSummaryService.getAll();
   return data;
 });
 
+export const getProjectByTag = createAsyncThunk('projects/getByTag', async (tag: string) => {
+  const data = await projectSummaryService.getbyTag(tag);
+  return data;
+});
+
 const projectSummarySlice = createSlice({
-  name: 'projectAll',
+  name: 'projectSummary',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getAll.fulfilled, (state, action) => {
-      state = action.payload;
-    });
+    builder
+      .addCase(getAllProjects.fulfilled, (state, action) => {
+        state.projectSummary = action.payload;
+      })
+      .addCase(getProjectByTag.fulfilled, (state, action) => {
+        state.projectSummary = action.payload;
+      });
   }
 });
 
