@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/TickLabVN/TickFlow-FE/compare/v1.1.0...v1.2.0) (2023-06-06)
+
+
+### Features
+
+* refactor detail project page ([749ad88](https://github.com/TickLabVN/TickFlow-FE/commit/749ad8893c8a52a9a0cc23da684c0528b9848a0c))
+
 ## [1.1.0](https://github.com/TickLabVN/TickFlow-FE/compare/v1.0.1...v1.1.0) (2023-06-06)
 
 
